@@ -6,6 +6,7 @@ import {
 } from '../data/query-pool';
 import store from '../store';
 import { queryDeckActions } from '../store/query-deck-slice';
+import { getMatchingClues } from './clue-sheets-util';
 import { shuffle } from './util';
 
 export function dealCards(playerIds) {
@@ -128,20 +129,143 @@ export function filterQueryChoices(queryCard) {
    }
 }
 
-export function getCardLabel(queryCard) {
+export function getCardLabel(queryCard, choice = { type: null, value: null }) {
    let cardLabel = '';
 
    if (queryCard.color) {
       cardLabel += queryCard.color + ' ';
+   } else if (choice && choice.type === 'color') {
+      cardLabel += choice.value + ' ';
    }
 
    if (queryCard.species) {
       cardLabel += queryCard.species + ' ';
+   } else if (choice && choice.type === 'species') {
+      cardLabel += choice.value + ' ';
    }
 
    if (queryCard.count) {
       cardLabel += COUNT_LABELS[queryCard.count] + ' ';
+   } else if (choice && choice.type === 'count') {
+      cardLabel += COUNT_LABELS[choice.value] + ' ';
    }
 
    return cardLabel.trim();
+}
+
+function getBestFreeChoice(clues, queryCard) {
+   if (!queryCard.freeChoice) {
+      return [0, null];
+   }
+
+   const choices = filterQueryChoices(queryCard);
+   let currentBestChoice = null;
+   let currentBestWeight = 0;
+
+   choices.forEach((choice) => {
+      const query = { ...queryCard }; //make a temp copy of the query card
+
+      if (choice.type === 'color') {
+         query.color = choice.value;
+         query.weight = query.weight['color']; //Weight will be an array if free choice is true
+      }
+
+      if (choice.type === 'species') {
+         query.species = choice.value;
+         query.weight = query.weight['species']; //Weight will be an array if free choice is true
+      }
+
+      if (choice.type === 'count') {
+         query.count = choice.value;
+         query.weight = query.weight['count']; //Weight will be an array if free choice is true
+      }
+
+      let weight = getAdjustedCardWeight(clues, queryCard).length;
+
+      if (weight > currentBestWeight) {
+         currentBestWeight = weight;
+         currentBestChoice = choice;
+      }
+   });
+
+   if (!currentBestChoice) {
+      // If no choice was found, default to the first choice
+      currentBestChoice = choices[0];
+      currentBestWeight = getAdjustedCardWeight(clues, queryCard).length;
+   }
+
+   return [currentBestWeight, currentBestChoice];
+}
+
+function getAdjustedCardWeight(clues, queryCard) {
+   let weight = queryCard.weight || 0;
+   let alreadyFound = getMatchingClues(clues, queryCard).length;
+
+   if (queryCard.type === 'show') {
+      alreadyFound *= 10;
+   }
+
+   weight = weight - alreadyFound;
+
+   return weight;
+}
+
+function getLeastCluesPlayer(clues, players) {
+   let lowestCount = 100;
+   let owner = null;
+
+   players.forEach((player) => {
+      let cluesFound = clues.filter((clue) => clue.ownerId === owner);
+
+      if (cluesFound.length < lowestCount) {
+         lowestCount = cluesFound.length;
+         owner = player.id;
+      }
+   });
+
+   if (!owner) {
+      owner = players[0].id;
+   }
+
+   return owner;
+}
+
+export function getBestPlay(clues, queryCards, opponents) {
+   let bestPlay = null;
+   let choice = null;
+   let currentBestWeight = 0;
+
+   //calculate the weight for each query card
+   queryCards.forEach((queryCard) => {
+      if (queryCard.freeChoice) {
+         //For free choice cards we also need to find the best choice
+         const [weight, bestChoice] = getBestFreeChoice(clues, queryCard);
+
+         //Every time we find a higher weight card, save it
+         if (weight > currentBestWeight) {
+            currentBestWeight = weight;
+            bestPlay = queryCard;
+            choice = bestChoice;
+         }
+      } else {
+         //Every time we find a higher weight card, save it
+         let weight = getAdjustedCardWeight(clues, queryCard);
+
+         if (weight > currentBestWeight) {
+            currentBestWeight = weight;
+            bestPlay = queryCard;
+         }
+      }
+   });
+
+   //Just in case we don't find a highest weight card, default to the first query card
+   if (!bestPlay) {
+      bestPlay = queryCards[0];
+   }
+
+   //Figure out which player to ask, the player with the least known for matching clues
+   const bestClues = getMatchingClues(clues, bestPlay);
+   const playerId = getLeastCluesPlayer(bestClues, opponents);
+
+   return [bestPlay, choice, playerId];
 }

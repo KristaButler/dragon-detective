@@ -10,7 +10,7 @@ const INDEXES = {
    hydra: 2,
 };
 
-export function extractClues(clues, eccessEggs) {
+export function extractClues(clues) {
    const owners = [
       [
          //Blue
@@ -38,7 +38,7 @@ export function extractClues(clues, eccessEggs) {
       ],
    ];
 
-   clues.map((clue) => {
+   clues.forEach((clue) => {
       const egg = EGG_POOL.find((egg) => egg.id === clue.eggId);
 
       const color = INDEXES[egg.color];
@@ -49,4 +49,19 @@ export function extractClues(clues, eccessEggs) {
    });
 
    return owners;
+}
+
+//QueryCard should have the choice set on it
+export function getMatchingClues(clues, queryCard) {
+   const matches = clues.filter((clue) => {
+      const egg = EGG_POOL.find((egg) => egg.id === clue.eggId);
+
+      return (
+         (queryCard.color ? egg.color === queryCard.color : true) &&
+         (queryCard.species ? egg.species === queryCard.species : true) &&
+         (queryCard.count ? egg.count === queryCard.count : true)
+      );
+   });
+
+   return matches;
 }

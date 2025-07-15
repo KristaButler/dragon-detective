@@ -12,3 +12,17 @@ export function shuffle(deck) {
 
    return shuffledDeck;
 }
+
+export function getColorBackground(color) {
+   let bgColor = '';
+
+   if (color === 'blue') {
+      bgColor = 'bg-indigo';
+   } else if (color === 'green') {
+      bgColor = 'bg-emerald';
+   } else {
+      bgColor = `bg-${color}`;
+   }
+
+   return bgColor;
+}

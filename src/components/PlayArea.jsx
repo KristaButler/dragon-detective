@@ -11,12 +11,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import ConfirmQuery from './QueryCards/ConfirmQuery';
 import { queryDeckActions } from '../store/query-deck-slice';
 import RevealCards from './Display/RevealCards';
+import { clueSheetsActions } from '../store/clue-sheets-slice';
+import { turnsActions } from '../store/turns-slice';
 
 export default function PlayArea() {
    const dispatch = useDispatch();
    const playersEggs = useSelector((state) => state.eggs.playerEggs);
-   const [cardPlayed, setCardPlayed] = useState();
-   const [matches, setMatches] = useState(null);
+   const cardPlayed = useSelector((state) => state.turns.cardPlayed);
+   const matches = useSelector((state) => state.turns.matches);
+   const [confirmMessage, setConfirmMessage] = useState();
    const confirmQuery = useRef();
    const revealCards = useRef();
 
@@ -28,11 +31,9 @@ export default function PlayArea() {
          const opponent = OPPONENTS.find((opp) => opp.id === opponentId);
          const queryCard = QUERY_POOL.find((query) => query.id === queryCardId);
 
-         setCardPlayed({
-            message: `Ask ${opponent.name} ${getQuestion(queryCard)}?`,
-            queryCard,
-            opponent,
-         });
+         setConfirmMessage(`Ask ${opponent.name} ${getQuestion(queryCard)}?`);
+
+         dispatch(turnsActions.playCard({ queryCard, opponent }));
 
          confirmQuery.current.open();
       }
@@ -49,23 +50,38 @@ export default function PlayArea() {
                discardId: cardPlayed.queryCard.id,
             })
          );
-
          const opponentEggs = playersEggs[cardPlayed.opponent.id];
 
          if (opponentEggs) {
-            setMatches(getMatches(opponentEggs, cardPlayed.queryCard, choice));
+            dispatch(turnsActions.playCard({ ...cardPlayed, choice }));
+
+            let cardMatches = getMatches(
+               opponentEggs,
+               cardPlayed.queryCard,
+               choice
+            );
+
+            dispatch(turnsActions.setMatches({ matches: cardMatches }));
+
             revealCards.current.open();
          }
       }
    }
 
-   function handleCloseRevealedCards() {
+   function handleCloseRevealedCards(markClues) {
       revealCards.current.close();
 
-      setCardPlayed(null);
-      setMatches(null);
-
-      dispatch(queryDeckActions.draw('player'));
+      if (markClues) {
+         matches.forEach((egg) => {
+            dispatch(
+               clueSheetsActions.setEggOwner({
+                  playerId: 'player',
+                  ownerId: cardPlayed.opponent.id,
+                  eggId: egg.id,
+               })
+            );
+         });
+      }
    }
 
    return (
@@ -85,7 +101,7 @@ export default function PlayArea() {
                {cardPlayed && (
                   <ConfirmQuery
                      title='Confirm Query'
-                     message={cardPlayed.message}
+                     message={confirmMessage}
                      queryCard={cardPlayed.queryCard}
                      onSelect={handleConfirmQuery}
                   />
@@ -99,9 +115,13 @@ export default function PlayArea() {
                {matches && (
                   <RevealCards
                      cards={matches}
-                     queryLabel={getCardLabel(cardPlayed.queryCard)}
+                     queryLabel={getCardLabel(
+                        cardPlayed.queryCard,
+                        cardPlayed.choice
+                     )}
                      queryType={cardPlayed.queryCard.type}
                      owner={cardPlayed.opponent.name}
+                     onClick={handleCloseRevealedCards}
                   />
                )}
             </ConfirmModal>

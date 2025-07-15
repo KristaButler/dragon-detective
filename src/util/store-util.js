@@ -30,8 +30,8 @@ export function startGame(opponentCount) {
 
    const randomIndex = getRandomNumber(0, playerIds.length - 1); // Randomly select the first player
    const playerId = playerIds[randomIndex];
-   store.dispatch(playersSlice.actions.setCurrentPlayer(playerId)); // Set the first player in the turns slice
-   store.dispatch(playersSlice.actions.nextPlayer());
+   //   store.dispatch(playersSlice.actions.setCurrentPlayer(playerId)); // Set the first player in the turns slice
+   store.dispatch(playersSlice.actions.setCurrentPlayer('player')); // TODO remove this line and put line above back into play
 
    const solution = chooseSolution(); // Randomly select a solution
    store.dispatch(eggsSlice.actions.setSolution(solution)); // Randomly select a solution

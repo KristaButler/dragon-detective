@@ -6,6 +6,7 @@ function App() {
    //TODO: Loading
    useEffect(() => {
       startGame(3); //TODO: Select Number of players
+      //TODO: Don't restart on reload?
    }, []);
 
    return (

@@ -29,7 +29,7 @@ const playersSlice = createSlice({
          if (nextPlayerIndex >= state.players.length) {
             nextPlayerIndex = 0;
          }
-
+         console.log('Next Player: ', state.players[nextPlayerIndex].id);
          state.currentPlayer = state.players[nextPlayerIndex].id;
       },
    },

@@ -1,9 +1,15 @@
 import { useDraggable } from '@dnd-kit/core';
+import { useSelector } from 'react-redux';
 
 export default function QueryCard({ queryId, title }) {
    const { attributes, listeners, setNodeRef, transform } = useDraggable({
       id: queryId,
    });
+   const currentPlayer = useSelector((state) => state.players.currentPlayer);
+   const cardPlayed = useSelector((state) => state.turns.cardPlayed);
+   const isCurrentPlayer = currentPlayer === 'player';
+   const enabledListeners =
+      isCurrentPlayer && !cardPlayed ? listeners : undefined;
 
    const style = transform
       ? {
@@ -20,7 +26,7 @@ export default function QueryCard({ queryId, title }) {
          className={classes}
          style={style}
          ref={setNodeRef}
-         {...listeners}
+         {...enabledListeners}
          {...attributes}
       >
          {title}

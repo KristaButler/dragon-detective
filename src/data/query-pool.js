@@ -9,6 +9,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'yellow',
       species: 'hydra',
+      weight: 30,
    },
    {
       id: 'yellow-dragon',
@@ -16,6 +17,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'yellow',
       species: 'dragon',
+      weight: 30,
    },
    {
       id: 'yellow-wyvern',
@@ -23,6 +25,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'yellow',
       species: 'wyvern',
+      weight: 30,
    },
    {
       id: 'yellow-solitaires',
@@ -30,6 +33,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'yellow',
       count: 1,
+      weight: 30,
    },
    {
       id: 'yellow-pairs',
@@ -37,6 +41,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'yellow',
       count: 2,
+      weight: 30,
    },
    {
       id: 'yellow-clusters',
@@ -44,6 +49,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'yellow',
       count: 3,
+      weight: 30,
    },
    {
       id: 'yellow-free-choice',
@@ -51,12 +57,14 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'yellow',
       freeChoice: true,
+      weight: { species: 30, count: 30 },
    },
    {
       id: 'yellow-quantity',
       name: 'Yellow Quantity',
       type: 'quantity',
       color: 'yellow',
+      weight: 9,
    },
    {
       id: 'red-hydra',
@@ -65,6 +73,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'red',
       species: 'hydra',
+      weight: 30,
    },
    {
       id: 'red-dragon',
@@ -72,6 +81,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'red',
       species: 'dragon',
+      weight: 30,
    },
    {
       id: 'red-wyvern',
@@ -79,6 +89,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'red',
       species: 'wyvern',
+      weight: 30,
    },
    {
       id: 'red-solitaires',
@@ -86,6 +97,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'red',
       count: 1,
+      weight: 30,
    },
    {
       id: 'red-pairs',
@@ -93,6 +105,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'red',
       count: 2,
+      weight: 30,
    },
    {
       id: 'red-clusters',
@@ -100,6 +113,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'red',
       count: 3,
+      weight: 30,
    },
    {
       id: 'red-free-choice',
@@ -107,12 +121,14 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'red',
       freeChoice: true,
+      weight: { species: 30, count: 30 },
    },
    {
       id: 'red-quantity',
       name: 'Red Quantity',
       type: 'quantity',
       color: 'red',
+      weight: 9,
    },
    {
       id: 'blue-hydra',
@@ -121,6 +137,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'blue',
       species: 'hydra',
+      weight: 30,
    },
    {
       id: 'blue-dragon',
@@ -128,6 +145,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'blue',
       species: 'dragon',
+      weight: 30,
    },
    {
       id: 'blue-wyvern',
@@ -135,6 +153,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'blue',
       species: 'wyvern',
+      weight: 30,
    },
    {
       id: 'blue-solitaires',
@@ -142,6 +161,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'blue',
       count: 1,
+      weight: 30,
    },
    {
       id: 'blue-pairs',
@@ -149,6 +169,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'blue',
       count: 2,
+      weight: 30,
    },
    {
       id: 'blue-clusters',
@@ -156,6 +177,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'blue',
       count: 3,
+      weight: 30,
    },
    {
       id: 'blue-free-choice',
@@ -163,12 +185,14 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'blue',
       freeChoice: true,
+      weight: { species: 30, count: 30 },
    },
    {
       id: 'blue-quantity',
       name: 'Blue Quantity',
       type: 'quantity',
       color: 'blue',
+      weight: 9,
    },
    {
       id: 'green-hydra',
@@ -177,6 +201,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'green',
       species: 'hydra',
+      weight: 30,
    },
    {
       id: 'green-dragon',
@@ -184,6 +209,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'green',
       species: 'dragon',
+      weight: 30,
    },
    {
       id: 'green-wyvern',
@@ -191,6 +217,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'green',
       species: 'wyvern',
+      weight: 30,
    },
    {
       id: 'green-solitaires',
@@ -198,6 +225,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'green',
       count: 1,
+      weight: 30,
    },
    {
       id: 'green-pairs',
@@ -205,6 +233,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'green',
       count: 2,
+      weight: 30,
    },
    {
       id: 'green-clusters',
@@ -212,6 +241,7 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'green',
       count: 3,
+      weight: 30,
    },
    {
       id: 'green-free-choice',
@@ -219,48 +249,56 @@ export const QUERY_POOL = [
       type: 'show',
       color: 'green',
       freeChoice: true,
+      weight: { species: 30, count: 30 },
    },
    {
       id: 'green-quantity',
       name: 'Green Quantity',
       type: 'quantity',
       color: 'green',
+      weight: 9,
    },
    {
       id: 'cluster-quantity',
       name: 'Cluster Quantity',
       type: 'quantity',
       count: 3,
+      weight: 12,
    },
    {
       id: 'pair-quantity',
       name: 'Pair Quantity',
       type: 'quantity',
       count: 2,
+      weight: 12,
    },
    {
       id: 'solitaires-quantity',
       name: 'Solitaire Quantity',
       type: 'quantity',
       count: 1,
+      weight: 12,
    },
    {
       id: 'dragon-quantity',
       name: 'Dragon Quantity',
       type: 'quantity',
       species: 'dragon',
+      weight: 12,
    },
    {
       id: 'hydra-quantity',
       name: 'Hydra Quantity',
       type: 'quantity',
       species: 'hydra',
+      weight: 12,
    },
    {
       id: 'wyvern-quantity',
       name: 'Wyvern Quantity',
       type: 'quantity',
       species: 'wyvern',
+      weight: 12,
    },
    {
       id: 'hydra-solitaires',
@@ -268,6 +306,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'hydra',
       count: 1,
+      weight: 40,
    },
    {
       id: 'hydra-pairs',
@@ -275,6 +314,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'hydra',
       count: 2,
+      weight: 40,
    },
    {
       id: 'hydra-clusters',
@@ -282,6 +322,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'hydra',
       count: 3,
+      weight: 40,
    },
    {
       id: 'hydra-free-choice',
@@ -289,6 +330,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'hydra',
       freeChoice: true,
+      weight: { color: 30, count: 40 },
    },
    {
       id: 'dragon-solitaires',
@@ -296,6 +338,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'dragon',
       count: 1,
+      weight: 40,
    },
    {
       id: 'dragon-pairs',
@@ -303,6 +346,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'dragon',
       count: 2,
+      weight: 40,
    },
    {
       id: 'dragon-clusters',
@@ -310,6 +354,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'dragon',
       count: 3,
+      weight: 40,
    },
    {
       id: 'dragon-free-choice',
@@ -317,6 +362,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'dragon',
       freeChoice: true,
+      weight: { color: 30, count: 40 },
    },
    {
       id: 'wyvern-solitaires',
@@ -324,6 +370,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'wyvern',
       count: 1,
+      weight: 40,
    },
    {
       id: 'wyvern-pairs',
@@ -331,6 +378,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'wyvern',
       count: 2,
+      weight: 40,
    },
    {
       id: 'wyvern-clusters',
@@ -338,6 +386,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'wyvern',
       count: 3,
+      weight: 40,
    },
    {
       id: 'wyvern-free-choice',
@@ -345,6 +394,7 @@ export const QUERY_POOL = [
       type: 'show',
       species: 'wyvern',
       freeChoice: true,
+      weight: { color: 30, count: 40 },
    },
    {
       id: 'solitaires-free-choice',
@@ -352,6 +402,7 @@ export const QUERY_POOL = [
       type: 'show',
       freeChoice: true,
       count: 1,
+      weight: { color: 30, species: 40 },
    },
    {
       id: 'pairs-free-choice',
@@ -359,6 +410,7 @@ export const QUERY_POOL = [
       type: 'show',
       freeChoice: true,
       count: 2,
+      weight: { color: 30, species: 40 },
    },
    {
       id: 'clusters-free-choice',
@@ -366,6 +418,7 @@ export const QUERY_POOL = [
       type: 'show',
       freeChoice: true,
       count: 3,
+      weight: { color: 30, species: 40 },
    },
 ];
 
