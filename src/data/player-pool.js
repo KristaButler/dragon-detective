@@ -23,7 +23,8 @@ export const OPPONENTS = [
    },
    {
       id: 'opponent-2',
-      name: 'Nasreen',
+      //name: 'Nasreen',
+      name: 'Ava',
       avatar: '/images/avatars/avatar-2.png',
    },
    {
@@ -48,7 +49,8 @@ export const OPPONENTS = [
    },
    {
       id: 'opponent-7',
-      name: 'Tatiana',
+      //name: 'Tatiana',
+      name: 'Jenny',
       avatar: '/images/avatars/avatar-7.png',
    },
    {
@@ -83,7 +85,8 @@ export const OPPONENTS = [
    },
    {
       id: 'opponent-14',
-      name: 'Yolanda',
+      //name: 'Yolanda',
+      name: 'Sally',
       avatar: '/images/avatars/avatar-14.png',
    },
    {

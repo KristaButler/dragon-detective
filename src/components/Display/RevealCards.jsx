@@ -49,24 +49,22 @@ export default function RevealCards({
    return (
       <div className='reveal-cards'>
          {content}
-         <form method='dialog'>
-            <div className='flex justify-end'>
-               {showMarkClues && (
-                  <button
-                     onClick={() => onClick(true)}
-                     className='mt-4 mr-4 hover:font-bold hover:border-b-2'
-                  >
-                     Mark Clues
-                  </button>
-               )}
+         <div className='flex justify-end'>
+            {showMarkClues && (
                <button
-                  onClick={() => onClick(false)}
+                  onClick={() => onClick(true)}
                   className='mt-4 mr-4 hover:font-bold hover:border-b-2'
                >
-                  Close
+                  Mark Clues
                </button>
-            </div>
-         </form>
+            )}
+            <button
+               onClick={() => onClick(false)}
+               className='mt-4 mr-4 hover:font-bold hover:border-b-2'
+            >
+               Close
+            </button>
+         </div>
       </div>
    );
 }

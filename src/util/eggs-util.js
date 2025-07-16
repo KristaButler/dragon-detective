@@ -7,7 +7,8 @@ export function chooseSolution() {
 }
 
 export function distributeEggs(playerIds, solution) {
-   let availableEggs = EGG_POOL.filter((egg) => !isSolution(egg, solution)); //remove the solution from the pool
+   let availableEggs = EGG_POOL.filter((egg) => egg.id !== solution.id); //remove the solution from the pool
+
    availableEggs = shuffle(availableEggs); // Shuffle the eggs to randomize distribution
 
    const playersEggs = [];
@@ -29,12 +30,4 @@ export function distributeEggs(playerIds, solution) {
    excessEggs.push(...availableEggs); // Any remaining eggs go to excessEggs
 
    return { playersEggs, excessEggs };
-}
-
-export function isSolution(egg, solution) {
-   return (
-      egg.species === solution.species &&
-      egg.count === solution.count &&
-      egg.color === solution.color
-   );
 }

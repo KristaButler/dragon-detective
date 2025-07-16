@@ -44,7 +44,6 @@ export function extractClues(clues) {
       const color = INDEXES[egg.color];
       const species = INDEXES[egg.species];
       const count = egg.count - 1;
-
       owners[color][species][count] = clue.ownerId;
    });
 

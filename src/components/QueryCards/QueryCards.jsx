@@ -11,13 +11,15 @@ export default function QueryCards() {
          className='flex items-center gap-2'
       >
          {playerHand &&
-            playerHand.cards.map((card) => (
-               <QueryCard
-                  key={card.id}
-                  queryId={card.id}
-                  title={card.name}
-               />
-            ))}
+            playerHand.cards.map((card) => {
+               return (
+                  <QueryCard
+                     key={card.id}
+                     queryId={card.id}
+                     title={card.name}
+                  />
+               );
+            })}
       </div>
    );
 }

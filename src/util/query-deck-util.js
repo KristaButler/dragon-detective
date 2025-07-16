@@ -7,7 +7,7 @@ import {
 import store from '../store';
 import { queryDeckActions } from '../store/query-deck-slice';
 import { getMatchingClues } from './clue-sheets-util';
-import { shuffle } from './util';
+import { getRandomNumber, shuffle } from './util';
 
 export function dealCards(playerIds) {
    const drawPile = shuffle(QUERY_POOL);
@@ -131,6 +131,14 @@ export function filterQueryChoices(queryCard) {
 
 export function getCardLabel(queryCard, choice = { type: null, value: null }) {
    let cardLabel = '';
+   //TODO: Fix this
+   if (
+      queryCard.type === 'choice' &&
+      (choice === null || choice.value === null)
+   ) {
+      choice.type = 'count';
+      choice.value = '{Free Choice}';
+   }
 
    if (queryCard.color) {
       cardLabel += queryCard.color + ' ';
@@ -180,7 +188,7 @@ function getBestFreeChoice(clues, queryCard) {
          query.weight = query.weight['count']; //Weight will be an array if free choice is true
       }
 
-      let weight = getAdjustedCardWeight(clues, queryCard).length;
+      let weight = getAdjustedCardWeight(clues, query).length;
 
       if (weight > currentBestWeight) {
          currentBestWeight = weight;
@@ -198,7 +206,7 @@ function getBestFreeChoice(clues, queryCard) {
 }
 
 function getAdjustedCardWeight(clues, queryCard) {
-   let weight = queryCard.weight || 0;
+   let weight = queryCard.weight[0] || 0;
    let alreadyFound = getMatchingClues(clues, queryCard).length;
 
    if (queryCard.type === 'show') {
@@ -224,7 +232,6 @@ function getLeastCluesPlayer(clues, players) {
    });
 
    if (!owner) {
-      owner = players[0].id;
    }
 
    return owner;
@@ -246,6 +253,7 @@ export function getBestPlay(clues, queryCards, opponents) {
             currentBestWeight = weight;
             bestPlay = queryCard;
             choice = bestChoice;
+            console.log('Setting choice to best choice: ', choice);
          }
       } else {
          //Every time we find a higher weight card, save it
@@ -263,9 +271,9 @@ export function getBestPlay(clues, queryCards, opponents) {
       bestPlay = queryCards[0];
    }
 
-   //Figure out which player to ask, the player with the least known for matching clues
-   const bestClues = getMatchingClues(clues, bestPlay);
-   const playerId = getLeastCluesPlayer(bestClues, opponents);
+   //TODO: Improve the logic here
+   const randomIndex = getRandomNumber(0, opponents.length - 1); // Randomly select a player to ask
+   const playerId = opponents[randomIndex].id;
 
    return [bestPlay, choice, playerId];
 }

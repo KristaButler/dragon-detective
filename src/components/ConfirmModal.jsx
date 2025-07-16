@@ -7,6 +7,7 @@ export default function ConfirmModal({
    ref,
    actions,
    onClose,
+   id,
 }) {
    const dialog = useRef();
 
@@ -35,9 +36,12 @@ export default function ConfirmModal({
          onClose={handleClose}
          className='w-1/2 bg-orange-900 text-white p-4 rounded-lg border-none fixed top-1/3 left-1/3 backdrop:bg-slate-800/50'
       >
-         {children}
-         {actions === 'ConfirmCancel' && (
-            <form method='dialog'>
+         <form
+            method='dialog'
+            id={id}
+         >
+            {children}
+            {actions === 'ConfirmCancel' && (
                <div className='flex justify-end'>
                   <button
                      onClick={() => onSelect(true)}
@@ -52,18 +56,18 @@ export default function ConfirmModal({
                      Cancel
                   </button>
                </div>
-            </form>
-         )}
-         {actions === 'OK' && (
-            <div className='flex justify-end'>
-               <button
-                  onClick={handleClose}
-                  className='mt-4 mr-4 hover:font-bold hover:border-b-2'
-               >
-                  OK
-               </button>
-            </div>
-         )}
+            )}
+            {actions === 'OK' && (
+               <div className='flex justify-end'>
+                  <button
+                     onClick={handleClose}
+                     className='mt-4 mr-4 hover:font-bold hover:border-b-2'
+                  >
+                     OK
+                  </button>
+               </div>
+            )}
+         </form>
       </dialog>,
       document.getElementById('modal')
    );

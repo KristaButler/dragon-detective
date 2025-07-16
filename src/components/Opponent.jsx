@@ -45,14 +45,13 @@ export default function Opponent({ id, name, avatar }) {
       imgClasses += ' border-4 border-lime-600 shadow-lg shadow-slate-900';
    }
 
-   function takeTurn() {
+   function playACard(clues) {
       const players = allPlayers.filter((player) => player.id !== id);
       const hand =
          playerHands.find((hand) => hand.playerId === id)?.cards || [];
-      const clues =
-         clueSheets.find((sheet) => sheet.playerId === id)?.clues || [];
 
       const [queryCard, choice, askPlayer] = getBestPlay(clues, hand, players);
+
       let opponent = OPPONENTS.find((opp) => opp.id === askPlayer);
 
       if (askPlayer === 'player') {
@@ -82,19 +81,22 @@ export default function Opponent({ id, name, avatar }) {
       );
       dispatch(queryDeckActions.draw(id));
 
-      //Mark Matches
-      cardMatches.forEach((egg) => {
-         dispatch(
-            clueSheetsActions.setEggOwner({
-               playerId: id,
-               ownerId: askPlayer,
-               eggId: egg.id,
-            })
-         );
-      });
+      if (queryCard.type === 'show') {
+         //Mark Matches
+         cardMatches.forEach((egg) => {
+            dispatch(
+               clueSheetsActions.setEggOwner({
+                  playerId: id,
+                  ownerId: askPlayer,
+                  eggId: egg.id,
+               })
+            );
+         });
+      }
 
       //Build message to display turn result
       let message = `${name} played their turn.`;
+      console.log(name + ': Getting card label with choice: ', choice);
       let cardLabel = getCardLabel(queryCard, choice);
 
       if (queryCard.type === 'show') {
@@ -111,6 +113,23 @@ export default function Opponent({ id, name, avatar }) {
       setTurnMessage(message);
    }
 
+   function takeTurn() {
+      const clues =
+         clueSheets.find((sheet) => sheet.playerId === id)?.clues || [];
+
+      //For now, this is easy mode, so computer player won't guess until they have seen all cards
+      const readyToGuess = clues.length === 36;
+
+      if (readyToGuess) {
+         setTurnMessage(`${name} guessed the missing card!`); //Since we are waiting to see all cards, computer player auto guesses the solution
+
+         dispatch(turnsActions.recordGuess({ id, guess, result: true }));
+         dispatch(turnsActions.endGame(id));
+      } else {
+         playACard(clues);
+      }
+   }
+
    function handleEndTurn() {
       if (isCurrentPlayer) {
          dispatch(playersActions.nextPlayer());
@@ -123,6 +142,7 @@ export default function Opponent({ id, name, avatar }) {
             actions='OK'
             ref={playersTurnModal}
             onClose={handleEndTurn}
+            id='end-turn-modal   '
          >
             <p>{turnMessage}</p>
          </ConfirmModal>

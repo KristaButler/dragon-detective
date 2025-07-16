@@ -1,15 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { PLAYER } from '../data/player-pool';
 
+const INITIAL_STATE = {
+   players: [PLAYER], // Initialize with the player
+   currentPlayer: 'player',
+};
+
 const playersSlice = createSlice({
    name: 'players',
-   initialState: {
-      players: [PLAYER], // Initialize with the player
-      currentPlayer: 'player',
-   },
+   initialState: INITIAL_STATE,
    reducers: {
       reset(state) {
-         state.players = [PLAYER]; // Reset players to initial state with only the player
+         state = INITIAL_STATE;
       },
       addOpponents(state, action) {
          const opponents = action.payload; // Get opponents from action payload
@@ -29,7 +31,7 @@ const playersSlice = createSlice({
          if (nextPlayerIndex >= state.players.length) {
             nextPlayerIndex = 0;
          }
-         console.log('Next Player: ', state.players[nextPlayerIndex].id);
+
          state.currentPlayer = state.players[nextPlayerIndex].id;
       },
    },

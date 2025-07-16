@@ -4,7 +4,7 @@ import { getCardLabel, getMatches, getQuestion } from '../util/query-deck-util';
 import ClueSheet from './ClueSheet/ClueSheet';
 import TurnDisplay from './Display/TurnDisplay';
 import Opponents from './Opponents';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
 import ConfirmModal from './ConfirmModal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,15 +13,32 @@ import { queryDeckActions } from '../store/query-deck-slice';
 import RevealCards from './Display/RevealCards';
 import { clueSheetsActions } from '../store/clue-sheets-slice';
 import { turnsActions } from '../store/turns-slice';
+import { startGame } from '../util/store-util';
 
+//TODO: Game over and imports are clunky
 export default function PlayArea() {
    const dispatch = useDispatch();
    const playersEggs = useSelector((state) => state.eggs.playerEggs);
    const cardPlayed = useSelector((state) => state.turns.cardPlayed);
    const matches = useSelector((state) => state.turns.matches);
    const [confirmMessage, setConfirmMessage] = useState();
+   const [cardWasPlayed, setCardWasPlayed] = useState(true);
    const confirmQuery = useRef();
    const revealCards = useRef();
+
+   useEffect(() => {
+      //TODO: I had to do this because I was removing the dialog before the form submission completed
+      //This needs a better solution. But for now while I work on other things, this will work.
+      const waitForClose = setTimeout(() => {
+         if (cardPlayed && !cardWasPlayed) {
+            dispatch(turnsActions.playCard(null)); //If we did not end up actually playing the card, clear it out
+         }
+      }, 10); //Delay to allow the modal to open before clearing the cardPlayed state
+
+      return () => {
+         clearTimeout(waitForClose);
+      };
+   }, [cardPlayed, cardWasPlayed, dispatch]);
 
    function handleDragEnd(event) {
       const opponentId = event.over?.id || null;
@@ -35,7 +52,7 @@ export default function PlayArea() {
 
          dispatch(turnsActions.playCard({ queryCard, opponent }));
 
-         confirmQuery.current.open();
+         confirmQuery.current.open(queryCard, opponent);
       }
    }
 
@@ -43,6 +60,8 @@ export default function PlayArea() {
       confirmed,
       choice = { type: null, value: null }
    ) {
+      setCardWasPlayed(confirmed);
+
       if (confirmed) {
          dispatch(
             queryDeckActions.discard({
@@ -97,6 +116,7 @@ export default function PlayArea() {
                ref={confirmQuery}
                onSelect={handleConfirmQuery}
                includeActions={false}
+               id='confirm-query-modal'
             >
                {cardPlayed && (
                   <ConfirmQuery
@@ -111,6 +131,7 @@ export default function PlayArea() {
                ref={revealCards}
                onSelect={handleCloseRevealedCards}
                includeActions={false}
+               id='reveal-cards-modal'
             >
                {matches && (
                   <RevealCards

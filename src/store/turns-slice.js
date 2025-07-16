@@ -1,16 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Opponent from '../components/Opponent';
-//TODO
+
+const INTIAL_STATE = {
+   cardPlayed: null,
+   isGuessing: false,
+   guess: null,
+   matches: null,
+   history: [],
+   gameOver: false,
+   winner: null,
+};
+
 const turnsSlice = createSlice({
    name: 'turns',
-   initialState: {
-      cardPlayed: null,
-      matches: null,
-      history: [],
-   },
+   initialState: INTIAL_STATE,
    reducers: {
       reset(state) {
-         state.currentPlayer = 'player';
+         state = INTIAL_STATE;
       },
       recordTurn(state, action) {
          const { playerId, cardPlayed, matches } = action.payload;
@@ -23,6 +28,7 @@ const turnsSlice = createSlice({
 
          const turn = {
             playerId,
+            type: 'playCard',
             queryCard: queryCardId,
             opponent: opponentId,
             matches: matches ? matches : state.matches,
@@ -34,7 +40,31 @@ const turnsSlice = createSlice({
          state.cardPlayed = null;
          state.matches = null;
       },
+      recordGuess(state, action) {
+         const { playerId, guess, result } = action.payload;
+         const turn = {
+            playerId,
+            type: 'guess',
+            guess,
+            result,
+         };
+
+         state.history.push(turn);
+
+         // Reset guess and matches after recording the guess
+         state.guess = null;
+         state.matches = null;
+      },
+      recordDiscardHand(state, action) {
+         const playerId = action.payload;
+         state.history.push({ playerId, type: 'discardHand' });
+      },
       playCard(state, action) {
+         if (action.payload === null) {
+            state.cardPlayed = null;
+            return;
+         }
+
          const { queryCard, opponent, choice } = action.payload;
          state.cardPlayed = {
             queryCard,
@@ -45,6 +75,17 @@ const turnsSlice = createSlice({
       setMatches(state, action) {
          const { matches } = action.payload;
          state.matches = matches;
+      },
+      setIsGuessing(state, action) {
+         state.isGuessing = action.payload;
+      },
+      setGuess(state, action) {
+         state.guess = action.payload;
+      },
+      endGame(state, action) {
+         const winner = action.payload;
+         state.winner = winner;
+         state.gameOver = true;
       },
    },
 });

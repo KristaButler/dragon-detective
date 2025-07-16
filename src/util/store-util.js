@@ -7,6 +7,7 @@ import playersSlice from '../store/players-slice';
 import eggsSlice from '../store/eggs-slice';
 import clueSheetsSlice from '../store/clue-sheets-slice';
 import { dealCards } from './query-deck-util';
+import turnsSlice from '../store/turns-slice';
 
 export function resetGame() {
    // Reset all slices to their initial state
@@ -14,6 +15,7 @@ export function resetGame() {
    queryDeckSlice.actions.reset();
    eggsSlice.actions.reset();
    clueSheetsSlice.actions.reset();
+   turnsSlice.actions.reset();
 }
 
 export function startGame(opponentCount) {
@@ -29,9 +31,9 @@ export function startGame(opponentCount) {
    store.dispatch(playersSlice.actions.addOpponents(opponents)); // Set the opponents from the selected opponents
 
    const randomIndex = getRandomNumber(0, playerIds.length - 1); // Randomly select the first player
-   const playerId = playerIds[randomIndex];
-   //   store.dispatch(playersSlice.actions.setCurrentPlayer(playerId)); // Set the first player in the turns slice
-   store.dispatch(playersSlice.actions.setCurrentPlayer('player')); // TODO remove this line and put line above back into play
+   const firstPlayerId = playerIds[randomIndex];
+   //const firstPlayerId = 'player'; //TODO: For testing only
+   store.dispatch(playersSlice.actions.setCurrentPlayer(firstPlayerId)); // Set the first player in the turns slice
 
    const solution = chooseSolution(); // Randomly select a solution
    store.dispatch(eggsSlice.actions.setSolution(solution)); // Randomly select a solution

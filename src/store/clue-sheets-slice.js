@@ -74,6 +74,26 @@ const clueSheetsSlice = createSlice({
             });
          });
       });
+
+      builder.addCase(eggsActions.setPlayerEggs, (state, action) => {
+         const playersEggs = action.payload;
+
+         Object.keys(playersEggs).forEach((playerId) => {
+            const eggs = playersEggs[playerId];
+            const playerClueSheet = state.clueSheets.find(
+               (clueSheet) => clueSheet.playerId === playerId
+            );
+
+            if (eggs && playerClueSheet) {
+               eggs.forEach((egg) => {
+                  playerClueSheet.clues.push({
+                     eggId: egg.id,
+                     ownerId: playerId,
+                  });
+               });
+            }
+         });
+      });
    },
 });
 

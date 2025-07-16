@@ -27,7 +27,9 @@ export default function MarkClueModal({ ref, eggId }) {
       );
    }
 
-   const options = [...players, UNKNOWN_PLAYER];
+   const options = [...players, UNKNOWN_PLAYER].filter(
+      (player) => player.id !== 'player'
+   );
 
    return createPortal(
       <dialog

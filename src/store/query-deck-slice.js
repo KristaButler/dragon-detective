@@ -36,8 +36,11 @@ const queryDeckSlice = createSlice({
             (hand) => hand.playerId === playerId
          ); // Get the player's hand or initialize it
 
-         if (state.drawPileCount < 1) {
-            this.shuffleDiscardPile(state);
+         if (state.drawPile.length < 1) {
+            //Shuffle the deck, TODO: need a better solution
+            state.drawPile = [...state.drawPile, ...state.discardPile];
+            state.discardPile = [];
+            state.drawPile = shuffle(state.drawPile);
          }
 
          const queryCard = state.drawPile.pop(); // Draw the top card from the draw pile
@@ -61,19 +64,24 @@ const queryDeckSlice = createSlice({
       },
       discardHand(state, action) {
          const playerId = action.payload;
-         const playersHand = state.playerHands.find(
+         const playerHand = state.playerHands.find(
             (hand) => hand.playerId === playerId
          );
 
-         // Add all cards in the player's hand to the discard pile
-         state.discardPile.push(...playersHand);
-         playersHand.cards = []; // Clear the player's hand
+         state.discardPile.push(...playerHand.cards);
+
+         playerHand.cards = []; // Clear the player's hand
 
          // Draw new cards to fill the hand
          for (let i = 0; i < HAND_SIZE; i++) {
-            if (state.drawPile.length > 0) {
-               playersHand.cards.push(state.drawPile.pop());
+            if (state.drawPile.length < 1) {
+               //Shuffle the deck, TODO: need a better solution
+               state.drawPile = [...state.drawPile, ...state.discardPile];
+               state.discardPile = [];
+               state.drawPile = shuffle(state.drawPile);
             }
+
+            playerHand.cards.push(state.drawPile.pop());
          }
       },
    },
