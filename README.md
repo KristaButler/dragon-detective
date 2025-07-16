@@ -1,12 +1,23 @@
-# React + Vite
+# Dragon Detective
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Version 1.0
 
-Currently, two official plugins are available:
+This is a game based on a family favorite from when I was growing up - Slueth (https://boardgamegeek.com/boardgame/594/sleuth).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.0 Constitues the first draft of the game. A bit of a proof of concept for myself and a chance to practice my React skills.
+I have many improvements planned for the future, including a version where you can play with friends and maybe even a mobile app version.
 
-## Expanding the ESLint configuration
+You can play the game here:
+If you find a bug let me know by submitting it here:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Image Attribution
+
+Avatars: Sky-Designs (https://depositphotos.com/portfolio-2703645.html)
+Creature Icons: naripuru (https://depositphotos.com/portfolio-5248371.html)
+Font Awesome Icons
+
+Other images and some alterations by the developer.
+
+# Font Source
+
+Google Fonts
