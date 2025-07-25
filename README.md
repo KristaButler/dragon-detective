@@ -1,11 +1,16 @@
 # Dragon Detective
 
-# Version 1.0
+# Version 2.0
 
-This is a game based on a family favorite from when I was growing up - Slueth (https://boardgamegeek.com/boardgame/594/sleuth).
+After having a few beta testers and myself play through several games I wanted to make some improvements.
+I also felt Redux was a bit clunky and overkill for this small app. So I refactored to use zustand instead.
+I also refactored the components and streamlined them.
 
-1.0 Constitues the first draft of the game. A bit of a proof of concept for myself and a chance to practice my React skills.
-I have many improvements planned for the future, including a version where you can play with friends and maybe even a mobile app version.
+New Features:
+Home page
+Game Settings including Avatar customization
+New game play layout and controls
+Notes and Auto Notes feature.
 
 You can play the game here: You can play the game here: https://dragon-detective.kristathecoder.com/
 
