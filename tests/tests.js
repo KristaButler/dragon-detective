@@ -3505,7 +3505,6 @@ export const TESTS = [
       choice: { type: 'species', value: 'wyvern' },
       expected: false,
    },
-   //TODO HERE **********************************************************************************************************************************
    {
       query: 'pairs-free-choice',
       egg: 'yellow-dragon-solitaire',

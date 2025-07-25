@@ -1,16 +1,33 @@
+import { SPECIES } from '../../utils/utils';
+import Notes from '../game/Notes';
+
 export default function SheetHeader() {
    const classes =
-      'col-span-3 text-center border-b-1 border-t-2 border-l-2 border-r-2 border-indigo-400 p-2 rounded-t-lg';
+      'col-span-3 text-center border-b-1 border-t-2 border-l-2 border-r-2 border-indigo-400 p-1 rounded-t-lg';
 
    return (
       <>
          {
-            //Empty cell for alignment
+            //Header - species and notes
          }
-         <div className='row-span-2'>&nbsp;</div>
-         <div className={`${classes} bg-violet-900`}>Dragons</div>
-         <div className={`${classes} bg-purple-900`}>Wyverns</div>
-         <div className={`${classes} bg-fuchsia-900`}>Hydra</div>
+         <div className='row-span-2 self-end mb-4'>
+            <Notes />
+         </div>
+         {SPECIES.map((sp) => {
+            return (
+               <div
+                  key={`cluesheet-${sp.id}-header`}
+                  className={`flex gap-2 items-center justify-center ${classes} bg-${sp.color}-900`}
+               >
+                  <div>{sp.title}</div>
+                  <img
+                     src={sp.icon}
+                     alt={`A ${sp.id}`}
+                     className='h-4 w-auto'
+                  />
+               </div>
+            );
+         })}
       </>
    );
 }

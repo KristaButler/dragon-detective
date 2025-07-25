@@ -1,88 +1,27 @@
-import { useRef } from 'react';
-import MarkClueModal from './MarkClueModal';
-import { useDispatch, useSelector } from 'react-redux';
-import { turnsActions } from '../../store/turns-slice';
+export default function CellButton({ id, className, backgroundBase, owner }) {
+   let classes = 'p-2 border-b-1 border-indigo-400 text-center text-black';
 
-export default function CellButton({ eggId, owner, className }) {
-   //TODO: every cell has a modal - fix this so that it only creates one modal and reuses it
-   const modal = useRef();
-   const players = useSelector((state) => state.players.players);
-   const { isGuessing, guess } = useSelector((state) => state.turns);
-   const dispatch = useDispatch();
-
-   let isDisabled = false;
-
-   function handleClick() {
-      if (isGuessing) {
-         handleMarkGuess();
-      } else {
-         handleMarkClue();
-      }
-   }
-
-   function handleMarkClue() {
-      modal.current.open();
-   }
-
-   function handleMarkGuess() {
-      dispatch(turnsActions.setGuess(eggId));
+   if (className) {
+      classes = `${classes} ${className}`;
    }
 
    let content = '?';
-   let classes = className;
+   let background = `bg-${backgroundBase}-300`;
 
-   if (owner) {
-      if (owner === 'player') {
-         content = 'X';
-         classes = `${className} bg-slate-400 text-white`;
-         isDisabled = true;
-      } else if (owner === 'excess') {
-         content = '';
-         classes = `${className} bg-slate-500 text-white`;
-         isDisabled = true;
-      } else if (owner.length > 0) {
-         if (isGuessing) {
-            isDisabled = true;
-         }
-
-         const player = players.find((player) => player.id === owner);
-         classes = `${className} bg-slate-300`;
-
-         content = (
-            <img
-               src={player.avatar}
-               alt={player.name}
-               className='w-8 h-8 rounded-full cursor-pointer'
-            />
-         );
-      }
-   }
-
-   if (isGuessing && guess === eggId) {
-      content = (
-         <div className='h-full w-full bg-green-600 text-white border-4 border-green-600 rounded-full font-bold'>
-            ?
-         </div>
-      );
+   if (owner === 'player') {
+      background = 'bg-zinc-400 text-white';
+      content = 'X';
+   } else if (owner === 'global') {
+      background = 'bg-zinc-500 text-white';
+      content = '/';
+   } else if (owner) {
+      background = `bg-${backgroundBase}-600`;
+      content = ''; //TODO: Avatar
    }
 
    return (
-      <>
-         {!isDisabled && (
-            <MarkClueModal
-               ref={modal}
-               eggId={eggId}
-            />
-         )}
-         <div className={classes}>
-            <button
-               className='w-8 h-8 cursor-pointer'
-               onClick={handleClick}
-               disabled={isDisabled}
-            >
-               {content}
-            </button>
-         </div>
-      </>
+      <div className={`${classes} ${background}`}>
+         <button>{content}</button>
+      </div>
    );
 }

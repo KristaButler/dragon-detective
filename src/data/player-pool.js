@@ -1,9 +1,3 @@
-export const PLAYER = {
-   id: 'player',
-   name: 'You',
-   avatar: '/images/avatars/avatar-player.png',
-};
-
 export const UNKNOWN_PLAYER = {
    id: 'unknown',
    name: 'Unknown',

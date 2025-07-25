@@ -7,8 +7,7 @@ This is a game based on a family favorite from when I was growing up - Slueth (h
 1.0 Constitues the first draft of the game. A bit of a proof of concept for myself and a chance to practice my React skills.
 I have many improvements planned for the future, including a version where you can play with friends and maybe even a mobile app version.
 
-You can play the game here:
-If you find a bug let me know by submitting it here:
+You can play the game here: You can play the game here: https://dragon-detective.kristathecoder.com/
 
 # Image Attribution
 
