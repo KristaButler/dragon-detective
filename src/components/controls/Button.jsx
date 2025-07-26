@@ -1,43 +1,56 @@
+import { NavLink } from 'react-router-dom';
+
 export default function Button({
-   secondary,
-   round,
-   size = 'normal',
+   color = 'orange',
+   shape = 'normal',
+   disabled = false,
    className,
    children,
-   customColor,
+   to = null,
    ...props
 }) {
-   let classes =
-      'm-1 shadow-sm shadow-zinc-900 border-2 hover:underline hover:border-white hover:font-bold';
+   const colorVariants = {
+      green: 'bg-emerald-700 border-emerald-700',
+      orange: 'bg-orange-700 border-orange-700',
+      yellow: 'bg-yellow-700 border-yellow-700',
+      red: 'bg-red-900 border-red-900',
+      disabled: 'bg-zinc-700 border-zinc-700',
+   };
+   const shapeVariants = {
+      big: 'text-xl pt-2 pb-3 px-3 rounded-md',
+      normal: 'py-1 px-2 rounded-md',
+      round: 'py-1 px-2 rounded-full',
+   };
 
-   if (secondary) {
-      classes += ' bg-teal-700 border-teal-700';
-   } else if (customColor) {
-      classes += ` bg-${customColor} border-${customColor}`;
-   } else {
-      classes += ' bg-orange-700 border-orange-700';
+   if (disabled) {
+      color = 'disabled';
    }
 
-   if (size === 'big') {
-      classes += ' text-xl pt-2 pb-3 px-3';
-   } else if (!round) {
-      classes += ' py-1 px-2';
-   }
+   let classes = `m-1 shadow-sm shadow-zinc-900 border-2 hover:underline hover:border-white hover:font-bold ${
+      colorVariants[color]
+   } ${shapeVariants[shape]} ${!disabled ? 'cursor-pointer' : ''}`;
 
-   if (round) {
-      classes += ' py-1 px-2 rounded-full';
-   } else {
-      classes += ' rounded-md';
-   }
-
-   return (
+   let content = (
       <button
-         className={`${classes} ${
-            className ? className : undefined
-         } cursor-pointer`}
+         className={`${classes} ${className ? className : ''}`}
          {...props}
       >
          {children}
       </button>
    );
+
+   //Adding to makes it a nav button
+   if (to) {
+      content = (
+         <NavLink
+            to={to}
+            className={`${classes} ${className ? className : ''}`}
+            {...props}
+         >
+            {children}
+         </NavLink>
+      );
+   }
+
+   return content;
 }

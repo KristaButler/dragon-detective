@@ -1,55 +1,71 @@
+export const COLOR_MAP = [];
+
 //TODO: Move this to backend or setup file?
+//TODO: Make id the key instead of a value?
 export const SPECIES = [
    {
       id: 'dragon',
       title: 'Dragons',
-      color: 'violet',
+      plural: 'dragons',
+      bgDark: 'bg-violet-900',
+      bg: 'bg-violet-600',
+      bgLight: 'bg-violet-300',
       icon: '/images/symbols/dragon.png',
    },
    {
       id: 'wyvern',
       title: 'Wyverns',
-      color: 'purple',
+      plural: 'wyverns',
+      bgDark: 'bg-purple-900',
+      bg: 'bg-purple-600',
+      bgLight: 'bg-purple-300',
       icon: '/images/symbols/wyvern.png',
    },
    {
       id: 'hydra',
       title: 'Hydras',
-      color: 'fuchsia',
+      plural: 'hydra',
+      bgDark: 'bg-fuchsia-900',
+      bg: 'bg-fuchsia-600',
+      bgLight: 'bg-fuchsia-300',
       icon: '/images/symbols/hydra.png',
    },
 ];
-export const COLORS = [
+export const EGG_COLORS = [
    {
       id: 'blue',
+      plural: 'blues',
       title: 'Blue',
-      color: 'indigo',
+      bg: 'bg-indigo-900',
       icon: '/images/symbols/blue.png',
    },
    {
       id: 'green',
+      plural: 'greens',
       title: 'Green',
-      color: 'emerald',
+      bg: 'bg-emerald-900',
       icon: '/images/symbols/green.png',
    },
    {
       id: 'red',
+      plural: 'reds',
       title: 'Red',
-      color: 'red',
+      bg: 'bg-red-900',
       icon: '/images/symbols/red.png',
    },
    {
       id: 'yellow',
+      plural: 'yellows',
       title: 'Yellow',
-      color: 'yellow',
+      bg: 'bg-yellow-700',
       icon: '/images/symbols/yellow.png',
    },
 ];
 export const COUNTS = [
    null, // Empty so index = count
-   { id: 'solitaire', title: 'Solitaire' },
-   { id: 'pair', title: 'Pair' },
-   { id: 'cluster', title: 'Cluster' },
+   { id: 'solitaire', title: 'Solitaire', plural: 'solitaires' },
+   { id: 'pair', title: 'Pair', plural: 'pairs' },
+   { id: 'cluster', title: 'Cluster', plural: 'clusters' },
 ];
 
 // Source: Google Chrome Search Labs AI

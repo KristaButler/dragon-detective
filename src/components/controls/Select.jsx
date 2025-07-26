@@ -2,7 +2,6 @@ export default function Select({
    id,
    type,
    label,
-   displayRow,
    className,
    children,
    ...props

@@ -1,12 +1,9 @@
-import useBoundStore from '../../store/store';
-import { COLORS, COUNTS, SPECIES } from '../../utils/utils';
+import useBoundStore from '../../../store/store';
+import { EGG_COLORS, COUNTS, SPECIES } from '../../../utils/utils';
 import CellButton from './CellButton';
 
 export default function RowCells({ color, colorIndex }) {
-   const clues = useBoundStore(
-      (state) =>
-         state.game.players.find((player) => player.id === 'player').clues
-   );
+   const cluesheet = useBoundStore((state) => state.cluesheet);
 
    return SPECIES.map((sp) => {
       return COUNTS.map((ct, ctIndex) => {
@@ -15,13 +12,7 @@ export default function RowCells({ color, colorIndex }) {
          }
 
          const clueId = `${color.id}-${sp.id}-${ctIndex}`;
-         const clue = clues.find((clue) => clue.eggId === clueId);
-
-         let owner = null;
-
-         if (clue) {
-            owner = clue.owner;
-         }
+         const clue = cluesheet.find((clue) => clue.id === clueId);
 
          let borderClasses = 'border-r-1';
 
@@ -33,7 +24,7 @@ export default function RowCells({ color, colorIndex }) {
             borderClasses += ' border-l-2';
          }
 
-         if (colorIndex === COLORS.length - 1) {
+         if (colorIndex === EGG_COLORS.length - 1) {
             borderClasses += ' border-b-2';
          }
 
@@ -41,9 +32,9 @@ export default function RowCells({ color, colorIndex }) {
             <CellButton
                key={clueId}
                id={clueId}
-               owner={owner}
+               clue={clue}
                className={borderClasses}
-               backgroundBase={sp.color}
+               species={sp}
             />
          );
       });

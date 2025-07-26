@@ -4,22 +4,24 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 import useBoundStore from '../../store/store';
 import Button from '../controls/Button';
 import Input from '../controls/Input';
-import NavButton from '../controls/NavButton';
-import PlayerAvatar from '../game/PlayerAvatar';
+import PlayerAvatar from '../game/avatar/PlayerAvatar';
 import Divider from '../layout/Divider';
 
 export default function HomePage() {
-   const settings = useBoundStore((state) => state.settings);
+   const settingsActions = useBoundStore((state) => state.settingsActions);
+   const playerName = useBoundStore((state) => state.playerName);
+   const playerAvatar = useBoundStore((state) => state.playerAvatar);
+   const numberOfPlayers = useBoundStore((state) => state.numberOfPlayers);
    const startNewGame = useBoundStore((state) => state.startNewGame);
 
    const navigate = useNavigate();
 
    function handlePlayerNameChange(event) {
-      settings.setPlayerName(event.target.value);
+      settingsActions.setPlayerName(event.target.value);
    }
 
    function handleChangeNumberOfPlayers(event) {
-      settings.setNumberOfPlayers(event.target.value);
+      settingsActions.setNumberOfPlayers(event.target.value);
    }
 
    function handleStartNewGame() {
@@ -42,19 +44,19 @@ export default function HomePage() {
                   id='player-name'
                   label='Player Name:'
                   type='string'
-                  value={settings.playerName}
+                  value={playerName}
                   onChange={handlePlayerNameChange}
                />
                <PlayerAvatar
                   className='h-32 w-32'
-                  avatar={settings.avatar}
+                  avatar={playerAvatar}
                />
-               <NavButton
+               <Button
                   to='/settings'
-                  secondary
+                  color='green'
                >
                   Customize
-               </NavButton>
+               </Button>
             </div>
             <div className='flex flex-col items-center mt-4 gap-2'>
                <Input
@@ -63,7 +65,7 @@ export default function HomePage() {
                   type='number'
                   min={3}
                   max={7}
-                  value={settings.numberOfPlayers}
+                  value={numberOfPlayers}
                   onChange={handleChangeNumberOfPlayers}
                />
             </div>
@@ -73,18 +75,18 @@ export default function HomePage() {
             <div className='flex justify-center items-center'>
                <Button
                   onClick={handleStartNewGame}
-                  size='big'
+                  shape='big'
                >
                   New Game
                </Button>
-               <NavButton
+               <Button
                   to='/settings'
-                  secondary
-                  round
+                  color='green'
+                  shape='round'
                   title='Settings'
                >
                   <FontAwesomeIcon icon={faGear} />
-               </NavButton>
+               </Button>
             </div>
          </div>
       </section>

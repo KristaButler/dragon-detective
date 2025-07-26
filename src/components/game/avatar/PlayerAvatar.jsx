@@ -1,4 +1,4 @@
-import { DEFAULT_AVATAR } from '../../store/settingsSlice';
+import { DEFAULT_AVATAR } from '../../../store/settingsSlice';
 
 //TODO: Move to backend eventually, or find better solution
 const HAIR_BACKS = [
@@ -32,38 +32,38 @@ export default function PlayerAvatar({ className, avatar = DEFAULT_AVATAR }) {
       >
          {avatar.glasses > 0 && (
             <img
-               className={`${imageClasses} z-40`}
+               className={`${imageClasses} z-7`}
                src={`/images/player/glasses-${avatar.glasses}.png`}
             />
          )}
          <img
-            className={`${imageClasses} z-30`}
+            className={`${imageClasses} z-6`}
             src={`/images/player/hair-${avatar.hair}.png`}
          />
          <img
-            className={`${imageClasses} z-20`}
+            className={`${imageClasses} z-5`}
             src={`/images/player/shirt-${avatar.shirt}.png`}
          />
          {avatar.earrings > 0 && (
             <img
-               className={`${imageClasses} z-40`}
+               className={`${imageClasses} z-4`}
                src={`/images/player/earrings-${avatar.earrings}.png`}
             />
          )}
          {avatar.necklace > 0 && (
             <img
-               className={`${imageClasses} z-40`}
+               className={`${imageClasses} z-3`}
                src={`/images/player/necklace-${avatar.necklace}.png`}
             />
          )}
          {avatar.beautymark && (
             <img
-               className={`${imageClasses} z-40`}
+               className={`${imageClasses} z-2`}
                src={`/images/player/beauty-mark.png`}
             />
          )}
          <img
-            className={`${imageClasses} z-10`}
+            className={`${imageClasses} z-1`}
             src={`/images/player/skintone-${avatar.base}.png`}
          />
          {HAIR_BACKS[avatar.hair] && (

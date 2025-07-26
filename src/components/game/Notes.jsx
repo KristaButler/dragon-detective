@@ -5,11 +5,11 @@ import { useState } from 'react';
 import useBoundStore from '../../store/store';
 
 export default function Notes() {
-   const notes = useBoundStore((state) => state.game.notes);
+   const notes = useBoundStore((state) => state.notes);
    const [isOpen, setIsOpen] = useState(false);
 
    const notesClasses =
-      'absolute -top-60 z-100 bg-white text-black p-2 rounded-lg';
+      'absolute -top-60 z-100 bg-white text-black p-2 rounded';
    const buttonClasses =
       'p-2 border-2 border-transparent hover:border-white hover:cursor-pointer';
 

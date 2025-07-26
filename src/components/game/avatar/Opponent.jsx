@@ -1,8 +1,9 @@
 import { useDroppable } from '@dnd-kit/core';
-import useBoundStore from '../../store/store';
+import useBoundStore from '../../../store/store';
+import OpponentAvatar from './OpponentAvatar';
 
 export default function Opponent({ id, name, avatar }) {
-   const currentPlayer = useBoundStore((state) => state.game.currentPlayer);
+   const currentPlayer = useBoundStore((state) => state.currentPlayer);
    const { isOver, setNodeRef } = useDroppable({
       id,
    });
@@ -25,7 +26,7 @@ export default function Opponent({ id, name, avatar }) {
          className='flex flex-col items-center p-4'
          ref={setNodeRef}
       >
-         <img
+         <OpponentAvatar
             src={avatar}
             alt={`${name}'s avatar`}
             className={imgClasses}

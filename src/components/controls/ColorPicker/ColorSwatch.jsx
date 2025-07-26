@@ -1,4 +1,3 @@
-//TODO: Make Hover and Border Colors dynamic based on swatch color for visibility
 export default function ColorSwatch({ title, color, selectColor, selected }) {
    let classes = 'w-8 h-8 rounded hover:border-4';
 

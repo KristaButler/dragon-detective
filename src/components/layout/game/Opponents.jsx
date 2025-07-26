@@ -1,4 +1,4 @@
-import Opponent from '../game/Opponent';
+import Opponent from '../../game/avatar/Opponent';
 
 export default function Opponents({ players }) {
    return (

@@ -1,11 +1,4 @@
-export default function Input({
-   id,
-   type,
-   label,
-   displayRow,
-   className,
-   ...props
-}) {
+export default function Input({ id, type, label, className, ...props }) {
    const labelClasses = 'mr-2';
    const inputClasses = 'text-black bg-white w-min p-1 m-1 rounded';
 

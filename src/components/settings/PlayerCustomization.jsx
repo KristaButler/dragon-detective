@@ -1,11 +1,11 @@
-import ColorPicker from '../controls/ColorPicker/ColorPicker';
-import PlayerAvatar from '../game/PlayerAvatar';
+import ColorPicker from '../controls/colorpicker/ColorPicker';
+import PlayerAvatar from '../game/avatar/PlayerAvatar';
 import Input from '../controls/Input';
 import Select from '../controls/Select';
 import useBoundStore from '../../store/store';
 
 //TODO: Move to backend eventually
-const COLORS = [
+const AVATAR_COLORS = [
    {
       name: 'Teal',
       value: 'oklch(51.1% 0.096 186.391)',
@@ -73,18 +73,20 @@ const EARRINGS = ['None', 'Circle', 'Flower', 'Twist'];
 const NECKLACES = ['None', 'Onyx', 'Rainbow'];
 
 export default function PlayerCustomization() {
-   const settings = useBoundStore((state) => state.settings);
+   const settingsActions = useBoundStore((state) => state.settingsActions);
+   const playerAvatar = useBoundStore((state) => state.playerAvatar);
+   const playerName = useBoundStore((state) => state.playerName);
 
    function handleBackgroundPicked(color) {
-      settings.setAvatarSetting('background', color);
+      settingsActions.setAvatarSetting('background', color);
    }
 
    function handleChangeValue(key, value) {
-      settings.setAvatarSetting(key, value);
+      settingsActions.setAvatarSetting(key, value);
    }
 
    function handleNameChange(event) {
-      settings.setPlayerName(event.target.value);
+      settingsActions.setPlayerName(event.target.value);
    }
 
    return (
@@ -92,7 +94,7 @@ export default function PlayerCustomization() {
          <div>
             <PlayerAvatar
                className='h-64 w-64'
-               avatar={settings.avatar}
+               avatar={playerAvatar}
             />
          </div>
          <div className='flex flex-col'>
@@ -101,7 +103,7 @@ export default function PlayerCustomization() {
                   id='player-name'
                   label='Player Name:'
                   type='string'
-                  value={settings.playerName}
+                  value={playerName}
                   onChange={handleNameChange}
                />
             </div>
@@ -111,8 +113,8 @@ export default function PlayerCustomization() {
                      <ColorPicker
                         label='Background: '
                         onPickColor={handleBackgroundPicked}
-                        defaultValue={settings.avatar.background}
-                        list={COLORS}
+                        defaultValue={playerAvatar.background}
+                        list={AVATAR_COLORS}
                      />
                   </div>
                   <div>
@@ -121,7 +123,7 @@ export default function PlayerCustomization() {
                         onPickColor={(value) =>
                            handleChangeValue('base', value)
                         }
-                        defaultValue={settings.avatar.base}
+                        defaultValue={playerAvatar.base}
                         list={SKINTONES}
                      />
                   </div>
@@ -131,7 +133,7 @@ export default function PlayerCustomization() {
                         type='number'
                         min={1}
                         max={16}
-                        value={settings.avatar.shirt}
+                        value={playerAvatar.shirt}
                         onChange={(event) =>
                            handleChangeValue('shirt', event.target.value)
                         }
@@ -143,7 +145,7 @@ export default function PlayerCustomization() {
                         type='number'
                         min={1}
                         max={16}
-                        value={settings.avatar.hair}
+                        value={playerAvatar.hair}
                         onChange={(event) =>
                            handleChangeValue('hair', event.target.value)
                         }
@@ -154,7 +156,7 @@ export default function PlayerCustomization() {
                   <div>
                      <Select
                         label='Glasses: '
-                        defaultValue={settings.avatar.glasses}
+                        defaultValue={playerAvatar.glasses}
                         onChange={(event) =>
                            handleChangeValue('glasses', event.target.value)
                         }
@@ -172,7 +174,7 @@ export default function PlayerCustomization() {
                   <div>
                      <Select
                         label='Earrings: '
-                        defaultValue={settings.avatar.earrings}
+                        defaultValue={playerAvatar.earrings}
                         onChange={(event) =>
                            handleChangeValue('earrings', event.target.value)
                         }
@@ -190,7 +192,7 @@ export default function PlayerCustomization() {
                   <div>
                      <Select
                         label='Necklace: '
-                        defaultValue={settings.avatar.necklace}
+                        defaultValue={playerAvatar.necklace}
                         onChange={(event) =>
                            handleChangeValue('necklace', event.target.value)
                         }
@@ -209,7 +211,7 @@ export default function PlayerCustomization() {
                      <Input
                         label='Beauty Mark: '
                         type='checkbox'
-                        defaultChecked={settings.avatar.beautymarked}
+                        defaultChecked={playerAvatar.beautymarked}
                         onChange={(event) =>
                            handleChangeValue('beautymark', event.target.value)
                         }

@@ -24,7 +24,6 @@ function selectOpponents(numberOfPlayers, currentPlayers) {
          ...OPPONENTS[index],
          hand: [],
          eggs: [],
-         clues: [],
       };
       newPlayers.push(newPlayer);
    }
@@ -51,7 +50,6 @@ function distributeEggs(players, eggs) {
 
 function dealQueryCards(players) {
    const deck = shuffle(QUERY_POOL);
-   let playerIndex = 0;
 
    for (let i = 0; i < HAND_SIZE; i++) {
       for (let j = 0; j < players.length; j++) {
@@ -64,85 +62,68 @@ function dealQueryCards(players) {
    return deck;
 }
 
-function markPlayerEggs(player) {
-   player.eggs.forEach((egg) =>
-      player.clues.push({ eggId: egg.id, owner: player.id })
-   );
-
-   return player;
-}
-
-function markGlobalEggs(player, globalEggs) {
-   globalEggs.forEach((egg) =>
-      player.clues.push({ eggId: egg.id, owner: 'global' })
-   );
-
-   return player;
-}
-
-function initClues(
-   players,
-   globalEggs,
-   autoMarkPlayerEggs,
-   autoMarkGlobalEggs
-) {
-   players = players.map((player) => {
-      if (player.id === 'player') {
-         if (autoMarkPlayerEggs) {
-            player = markPlayerEggs(player);
-         }
-
-         if (autoMarkGlobalEggs) {
-            player = markGlobalEggs(player, globalEggs);
-         }
-      } else {
-         player = markPlayerEggs(player);
-         player = markGlobalEggs(player, globalEggs);
-      }
-
-      return player;
-   });
-}
-
-export function generateNewGame(
-   initialState,
-   numberOfPlayers,
-   autoMarkPlayerEggs,
-   autoMarkGlobalEggs
-) {
-   const game = { ...initialState };
-
-   //Note: These not cleared by game initial state for some reason
-   game.players[0].eggs = [];
-   game.players[0].hand = [];
-   game.players[0].clues = [];
+export function generateNewGame(numberOfPlayers, autoMarkPlayerEggs) {
+   const state = {
+      players: [
+         {
+            id: 'player',
+            name: 'You',
+            avatar: null,
+            eggs: [],
+            hand: [],
+         },
+      ],
+      currentPlayer: '',
+      winner: '',
+      solution: '',
+      globalEggs: [],
+      drawPile: [],
+      discardPile: [],
+      notes: [],
+      selectedClue: null,
+      cluesheet: [],
+      message: '',
+      type: '',
+      params: {},
+   };
 
    //Select Opponents
-   const players = selectOpponents(numberOfPlayers, game.players);
+   const players = selectOpponents(numberOfPlayers, state.players);
 
    //Pick who goes first
    const randomPlayer = getRandomNumber(0, players.length - 1);
-   //   game.currentPlayer = players[randomPlayer].id; //TODO: For testing only
-   game.currentPlayer = 'player'; //TODO: For testing only
+   //game.currentPlayer = players[randomPlayer].id;
+   state.currentPlayer = 'player'; //TODO: For testing only
 
    //Select Solution
    let eggs = shuffle(EGG_POOL);
 
    const randomEgg = Math.floor(Math.random() * eggs.length);
-   game.solution = eggs[randomEgg].id;
+   state.solution = eggs[randomEgg].id;
 
    //Deal the eggs out to players
-   eggs = eggs.filter((egg) => egg.id !== game.solution); //Remove solution from available eggs
+   eggs = eggs.filter((egg) => egg.id !== state.solution); //Remove solution from available eggs
    distributeEggs(players, eggs);
-   game.globalEggs = [...eggs];
+   state.globalEggs = [...eggs];
 
    //Deal the query cards
-   game.drawPile = dealQueryCards(players);
+   state.drawPile = dealQueryCards(players);
 
-   //Initialize the clues sheets
-   initClues(players, eggs, autoMarkPlayerEggs, autoMarkGlobalEggs);
+   state.players = [...players];
 
-   game.players = [...players];
+   //Initialize Cluesheet
+   const player = state.players.find((player) => player.id === 'player');
 
-   return game;
+   if (autoMarkPlayerEggs) {
+      player.eggs.forEach((egg) => {
+         console.log(egg.name);
+         state.cluesheet.push({ id: egg.id, owner: 'player', not: [] });
+      });
+   }
+
+   state.globalEggs.forEach((egg) =>
+      state.cluesheet.push({ id: egg.id, owner: 'global', not: [] })
+   );
+
+   return state;
 }

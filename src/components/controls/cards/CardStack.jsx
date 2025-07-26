@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { COUNTS, COLORS } from '../../utils/utils';
+import { COUNTS, EGG_COLORS } from '../../../utils/utils';
 import Card from './Card';
 
 function getCardImage(card) {
@@ -61,11 +61,11 @@ export default function CardStack({
                      : 'bg-zinc-900';
 
                   if (!backgroundColor && card.color) {
-                     const colorSettings = COLORS.find(
+                     const colorSettings = EGG_COLORS.find(
                         (color) => color.id === card.color
                      );
 
-                     cardBackground = `bg-${colorSettings.color}-900`;
+                     cardBackground = colorSettings.bg;
                   }
 
                   let imgClasses = cardBackground;

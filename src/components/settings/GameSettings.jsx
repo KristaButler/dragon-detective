@@ -2,22 +2,23 @@ import useBoundStore from '../../store/store';
 import Input from '../controls/Input';
 
 export default function GameSettings() {
-   const settings = useBoundStore((state) => state.settings);
+   const settingsActions = useBoundStore((state) => state.settingsActions);
+   const numberOfPlayers = useBoundStore((state) => state.numberOfPlayers);
+   const autoNotes = useBoundStore((state) => state.autoNotes);
+   const autoMarkPlayerEggs = useBoundStore(
+      (state) => state.autoMarkPlayerEggs
+   );
 
    function handleChangeNumberOfPlayers(event) {
-      settings.setNumberOfPlayers(event.target.value);
+      settingsActions.setNumberOfPlayers(event.target.value);
    }
 
    function handleChangeAutoNotes(event) {
-      settings.setAutoNotes(event.target.checked);
+      settingsActions.setAutoNotes(event.target.checked);
    }
 
    function handleChangeAutoMarkPlayerEggs(event) {
-      settings.setAutoMarkPlayerEggs(event.target.checked);
-   }
-
-   function handleChangeAutoMarkGlobalEggs(event) {
-      settings.setAutoMarkGlobalEggs(event.target.checked);
+      settingsActions.setAutoMarkPlayerEggs(event.target.checked);
    }
 
    return (
@@ -31,7 +32,7 @@ export default function GameSettings() {
                   type='number'
                   min={3}
                   max={7}
-                  value={settings.numberOfPlayers}
+                  value={numberOfPlayers}
                   title='Number of players, including you.'
                   onChange={handleChangeNumberOfPlayers}
                />
@@ -40,8 +41,8 @@ export default function GameSettings() {
                <Input
                   label='Enable Automatic Notes: '
                   type='checkbox'
-                  defaultChecked={settings.autoNotes}
-                  title='Automatically track notes based on all player turns.'
+                  defaultChecked={autoNotes}
+                  title='Track notes based on all player turns.'
                   onChange={handleChangeAutoNotes}
                />
             </div>
@@ -49,18 +50,9 @@ export default function GameSettings() {
                <Input
                   label='Mark your eggs on game start: '
                   type='checkbox'
-                  defaultChecked={settings.autoMarkPlayerEggs}
+                  defaultChecked={autoMarkPlayerEggs}
                   title='Automatcially mark which eggs you have at the beginning of the game.'
                   onChange={handleChangeAutoMarkPlayerEggs}
-               />
-            </div>
-            <div>
-               <Input
-                  label='Mark tabled eggs on game start: '
-                  type='checkbox'
-                  defaultChecked={settings.autoMarkGlobalEggs}
-                  title='Automatically mark the tabled eggs, or the extra eggs after distributing them amoung players. These eggs are known by all players.'
-                  onChange={handleChangeAutoMarkGlobalEggs}
                />
             </div>
          </div>

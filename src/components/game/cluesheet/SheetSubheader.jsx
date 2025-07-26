@@ -1,4 +1,4 @@
-import { COUNTS, SPECIES } from '../../utils/utils';
+import { COUNTS, SPECIES } from '../../../utils/utils';
 
 export default function SheetSubheader() {
    const classes =
@@ -28,7 +28,7 @@ export default function SheetSubheader() {
                return (
                   <div
                      key={`subheader-${sp.id}-${index}`}
-                     className={`${classes} ${borderClasses} bg-${sp.color}-900`}
+                     className={`${classes} ${borderClasses} ${sp.bgDark}`}
                   >
                      <img
                         className='h-4 mx-auto'

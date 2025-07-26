@@ -1,14 +1,14 @@
-import useBoundStore from '../../store/store';
-import CardStack from '../cards/CardStack';
-import PlayerAvatar from '../game/PlayerAvatar';
-import QueryCards from '../game/QueryCards';
-import TurnControls from '../game/TurnControls';
+import useBoundStore from '../../../store/store';
+import CardStack from '../../controls/cards/CardStack';
+import PlayerAvatar from '../../game/avatar/PlayerAvatar';
+import QueryCards from '../../game/QueryCards';
+import TurnControls from '../../game/TurnControls';
 
 export default function PlayerControls() {
-   const currentPlayer = useBoundStore((state) => state.game.currentPlayer);
-   const avatar = useBoundStore((state) => state.settings.avatar);
+   const currentPlayer = useBoundStore((state) => state.currentPlayer);
+   const avatar = useBoundStore((state) => state.playerAvatar);
    const player = useBoundStore((state) =>
-      state.game.players.find((player) => player.id === 'player')
+      state.players.find((player) => player.id === 'player')
    );
 
    const isCurrentPlayer = currentPlayer === 'player';

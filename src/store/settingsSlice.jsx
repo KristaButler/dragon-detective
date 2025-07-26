@@ -9,52 +9,52 @@ export const DEFAULT_AVATAR = {
    beautymark: false,
 };
 
+const INITIAL_STATE = {
+   playerName: 'Player 1',
+   playerAvatar: { ...DEFAULT_AVATAR },
+   numberOfPlayers: 4,
+   autoNotes: true,
+   autoMarkPlayerEggs: true,
+};
+
 const createSettingsSlice = (set, store) => ({
-   settings: {
-      playerName: 'Player 1',
-      avatar: { ...DEFAULT_AVATAR },
-      numberOfPlayers: 4,
-      autoNotes: true,
-      autoMarkPlayerEggs: true,
-      autoMarkGlobalEggs: true,
-      setPlayerName: (playerName) =>
+   ...INITIAL_STATE,
+   settingsActions: {
+      setPlayerName: (newPlayerName) =>
          set((state) => {
-            return { settings: { ...state.settings, playerName } };
+            return { playerName: newPlayerName };
          }),
       setAvatarSetting: (key, value) =>
          set((state) => {
-            const newAvatar = { ...state.settings.avatar, [key]: value };
+            const newAvatar = { ...state.playerAvatar, [key]: value };
 
-            return { settings: { ...state.settings, avatar: newAvatar } };
+            return { playerAvatar: newAvatar };
          }),
-      setNumberOfPlayers: (numberOfPlayers) =>
+      setNumberOfPlayers: (newNumberOfPlayers) =>
          set((state) => {
             //Ensure number of players stays between 3 and 7
-            if (numberOfPlayers < 3) {
-               numberOfPlayers = 3;
+            if (newNumberOfPlayers < 3) {
+               newNumberOfPlayers = 3;
             }
-            if (numberOfPlayers > 7) {
-               numberOfPlayers = 7;
+            if (newNumberOfPlayers > 7) {
+               newNumberOfPlayers = 7;
             }
 
-            return { settings: { ...state.settings, numberOfPlayers } };
+            return { numberOfPlayers: newNumberOfPlayers };
          }),
-      setAutoNotes: (autoNotes) =>
+      setAutoNotes: (newAutoNotes) =>
          set((state) => {
-            return { settings: { ...state.settings, autoNotes } };
+            return { autoNotes: newAutoNotes };
          }),
-      setAutoMarkPlayerEggs: (autoMarkPlayerEggs) =>
+      setAutoMarkPlayerEggs: (newAutoMarkPlayerEggs) =>
          set((state) => {
-            return { settings: { ...state.settings, autoMarkPlayerEggs } };
-         }),
-      setAutoMarkGlobalEggs: (autoMarkGlobalEggs) =>
-         set((state) => {
-            return { settings: { ...state.settings, autoMarkGlobalEggs } };
+            return { autoMarkPlayerEggs: newAutoMarkPlayerEggs };
          }),
       resetSettings: () =>
          set(() => {
-            const initialState = store.getInitialState();
-            return { settings: { ...initialState.settings } };
+            return {
+               ...INITIAL_STATE,
+            };
          }),
    },
 });
