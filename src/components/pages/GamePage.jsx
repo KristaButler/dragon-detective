@@ -1,19 +1,22 @@
-import { useEffect } from 'react';
-import { DndContext } from '@dnd-kit/core';
+import { useEffect, useState } from 'react';
+import { DndContext, useDroppable } from '@dnd-kit/core';
 import useBoundStore from '../../store/store';
 import Opponents from '../layout/game/Opponents';
 import GameTable from '../layout/game/GameTable';
 import PlayerControls from '../layout/game/PlayerControls';
 import ClueSheet from '../game/cluesheet/ClueSheet';
-import { OPPONENTS } from '../../data/player-pool';
+import { QUERY_POOL } from '../../data/query-pool';
+import FreeChoicePopup from '../game/query/FreeChoicePopup';
+import ConfirmContextProvider from '../../store/confirm-context';
 
 export default function GamePage() {
-   const players = useBoundStore((state) => state.players);
    const startNewGame = useBoundStore((state) => state.startNewGame);
-
-   //TODO: For Test
-   const state = useBoundStore((state) => state);
-   console.log(state);
+   const playCard = useBoundStore((state) => state.turnActions.playCard);
+   const turnParams = useBoundStore((state) => state.turnParams);
+   const setTurnParams = useBoundStore(
+      (state) => state.turnActions.setTurnParams
+   );
+   const [isPicking, setIsPicking] = useState(false);
 
    //Temporary, for easier testing
    useEffect(() => {
@@ -22,19 +25,44 @@ export default function GamePage() {
 
    function handleDragEnd(event) {
       const opponentId = event.over?.id || null;
-      const queryCardId = event.active?.id || null;
+      const cardId = event.active?.id || null;
+      const card = QUERY_POOL.find((query) => query.id == cardId);
 
-      if (event.over && opponentId && queryCardId) {
-         //TODO: Play Card
-         alert('Playing Card');
+      if (card.freeChoice) {
+         setTurnParams({ opponentId, card });
+         setIsPicking(true);
+      } else {
+         playCard(opponentId, card, cardId);
       }
    }
+
+   function handleSelectFreeChoice(choice) {
+      let query = { ...turnParams.card };
+      query[choice.type] = choice.value;
+      setIsPicking(false);
+      playCard(turnParams.opponentId, query, turnParams.cardId);
+   }
+
+   function handleCloseFreeChoice() {
+      setIsPicking(false);
+   }
+
    return (
       <DndContext onDragEnd={handleDragEnd}>
-         <Opponents players={players} />
-         <GameTable />
-         <PlayerControls />
-         <ClueSheet />
+         <ConfirmContextProvider>
+            <div className='p-4'>
+               <Opponents />
+               {isPicking && (
+                  <FreeChoicePopup
+                     onClose={handleCloseFreeChoice}
+                     onSelect={handleSelectFreeChoice}
+                  />
+               )}
+               <GameTable />
+               <PlayerControls />
+               <ClueSheet />
+            </div>
+         </ConfirmContextProvider>
       </DndContext>
    );
 }

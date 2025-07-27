@@ -26,13 +26,14 @@ export default function Button({
       color = 'disabled';
    }
 
-   let classes = `m-1 shadow-sm shadow-zinc-900 border-2 hover:underline hover:border-white hover:font-bold ${
+   let classes = `m-1 shadow-sm shadow-zinc-900 border-2 hover:underline hover:border-white hover:font-bold text-white ${
       colorVariants[color]
    } ${shapeVariants[shape]} ${!disabled ? 'cursor-pointer' : ''}`;
 
    let content = (
       <button
          className={`${classes} ${className ? className : ''}`}
+         disabled={disabled}
          {...props}
       >
          {children}
@@ -45,6 +46,7 @@ export default function Button({
          <NavLink
             to={to}
             className={`${classes} ${className ? className : ''}`}
+            disabled={disabled}
             {...props}
          >
             {children}

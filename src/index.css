@@ -1,10 +1,4 @@
 @import 'tailwindcss';
-@layer components {
-   .font-amarante {
-      font-family: 'Amarante', serif;
-   }
-}
-
 :root {
    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
    line-height: 1.5;
@@ -46,4 +40,8 @@ body {
    flex-grow: 0;
    place-items: center;
    justify-content: center;
+}
+
+.pause-animation:hover {
+   animation-play-state: paused;
 }

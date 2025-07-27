@@ -1,6 +1,9 @@
+import useBoundStore from '../../../store/store';
 import Opponent from '../../game/avatar/Opponent';
 
-export default function Opponents({ players }) {
+export default function Opponents() {
+   const players = useBoundStore((state) => state.players);
+
    return (
       <ul
          id='opponents'

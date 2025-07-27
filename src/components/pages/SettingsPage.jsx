@@ -14,7 +14,7 @@ export default function SettingsPage() {
    }
 
    return (
-      <section className='h-full'>
+      <section className='h-full p-4'>
          <h2>Settings</h2>
          <Divider />
          <PlayerCustomization />

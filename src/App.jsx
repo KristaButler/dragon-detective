@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer';
 import Main from './components/layout/Main';
 import SettingsPage from './components/pages/SettingsPage';
 import GamePage from './components/pages/GamePage';
+import GameOverPage from './components/pages/GameOverPage';
 
 const router = createBrowserRouter([
    {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
    {
       path: '/play',
       element: <GamePage />,
+   },
+   {
+      path: '/gameover',
+      element: <GameOverPage />,
    },
 ]);
 

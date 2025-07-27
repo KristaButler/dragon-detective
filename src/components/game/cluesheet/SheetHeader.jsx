@@ -19,7 +19,7 @@ export default function SheetHeader() {
             return (
                <div
                   key={`cluesheet-${sp.id}-header`}
-                  className={`flex gap-2 items-center justify-center ${classes} ${sp.bgDark}`}
+                  className={`flex gap-2 items-center justify-center ${classes} ${sp.bg}`}
                >
                   <div>{sp.title}</div>
                   <img

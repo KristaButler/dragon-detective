@@ -1,17 +1,19 @@
-import { EGG_POOL, getEggById } from '../src/assets/data/egg-pool';
-import {
-   QUERY_POOL,
-   getQueryById,
-   isMatch,
-} from '../src/assets/data/query-pool';
+import { EGG_POOL } from '../src/data/egg-pool';
+import { QUERY_POOL } from '../src/data/query-pool';
+import { isMatch } from '../src/utils/turn-utils';
 import { TESTS } from './tests';
 
 export default function Test() {
    function runTest() {
       for (const test of TESTS) {
-         const egg = getEggById(test.egg);
-         const query = getQueryById(test.query);
+         const egg = EGG_POOL.find((egg) => egg.id === test.egg);
+         const card = QUERY_POOL.find((query) => query.id === test.query);
          const choice = test.choice ? test.choice : null;
+
+         let query = { ...card };
+         if (test.choice) {
+            query[test.choice.type] = test.choice.value;
+         }
 
          const result = isMatch(egg, query, choice);
          if (result !== test.expected) {

@@ -1,15 +1,21 @@
 import { findMatches, buildMessage } from '../utils/turn-utils';
 
 const createTurnSlice = (set, store) => ({
-   turn: {
-      message: '',
-      type: '',
-      params: {},
+   message: '',
+   turnType: null,
+   turnParams: {},
+   turnActions: {
       setMessage: (newMessage) =>
          set((state) => {
-            return { turn: { ...state.turn, message: newMessage } };
+            return { message: newMessage };
          }),
-      playCard: (opponentId, query) =>
+      setTurnParams: (params) =>
+         set(() => {
+            return {
+               turnParams: { ...params },
+            };
+         }),
+      playCard: (opponentId, query, cardId) =>
          set((state) => {
             //Note: Query must contain free choice elements applied already
             const opponent = state.players.find(
@@ -21,23 +27,45 @@ const createTurnSlice = (set, store) => ({
             const matches = findMatches(opponentsEggs, query);
             const newMessage = buildMessage(opponent, query, matches);
 
-            return {
-               turn: {
-                  ...state.turn,
-                  type: 'PLAY_CARD',
-                  params: { opponentId, query, matches },
-                  message: newMessage,
-               },
+            //Discard Card
+            const newPlayers = [...state.players];
+            const newPlayer = newPlayers.find(
+               (player) => (player.id = 'player')
+            );
+
+            newPlayer.hand = newPlayer.hand.filter(
+               (card) => card.id !== cardId
+            );
+
+            const newDiscardPile = [...state.discardPile, cardId];
+
+            let returnState = {
+               turnType: 'PLAY_CARD',
+               turnParams: { opponentId, query, matches },
+               players: newPlayers,
+               discardPile: newDiscardPile,
+               notes: [...state.notes, newMessage],
             };
+
+            if (query.type === 'quantity' || matches.length < 1) {
+               returnState.message = newMessage;
+            }
+
+            return { ...returnState };
          }),
-      makeGuess: (eggId) => set((state) => {}),
+      makeGuess: (eggId) =>
+         set((state) => {
+            if (state.solution === eggId) {
+               state.winner = 'player';
+            } else {
+               state.winner = 'opponent';
+            }
+         }),
       discardHand: () =>
          set((state) => {
-            const newPlayer = {
-               ...state.players.find((player) => (player.id = 'player')),
-            };
-            const newPlayers = state.players.filter(
-               (player) => player.id === 'player'
+            const newPlayers = [...state.players];
+            const newPlayer = newPlayers.find(
+               (player) => (player.id = 'player')
             );
             const newDiscardPile = [...state.discardPile];
 
@@ -45,21 +73,13 @@ const createTurnSlice = (set, store) => ({
             newDiscardPile.push(newPlayer.hand);
 
             //Draw for more cards
-            newPlayer.hand = newDiscardPile.slice(-4, 4);
-
-            newPlayers.push(newPlayer);
+            newPlayer.hand = state.drawPile.slice(0, 4);
 
             return {
-               game: {
-                  ...game,
-                  players: newPlayers,
-                  discardPile: newDiscardPile,
-               },
+               turnType: 'DISCARD_HAND',
+               players: newPlayers,
+               discardPile: newDiscardPile,
             };
-         }),
-      resetTurn: () =>
-         set((state) => {
-            return { message: '', type: '', params: {} };
          }),
    },
 });

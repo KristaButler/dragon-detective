@@ -28,7 +28,7 @@ export default function SheetSubheader() {
                return (
                   <div
                      key={`subheader-${sp.id}-${index}`}
-                     className={`${classes} ${borderClasses} ${sp.bgDark}`}
+                     className={`${classes} ${borderClasses} ${sp.bg}`}
                   >
                      <img
                         className='h-4 mx-auto'

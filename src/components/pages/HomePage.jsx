@@ -31,7 +31,7 @@ export default function HomePage() {
    }
 
    return (
-      <section className='pt-5'>
+      <section className='pt-5 pb-4 px-4'>
          <h2>Welcome!</h2>
          <p>
             The Dragon Hatchery is in a commotion. An egg has gone missing, the
@@ -47,10 +47,7 @@ export default function HomePage() {
                   value={playerName}
                   onChange={handlePlayerNameChange}
                />
-               <PlayerAvatar
-                  className='h-32 w-32'
-                  avatar={playerAvatar}
-               />
+               <PlayerAvatar className='h-32 w-32' />
                <Button
                   to='/settings'
                   color='green'

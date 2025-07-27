@@ -69,7 +69,6 @@ export const QUERY_POOL = [
    {
       id: 'red-hydra',
       name: 'Show Red Hydras',
-      id: 'show-red-hydra',
       type: 'show',
       color: 'red',
       species: 'hydra',
@@ -133,7 +132,6 @@ export const QUERY_POOL = [
    {
       id: 'blue-hydra',
       name: 'Show Blue Hydras',
-      id: 'show-blue-hydra',
       type: 'show',
       color: 'blue',
       species: 'hydra',
@@ -197,7 +195,6 @@ export const QUERY_POOL = [
    {
       id: 'green-hydra',
       name: 'Show Green Hydras',
-      id: 'show-green-hydra',
       type: 'show',
       color: 'green',
       species: 'hydra',
@@ -273,7 +270,7 @@ export const QUERY_POOL = [
       weight: 12,
    },
    {
-      id: 'solitaires-quantity',
+      id: 'solitaire-quantity',
       name: 'Solitaire Quantity',
       type: 'quantity',
       count: 1,

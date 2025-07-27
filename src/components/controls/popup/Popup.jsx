@@ -19,7 +19,7 @@ export default function Popup({
          } ${className ? className : ''}`}
       >
          <div className='flex justify-between items-center mt-1'>
-            <div className='mx-2'>{title}</div>
+            <div className='mx-2 font-bold text-lg'>{title}</div>
             <div
                className='pr-2 pt-2'
                onClick={() => onClose()}

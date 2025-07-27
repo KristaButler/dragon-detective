@@ -1,6 +1,26 @@
 import { useDraggable } from '@dnd-kit/core';
+import { COUNTS, EGG_COLORS } from '../../../utils/utils';
 
-export default function Card({ id, className, draggable = false, children }) {
+function getCardImage(card) {
+   let cardImage = null;
+
+   if (card && card.species && card.count) {
+      cardImage = `/images/symbols/${card.species}-${
+         COUNTS[card.count].id
+      }.png`;
+   }
+
+   return cardImage;
+}
+
+export default function Card({
+   id,
+   className,
+   draggable = false,
+   card,
+   backgroundColor,
+   textOnly,
+}) {
    const { attributes, listeners, setNodeRef, transform } = useDraggable({
       id,
    });
@@ -15,15 +35,34 @@ export default function Card({ id, className, draggable = false, children }) {
         }
       : undefined;
 
+   const cardImage = getCardImage(card);
+
+   let cardBackground = backgroundColor ? backgroundColor : 'bg-zinc-900';
+
+   if (!backgroundColor && card.color) {
+      const colorSettings = EGG_COLORS.find((color) => color.id === card.color);
+
+      cardBackground = colorSettings.bg;
+   }
+
    return (
       <div
-         className={classes}
+         className={`${classes} ${cardBackground}`}
          ref={setNodeRef}
          style={style}
          {...enabledListeners}
          {...attributes}
       >
-         {children}
+         {cardImage && !textOnly && (
+            <div className='h-8 w-auto'>
+               <img
+                  src={cardImage}
+                  alt={card.name}
+                  className='w-full h-full object-contain object-center pb-2'
+               />
+            </div>
+         )}
+         <p className='text-zinc-300 text-center text-xs'>{card.name}</p>
       </div>
    );
 }

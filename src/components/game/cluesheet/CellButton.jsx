@@ -15,6 +15,10 @@ export default function CellButton({
    const autoMarkPlayerEggs = useBoundStore(
       (state) => state.autoMarkPlayerEggs
    );
+   const turnParams = useBoundStore((state) => state.turnParams);
+   const setTurnParams = useBoundStore(
+      (state) => state.turnActions.setTurnParams
+   );
 
    const ownerPlayer = players.find((p) => p.id === clue.owner);
 
@@ -22,6 +26,7 @@ export default function CellButton({
    let classes = `border-b-1 border-indigo-400 text-black ${
       className ? className : ''
    }`;
+   let buttonClasses = 'flex items-center justify-center w-full h-full p-2';
 
    let content = '?';
    let background = species.bgLight;
@@ -58,8 +63,17 @@ export default function CellButton({
       );
    }
 
+   if (turnParams.guessing && turnParams.guess === id) {
+      background = 'bg-green-300';
+      buttonClasses += ' border-4 border-green-900';
+   }
+
    function handleClick() {
-      setSelectedClue(id);
+      if (turnParams.guessing) {
+         setTurnParams({ guessing: true, guess: id });
+      } else {
+         setSelectedClue(id);
+      }
    }
 
    return (
@@ -67,7 +81,7 @@ export default function CellButton({
          <button
             disabled={disabled}
             onClick={handleClick}
-            className='flex items-center justify-center w-full h-full p-2'
+            className={buttonClasses}
          >
             {content}
          </button>

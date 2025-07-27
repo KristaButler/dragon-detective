@@ -2,22 +2,9 @@ import { useState } from 'react';
 import { COUNTS, EGG_COLORS } from '../../../utils/utils';
 import Card from './Card';
 
-function getCardImage(card) {
-   let cardImage = null;
-
-   if (card.species && card.count) {
-      cardImage = `/images/symbols/${card.species}-${
-         COUNTS[card.count].id
-      }.png`;
-   }
-
-   return cardImage;
-}
-
 export default function CardStack({
    cards,
    right,
-   textOnly,
    backgroundColor,
    className,
    expand,
@@ -55,23 +42,10 @@ export default function CardStack({
          >
             {cards &&
                cards.map((card, index) => {
-                  const cardImage = getCardImage(card);
-                  let cardBackground = backgroundColor
-                     ? backgroundColor
-                     : 'bg-zinc-900';
-
-                  if (!backgroundColor && card.color) {
-                     const colorSettings = EGG_COLORS.find(
-                        (color) => color.id === card.color
-                     );
-
-                     cardBackground = colorSettings.bg;
-                  }
-
-                  let imgClasses = cardBackground;
+                  let imgClasses = '';
 
                   if (index > 0) {
-                     imgClasses = `${imgClasses} ${classes}`;
+                     imgClasses = classes;
                   }
 
                   if (right) {
@@ -82,20 +56,9 @@ export default function CardStack({
                      <Card
                         key={card.id}
                         className={imgClasses}
-                     >
-                        {cardImage && !textOnly && (
-                           <div className='h-8 w-auto'>
-                              <img
-                                 src={cardImage}
-                                 alt={card.name}
-                                 className='w-full h-full object-contain object-center pb-2'
-                              />
-                           </div>
-                        )}
-                        <p className='text-zinc-300 text-center text-xs'>
-                           {card.name}
-                        </p>
-                     </Card>
+                        backgroundColor={backgroundColor}
+                        card={card}
+                     />
                   );
                })}
          </div>

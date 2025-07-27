@@ -92,10 +92,7 @@ export default function PlayerCustomization() {
    return (
       <div className='flex gap-4 mt-4'>
          <div>
-            <PlayerAvatar
-               className='h-64 w-64'
-               avatar={playerAvatar}
-            />
+            <PlayerAvatar className='h-64 w-64' />
          </div>
          <div className='flex flex-col'>
             <div className='mb-4'>

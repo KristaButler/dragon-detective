@@ -29,8 +29,12 @@ const createGameSlice = (set, store) => ({
                nextPlayerIndex = 0;
             }
 
+            //Also reset turn state
             return {
                currentPlayer: state.players[nextPlayerIndex].id,
+               message: '',
+               turnType: null,
+               turnParams: {},
             };
          }),
       addNote: (note) =>
@@ -53,23 +57,6 @@ const createGameSlice = (set, store) => ({
             return {
                players: newPlayers,
                drawPile: newDrawPile,
-            };
-         }),
-      discard: (cardId) =>
-         set((state) => {
-            const newPlayers = [...state.players];
-            const newPlayer = newPlayers.find(
-               (player) => (player.id = 'player')
-            );
-
-            newPlayer.hand = newPlayer.hand.map((card) => card.id !== cardId);
-            newPlayers.push(newPlayer);
-
-            const newDiscardPile = [...state.discardPile, cardId];
-
-            return {
-               players: newPlayers,
-               discardPile: newDiscardPile,
             };
          }),
    },

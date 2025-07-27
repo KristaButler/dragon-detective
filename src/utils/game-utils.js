@@ -83,8 +83,8 @@ export function generateNewGame(numberOfPlayers, autoMarkPlayerEggs) {
       selectedClue: null,
       cluesheet: [],
       message: '',
-      type: '',
-      params: {},
+      turnType: null,
+      turnParams: {},
    };
 
    //Select Opponents
@@ -116,7 +116,6 @@ export function generateNewGame(numberOfPlayers, autoMarkPlayerEggs) {
 
    if (autoMarkPlayerEggs) {
       player.eggs.forEach((egg) => {
-         console.log(egg.name);
          state.cluesheet.push({ id: egg.id, owner: 'player', not: [] });
       });
    }

@@ -1,4 +1,5 @@
 import { DEFAULT_AVATAR } from '../../../store/settingsSlice';
+import useBoundStore from '../../../store/store';
 
 //TODO: Move to backend eventually, or find better solution
 const HAIR_BACKS = [
@@ -21,7 +22,8 @@ const HAIR_BACKS = [
    true, //16
 ];
 
-export default function PlayerAvatar({ className, avatar = DEFAULT_AVATAR }) {
+export default function PlayerAvatar({ className }) {
+   const avatar = useBoundStore((state) => state.playerAvatar);
    const imageClasses = `absolute rounded-full`;
 
    return (

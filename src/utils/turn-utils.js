@@ -1,9 +1,13 @@
 import { EGG_COLORS, SPECIES, COUNTS } from './utils';
 
 function getQueryMessage(query, isPlural) {
-   const color = EGG_COLORS.find((c) => c.id === query.color);
-   const species = SPECIES.find((s) => s.id === query.species);
-   const count = COUNTS.find((c) => c.id === query.count);
+   const color = query.color
+      ? EGG_COLORS.find((c) => c.id === query.color)
+      : undefined;
+   const species = query.species
+      ? SPECIES.find((s) => s.id === query.species)
+      : undefined;
+   const count = query.count ? COUNTS[query.count] : undefined;
 
    let queryMessage = '';
 
@@ -17,7 +21,7 @@ function getQueryMessage(query, isPlural) {
    //If species is the last parameter, make it plural (if applicable), otherwise add the singular.
    if (species && !count) {
       queryMessage += ' ' + (isPlural ? species.plural : species.id);
-   } else {
+   } else if (species) {
       queryMessage += ' ' + species.id;
    }
 
@@ -41,17 +45,17 @@ export function buildMessage(opponent, query, matches, isPlayer = true) {
    if (isPlayer && query.type === 'show' && matches.length > 0) {
       //[Player Name] has the [Egg], ... and the [Egg].
       message += ' has';
-      message += matches.map((match, index) => {
-         const isLast = index === matches.length - 1;
+      message += matches.reduce((value, match, index) => {
+         const last = index === matches.length - 1;
 
-         return `${isLast ? ', and' : ''} the ${match.name} ${
-            !isLast ? ',' : '.'
-         }`;
-      });
+         return `${value}${last && matches.length > 1 ? ', and' : ''}${
+            !last && index > 0 ? ',' : ''
+         } the ${match.name}${last ? '.' : ''}`;
+      }, '');
    } else if (matches.length > 0) {
       //Query is quantity, or the message is for an opponents turn, and we have matches
       //[Player Name] has [#] [color/species/count][s].
-      message = ` has ${matches.length} ${queryMessage}.`;
+      message += ` has ${matches.length} ${queryMessage}.`;
    } else {
       //Query is quantity, or the message is for an opponents turn, but we don't have matches
       //[Player Name] doesn't have any [color/species/count]s.
@@ -61,11 +65,23 @@ export function buildMessage(opponent, query, matches, isPlayer = true) {
    return message;
 }
 
+export function isMatch(egg, query) {
+   //Note: Query must contain free choice elements applied already
+   if (query.color && query.color !== egg.color) {
+      return false;
+   }
+
+   if (query.species && query.species !== egg.species) {
+      return false;
+   }
+
+   if (query.count && query.count !== egg.count) {
+      return false;
+   }
+
+   return true;
+}
+
 export function findMatches(eggs, query) {
-   return eggs.filter(
-      (card) =>
-         card.color === query.color &&
-         card.species === query.species &&
-         card.count === query.count
-   );
+   return eggs.filter((egg) => isMatch(egg, query));
 }
