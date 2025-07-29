@@ -22,13 +22,13 @@ export default function Button({
       round: 'py-1 px-2 rounded-full',
    };
 
-   if (disabled) {
-      color = 'disabled';
-   }
+   let classes = `m-1 shadow-sm shadow-zinc-900 border-2  text-white ${shapeVariants[shape]}`;
 
-   let classes = `m-1 shadow-sm shadow-zinc-900 border-2 hover:underline hover:border-white hover:font-bold text-white ${
-      colorVariants[color]
-   } ${shapeVariants[shape]} ${!disabled ? 'cursor-pointer' : ''}`;
+   if (disabled) {
+      classes = `${classes} ${colorVariants['disabled']} cursor-not-allowed`;
+   } else {
+      classes = `${classes} ${colorVariants[color]} hover:underline hover:border-white hover:font-bold cursor-pointer`;
+   }
 
    let content = (
       <button

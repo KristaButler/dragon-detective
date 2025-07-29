@@ -45,3 +45,7 @@ body {
 .pause-animation:hover {
    animation-play-state: paused;
 }
+
+.striped-list > *:nth-child(even) {
+   background-color: #d4d4d8;
+}

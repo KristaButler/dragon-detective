@@ -1,7 +1,5 @@
 export const HAND_SIZE = 4; // Number of cards each player should have in hand
 
-export const COUNT_LABELS = ['', 'solitaire', 'pair', 'cluster']; //Blank emptry string so that index matches count
-
 export const QUERY_POOL = [
    {
       id: 'yellow-hydra',
@@ -416,53 +414,5 @@ export const QUERY_POOL = [
       freeChoice: true,
       count: 3,
       weight: { color: 30, species: 40 },
-   },
-];
-
-export const FREE_CHOICE_OPTIONS = [
-   {
-      type: 'color',
-      value: 'blue',
-      title: 'Blue',
-      img: '/images/blue-symbol.png',
-   },
-   {
-      type: 'color',
-      value: 'green',
-      title: 'Green',
-      img: '/images/green-symbol.png',
-   },
-   { type: 'color', value: 'red', title: 'Red', img: '/images/red-symbol.png' },
-   {
-      type: 'color',
-      value: 'yellow',
-      title: 'Yellow',
-      img: '/images/yellow-symbol.png',
-   },
-   {
-      type: 'species',
-      value: 'dragon',
-      title: 'Dragon',
-      img: 'images/dragon.png',
-   },
-   {
-      type: 'species',
-      value: 'wyvern',
-      title: 'Wyvern',
-      img: 'images/wyvern.png',
-   },
-   { type: 'species', value: 'hydra', title: 'Hydra', img: 'images/hydra.png' },
-   {
-      type: 'count',
-      value: 1,
-      title: 'Solitaire',
-      img: '/images/dragon-egg.png',
-   },
-   { type: 'count', value: 2, title: 'Pair', img: '/images/dragon-pair.png' },
-   {
-      type: 'count',
-      value: 3,
-      title: 'Cluster',
-      img: '/images/dragon-cluster.png',
    },
 ];

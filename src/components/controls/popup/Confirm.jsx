@@ -16,7 +16,7 @@ export default function Confirm({
             className='w-3/4 top-1/4 left-20'
          >
             <div className='p-2'>{message}</div>
-            <div className='flex justify-end'>
+            <div className='flex justify-end p-2'>
                {type === 'confirm' && (
                   <>
                      <Button

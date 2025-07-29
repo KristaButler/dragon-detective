@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlassArrowRight } from '@fortawesome/free-solid-svg-icons';
 import useBoundStore from '../../store/store';
+import { getById } from '../../utils/utils';
 import Button from '../controls/Button';
 import { EGG_POOL } from '../../data/egg-pool';
 import { ConfirmContext } from '../../store/confirm-context';
@@ -25,7 +26,7 @@ export default function GuessButton({ className, isCurrentPlayer }) {
          );
          turnActions.setTurnParams({ guessing: true });
       } else if (turnParams.guess) {
-         const egg = EGG_POOL.find((e) => e.id === turnParams.guess);
+         const egg = getById(EGG_POOL, turnParams.guess);
          showConfirm(
             'Are you sure?',
             `Are you sure you want to guess the ${egg.name}? This will end the game.`,

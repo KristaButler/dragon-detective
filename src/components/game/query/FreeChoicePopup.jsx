@@ -8,7 +8,7 @@ export default function FreeChoicePopup({ onClose, onSelect }) {
    const card = turnParams.card;
 
    return (
-      <div class='flex justify-center'>
+      <div className='flex justify-center'>
          <Popup
             title='Select Free Choice Value'
             onClose={onClose}
@@ -32,6 +32,7 @@ export default function FreeChoicePopup({ onClose, onSelect }) {
                   list={COUNTS}
                   type='count'
                   onSelect={onSelect}
+                  useIndex={true}
                />
             )}
          </Popup>

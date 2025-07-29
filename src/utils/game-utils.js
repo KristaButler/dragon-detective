@@ -5,9 +5,10 @@ import {
    generateUniqueRandomNumbers,
    getRandomNumber,
    shuffle,
+   getById,
 } from '../utils/utils';
 
-const HAND_SIZE = 4;
+export const HAND_SIZE = 4;
 
 function selectOpponents(numberOfPlayers, currentPlayers) {
    const newPlayers = [...currentPlayers];
@@ -62,6 +63,34 @@ function dealQueryCards(players) {
    return deck;
 }
 
+function markClues(playerId, eggs, globalEggs, markPlayerEggs = true) {
+   const clues = [];
+
+   if (markPlayerEggs) {
+      eggs.forEach((egg) => {
+         clues.push({ id: egg.id, owner: playerId, not: [] });
+      });
+   }
+
+   globalEggs.forEach((egg) =>
+      clues.push({ id: egg.id, owner: 'global', not: [] })
+   );
+
+   return clues;
+}
+
+function initializeAI(players, globalEggs, solution) {
+   const ai = [];
+   players.forEach((player) => {
+      if (player.id !== 'player') {
+         const clues = markClues(player.id, player.eggs, globalEggs);
+         ai.push({ id: player.id, clues });
+      }
+   });
+
+   return ai;
+}
+
 export function generateNewGame(numberOfPlayers, autoMarkPlayerEggs) {
    const state = {
       players: [
@@ -85,6 +114,7 @@ export function generateNewGame(numberOfPlayers, autoMarkPlayerEggs) {
       message: '',
       turnType: null,
       turnParams: {},
+      ai: [],
    };
 
    //Select Opponents
@@ -112,17 +142,16 @@ export function generateNewGame(numberOfPlayers, autoMarkPlayerEggs) {
    state.players = [...players];
 
    //Initialize Cluesheet
-   const player = state.players.find((player) => player.id === 'player');
-
-   if (autoMarkPlayerEggs) {
-      player.eggs.forEach((egg) => {
-         state.cluesheet.push({ id: egg.id, owner: 'player', not: [] });
-      });
-   }
-
-   state.globalEggs.forEach((egg) =>
-      state.cluesheet.push({ id: egg.id, owner: 'global', not: [] })
+   const player = getById(state.players, 'player');
+   state.cluesheet = markClues(
+      'player',
+      player.eggs,
+      state.globalEggs,
+      autoMarkPlayerEggs
    );
+
+   //Initialize AI Clues
+   state.ai = initializeAI(state.players, state.globalEggs, state.solution);
 
    return state;
 }

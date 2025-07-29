@@ -3,6 +3,7 @@ import SheetHeader from './SheetHeader';
 import SheetRows from './SheetRows';
 import SheetSubheader from './SheetSubheader';
 import MarkClue from './MarkClue';
+import { getById } from '../../../utils/utils';
 
 export default function ClueSheet() {
    const cluesheet = useBoundStore((state) => state.cluesheet);
@@ -14,7 +15,7 @@ export default function ClueSheet() {
       (state) => state.autoMarkPlayerEggs
    );
 
-   let clue = cluesheet.find((clue) => clue.id === selectedClue);
+   let clue = getById(cluesheet, selectedClue);
 
    //If the cluesheet doesn't have a clue for this egg yet, make a dummy clue
    if (!clue && selectedClue) {

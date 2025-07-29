@@ -1,3 +1,5 @@
+import { getById } from '../utils/utils';
+
 function cloneOrInitClue(clue, eggId) {
    if (!clue) {
       clue = { id: eggId, owner: null, not: [] };
@@ -25,7 +27,7 @@ const createCluesheetSlice = (set, store) => ({
             const newClueSheet = [
                ...state.cluesheet.filter((clue) => clue.id !== eggId),
             ];
-            let newClue = state.cluesheet.find((clue) => clue.id === eggId);
+            let newClue = getById(state.cluesheet, eggId);
             newClue = cloneOrInitClue(newClue, eggId);
 
             if (newClue.owner === ownerId) {
@@ -46,7 +48,7 @@ const createCluesheetSlice = (set, store) => ({
             const newClueSheet = [
                ...state.cluesheet.filter((clue) => clue.id !== eggId),
             ];
-            let newClue = state.cluesheet.find((clue) => clue.id === eggId);
+            let newClue = getById(state.cluesheet, eggId);
             newClue = cloneOrInitClue(newClue, eggId);
 
             if (newClue.not.indexOf(opponentId) !== -1) {
@@ -67,7 +69,7 @@ const createCluesheetSlice = (set, store) => ({
       clearClue: (eggId) =>
          set((state) => {
             const newClueSheet = [...state.cluesheet];
-            const newClue = newClueSheet.find((clue) => clue.id === eggId);
+            const newClue = getById(newClueSheet, eggId);
 
             newClue.owner = null;
             newClue.not = [];
@@ -79,6 +81,25 @@ const createCluesheetSlice = (set, store) => ({
       setSelectedClue: (clueId) =>
          set((state) => {
             return { selectedClue: clueId };
+         }),
+      markClues: (clues, ownerId) =>
+         set((state) => {
+            const newClueSheet = [...state.cluesheet];
+
+            clues.forEach((clue) => {
+               let newClue = newClueSheet.find((egg) => egg.id === clue.id);
+
+               if (!newClue) {
+                  newClue = { id: clue.id, owner: ownerId, not: [] };
+                  newClueSheet.push(newClue);
+               } else {
+                  newClue.owner = ownerId;
+               }
+            });
+
+            return {
+               cluesheet: newClueSheet,
+            };
          }),
    },
 });

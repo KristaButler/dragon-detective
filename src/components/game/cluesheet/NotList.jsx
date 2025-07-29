@@ -1,10 +1,12 @@
 import OpponentAvatar from '../avatar/OpponentAvatar';
+import { getById } from '../../../utils/utils';
 
 export default function NotList({ list, players }) {
    return (
       <div className='flex flex-wrap items-end justify-between w-full h-full'>
          {list.map((playerId) => {
-            const notPlayer = players.find((p) => p.id === playerId);
+            const notPlayer = getById(players, playerId);
+
             return (
                <OpponentAvatar
                   key={notPlayer.id}

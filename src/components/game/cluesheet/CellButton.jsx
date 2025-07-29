@@ -1,6 +1,7 @@
 import useBoundStore from '../../../store/store';
 import OpponentAvatar from '../avatar/OpponentAvatar';
 import NotList from './NotList';
+import { getById } from '../../../utils/utils';
 
 export default function CellButton({
    id,
@@ -8,6 +9,7 @@ export default function CellButton({
    clue = { id: id, owner: null },
    species,
 }) {
+   const selectedClue = useBoundStore((state) => state.selectedClue);
    const setSelectedClue = useBoundStore(
       (state) => state.cluesheetActions.setSelectedClue
    );
@@ -20,7 +22,8 @@ export default function CellButton({
       (state) => state.turnActions.setTurnParams
    );
 
-   const ownerPlayer = players.find((p) => p.id === clue.owner);
+   const ownerPlayer = getById(players, clue.owner);
+   const isSelectedClue = selectedClue === id;
 
    let disabled = false;
    let classes = `border-b-1 border-indigo-400 text-black ${
@@ -63,7 +66,7 @@ export default function CellButton({
       );
    }
 
-   if (turnParams.guessing && turnParams.guess === id) {
+   if (isSelectedClue || (turnParams.guessing && turnParams.guess === id)) {
       background = 'bg-green-300';
       buttonClasses += ' border-4 border-green-900';
    }

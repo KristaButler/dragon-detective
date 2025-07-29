@@ -3,12 +3,13 @@ import CardStack from '../../controls/cards/CardStack';
 import PlayerAvatar from '../../game/avatar/PlayerAvatar';
 import QueryCards from '../../game/query/QueryCards';
 import TurnControls from '../../game/TurnControls';
+import { getById } from '../../../utils/utils';
 
 export default function PlayerControls() {
    const currentPlayer = useBoundStore((state) => state.currentPlayer);
    const turnType = useBoundStore((state) => state.turnType);
    const players = useBoundStore((state) => state.players);
-   const player = players.find((player) => player.id === 'player');
+   const player = getById(players, 'player');
 
    const isCurrentPlayer = currentPlayer === 'player';
    const currentPlayerClasses =

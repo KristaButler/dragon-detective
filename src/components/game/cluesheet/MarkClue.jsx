@@ -3,6 +3,7 @@ import { faXmark, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { EGG_POOL } from '../../../data/egg-pool';
 
 import useBoundStore from '../../../store/store';
+import { getById } from '../../../utils/utils';
 import Button from '../../controls/Button';
 import Popup from '../../controls/popup/Popup';
 import PlayerAvatar from '../avatar/PlayerAvatar';
@@ -12,7 +13,7 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
    const cluesheetActions = useBoundStore((state) => state.cluesheetActions);
    const players = useBoundStore((state) => state.players);
 
-   const egg = EGG_POOL.find((egg) => egg.id === clue.id);
+   const egg = getById(EGG_POOL, clue.id);
    const classes =
       'flex flex-col items-center shrink-0 p-2 rounded border-2 border-zinc-400 hover:border-zinc-900';
 

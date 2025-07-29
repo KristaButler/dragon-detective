@@ -1,12 +1,8 @@
-import { EGG_COLORS, SPECIES, COUNTS } from './utils';
+import { EGG_COLORS, SPECIES, COUNTS, getById } from './utils';
 
 function getQueryMessage(query, isPlural) {
-   const color = query.color
-      ? EGG_COLORS.find((c) => c.id === query.color)
-      : undefined;
-   const species = query.species
-      ? SPECIES.find((s) => s.id === query.species)
-      : undefined;
+   const color = query.color ? getById(EGG_COLORS, query.color) : undefined;
+   const species = query.species ? getById(SPECIES, query.species) : undefined;
    const count = query.count ? COUNTS[query.count] : undefined;
 
    let queryMessage = '';
@@ -35,10 +31,16 @@ function getQueryMessage(query, isPlural) {
       queryMessage = ' matching eggs';
    }
 
-   return queryMessage + '';
+   return queryMessage;
 }
 
-export function buildMessage(opponent, query, matches, isPlayer = true) {
+export function buildMessage(
+   opponent,
+   query,
+   matches,
+   playerName = '',
+   isPlayer = true
+) {
    let queryMessage = getQueryMessage(query, matches.length !== 1);
    let message = opponent.name || 'Player';
 
@@ -52,9 +54,16 @@ export function buildMessage(opponent, query, matches, isPlayer = true) {
             !last && index > 0 ? ',' : ''
          } the ${match.name}${last ? '.' : ''}`;
       }, '');
+   } else if (!isPlayer && opponent.id === 'player') {
+      const showTold = query.type === 'show' ? 'showed' : 'told';
+      const yourHowMany = query.type === 'quantity' ? 'how many' : 'your';
+      const postfix = query.type === 'quantity' ? ' you have' : '';
+
+      message = `You ${showTold} ${playerName} ${yourHowMany} ${queryMessage}${postfix}.`;
    } else if (matches.length > 0) {
       //Query is quantity, or the message is for an opponents turn, and we have matches
       //[Player Name] has [#] [color/species/count][s].
+
       message += ` has ${matches.length} ${queryMessage}.`;
    } else {
       //Query is quantity, or the message is for an opponents turn, but we don't have matches

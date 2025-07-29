@@ -1,5 +1,5 @@
 import useBoundStore from '../../../store/store';
-import { EGG_COLORS, COUNTS, SPECIES } from '../../../utils/utils';
+import { EGG_COLORS, COUNTS, SPECIES, getById } from '../../../utils/utils';
 import CellButton from './CellButton';
 
 export default function RowCells({ color, colorIndex }) {
@@ -12,7 +12,7 @@ export default function RowCells({ color, colorIndex }) {
          }
 
          const clueId = `${color.id}-${sp.id}-${ctIndex}`;
-         const clue = cluesheet.find((clue) => clue.id === clueId);
+         const clue = getById(cluesheet, clueId);
 
          let borderClasses = 'border-r-1';
 

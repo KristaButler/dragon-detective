@@ -1,4 +1,7 @@
+import { QUERY_POOL } from '../data/query-pool';
+import { HAND_SIZE } from '../utils/game-utils';
 import { findMatches, buildMessage } from '../utils/turn-utils';
+import { getById, shuffle } from '../utils/utils';
 
 const createTurnSlice = (set, store) => ({
    message: '',
@@ -15,12 +18,10 @@ const createTurnSlice = (set, store) => ({
                turnParams: { ...params },
             };
          }),
-      playCard: (opponentId, query, cardId) =>
+      playCard: (opponentId, query) =>
          set((state) => {
             //Note: Query must contain free choice elements applied already
-            const opponent = state.players.find(
-               (player) => player.id === opponentId
-            );
+            const opponent = getById(state.players, opponentId);
             const opponentsEggs = opponent.eggs;
 
             //Find Matches
@@ -29,15 +30,14 @@ const createTurnSlice = (set, store) => ({
 
             //Discard Card
             const newPlayers = [...state.players];
-            const newPlayer = newPlayers.find(
-               (player) => (player.id = 'player')
-            );
+            const newPlayer = getById(newPlayers, 'player');
 
             newPlayer.hand = newPlayer.hand.filter(
-               (card) => card.id !== cardId
+               (card) => card.id !== query.id
             );
 
-            const newDiscardPile = [...state.discardPile, cardId];
+            const card = getById(QUERY_POOL, query.id);
+            const newDiscardPile = [...state.discardPile, card];
 
             let returnState = {
                turnType: 'PLAY_CARD',
@@ -64,21 +64,31 @@ const createTurnSlice = (set, store) => ({
       discardHand: () =>
          set((state) => {
             const newPlayers = [...state.players];
-            const newPlayer = newPlayers.find(
-               (player) => (player.id = 'player')
-            );
-            const newDiscardPile = [...state.discardPile];
+            const newPlayer = getById(newPlayers, 'player');
+            let newDiscardPile = [...state.discardPile];
+            let newDrawPile = [...state.drawPile];
 
             //Discard all cards
-            newDiscardPile.push(newPlayer.hand);
+            newPlayer.hand.forEach((card) => newDiscardPile.push(card));
+            newPlayer.hand = [];
 
-            //Draw for more cards
-            newPlayer.hand = state.drawPile.slice(0, 4);
+            //Shuffle query cards if needed
+            if (newDrawPile.length < HAND_SIZE) {
+               newDrawPile = [...newDrawPile, ...newDiscardPile];
+               newDrawPile = shuffle(newDrawPile);
+               newDiscardPile = [];
+            }
+
+            //Draw 4 more cards
+            while (newPlayer.hand.length < HAND_SIZE) {
+               newPlayer.hand.push(newDrawPile.pop());
+            }
 
             return {
                turnType: 'DISCARD_HAND',
                players: newPlayers,
                discardPile: newDiscardPile,
+               drawPile: newDrawPile,
             };
          }),
    },

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DndContext, useDroppable } from '@dnd-kit/core';
+import { DndContext } from '@dnd-kit/core';
 import useBoundStore from '../../store/store';
 import Opponents from '../layout/game/Opponents';
 import GameTable from '../layout/game/GameTable';
@@ -8,14 +8,18 @@ import ClueSheet from '../game/cluesheet/ClueSheet';
 import { QUERY_POOL } from '../../data/query-pool';
 import FreeChoicePopup from '../game/query/FreeChoicePopup';
 import ConfirmContextProvider from '../../store/confirm-context';
+import { getById } from '../../utils/utils';
+import { useNavigate } from 'react-router-dom';
 
 export default function GamePage() {
+   const navigate = useNavigate();
    const startNewGame = useBoundStore((state) => state.startNewGame);
    const playCard = useBoundStore((state) => state.turnActions.playCard);
-   const turnParams = useBoundStore((state) => state.turnParams);
    const setTurnParams = useBoundStore(
       (state) => state.turnActions.setTurnParams
    );
+   const turnParams = useBoundStore((state) => state.turnParams);
+   const winner = useBoundStore((state) => state.winner);
    const [isPicking, setIsPicking] = useState(false);
 
    //Temporary, for easier testing
@@ -23,16 +27,24 @@ export default function GamePage() {
       startNewGame();
    }, [startNewGame]);
 
+   //TODO: This causes error because of render issues
+   if (winner) {
+      navigate('/gameover');
+   }
+
    function handleDragEnd(event) {
       const opponentId = event.over?.id || null;
       const cardId = event.active?.id || null;
-      const card = QUERY_POOL.find((query) => query.id == cardId);
 
-      if (card.freeChoice) {
-         setTurnParams({ opponentId, card });
-         setIsPicking(true);
-      } else {
-         playCard(opponentId, card, cardId);
+      if (opponentId && cardId) {
+         const card = getById(QUERY_POOL, cardId);
+
+         if (card.freeChoice) {
+            setTurnParams({ opponentId, card });
+            setIsPicking(true);
+         } else {
+            playCard(opponentId, card);
+         }
       }
    }
 
@@ -40,7 +52,7 @@ export default function GamePage() {
       let query = { ...turnParams.card };
       query[choice.type] = choice.value;
       setIsPicking(false);
-      playCard(turnParams.opponentId, query, turnParams.cardId);
+      playCard(turnParams.opponentId, query);
    }
 
    function handleCloseFreeChoice() {

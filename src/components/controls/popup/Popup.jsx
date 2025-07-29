@@ -8,7 +8,7 @@ export default function Popup({
    children,
 }) {
    const modeVariants = {
-      light: 'bg-zinc-300 text-black',
+      light: 'bg-zinc-100 text-black',
       dark: 'bg-zinc-900 text-white',
    };
 
@@ -27,7 +27,7 @@ export default function Popup({
                <CloseIcon />
             </div>
          </div>
-         <div className='rounded-b p-1'>{children}</div>
+         <div className='rounded-b'>{children}</div>
       </div>
    );
 }

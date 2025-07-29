@@ -13,6 +13,7 @@ export default function ConfirmContextProvider({ children }) {
    const [config, setConfig] = useState(null);
    const turnParams = useBoundStore((state) => state.turnParams);
    const turnActions = useBoundStore((state) => state.turnActions);
+   const gameActions = useBoundStore((state) => state.gameActions);
    const navigate = useNavigate();
 
    function showConfirm(title, message, action) {
@@ -36,6 +37,7 @@ export default function ConfirmContextProvider({ children }) {
 
          if (action === 'DISCARD_HAND') {
             turnActions.discardHand();
+            gameActions.nextPlayer();
          }
 
          if (action === 'LEAVE_GAME') {

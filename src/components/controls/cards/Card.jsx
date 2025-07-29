@@ -1,5 +1,5 @@
 import { useDraggable } from '@dnd-kit/core';
-import { COUNTS, EGG_COLORS } from '../../../utils/utils';
+import { COUNTS, EGG_COLORS, getById } from '../../../utils/utils';
 
 function getCardImage(card) {
    let cardImage = null;
@@ -40,7 +40,7 @@ export default function Card({
    let cardBackground = backgroundColor ? backgroundColor : 'bg-zinc-900';
 
    if (!backgroundColor && card.color) {
-      const colorSettings = EGG_COLORS.find((color) => color.id === card.color);
+      const colorSettings = getById(EGG_COLORS, card.color);
 
       cardBackground = colorSettings.bg;
    }

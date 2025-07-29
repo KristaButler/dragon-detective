@@ -106,3 +106,7 @@ export function shuffle(deck) {
 
    return shuffledDeck;
 }
+
+export function getById(list, id) {
+   return list.find((item) => item.id === id);
+}

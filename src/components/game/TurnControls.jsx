@@ -12,6 +12,7 @@ import { ConfirmContext } from '../../store/confirm-context';
 
 export default function TurnControls({ isCurrentPlayer, turnType }) {
    const nextPlayer = useBoundStore((state) => state.gameActions.nextPlayer);
+   const draw = useBoundStore((state) => state.gameActions.draw);
    const { showConfirm } = useContext(ConfirmContext);
 
    function handleDiscard() {
@@ -31,6 +32,7 @@ export default function TurnControls({ isCurrentPlayer, turnType }) {
    }
 
    function handleEndTurn() {
+      draw('player');
       nextPlayer();
    }
 

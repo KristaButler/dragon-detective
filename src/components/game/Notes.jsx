@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { faSquareXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import useBoundStore from '../../store/store';
 import Popup from '../controls/popup/Popup';
@@ -29,7 +28,16 @@ export default function Notes() {
                className={notesClasses}
                onClose={handleCloseNotes}
             >
-               <div className='overflow-auto h-48 w-56'>{notes}</div>
+               <div className='overflow-auto h-48 w-56 striped-list p-2'>
+                  {notes.map((note, index) => (
+                     <div
+                        key={`${index}-${note}`}
+                        className='p-2'
+                     >
+                        {note}
+                     </div>
+                  ))}
+               </div>
             </Popup>
          )}
          <button
