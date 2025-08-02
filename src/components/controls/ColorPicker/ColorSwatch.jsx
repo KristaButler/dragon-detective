@@ -1,5 +1,3 @@
-import './ColorSwatch.css';
-
 export default function ColorSwatch({ title, color, selectColor, selected }) {
    return (
       <li

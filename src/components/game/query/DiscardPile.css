@@ -5,13 +5,9 @@
    height: 7rem;
    padding: 1rem;
    border-radius: 0.75rem;
-   border: 0.125rem dashed var(--color-zinc-300);
+   border: 0.125rem dashed var(--color-like-white);
    text-align: center;
    font-size: 0.75rem;
    line-height: 1rem;
-   background-color: var(--color-zinc-700);
-}
-
-.discard-background {
-   background-color: var(--color-zinc-700);
+   background-color: var(--color-gray);
 }

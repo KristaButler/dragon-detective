@@ -1,8 +1,6 @@
-import './Footer.css';
-
 export default function Footer() {
    return (
-      <footer>
+      <footer className='flex-spaced-container'>
          <div>&copy; Krista Butler {new Date().getFullYear()}</div>
          <div>
             <a

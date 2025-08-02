@@ -39,7 +39,7 @@ export default function HomePage() {
             problem is, they don't know which one. They need your help!
          </p>
          <Divider />
-         <div className='setup'>
+         <div className='flex-centered-columns'>
             <div className='setup-section'>
                <Input
                   id='player-name'

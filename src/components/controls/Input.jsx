@@ -1,8 +1,8 @@
-import './Input.css';
+import './InputSyles.css';
 
 export default function Input({ id, type, label, className, ...props }) {
    return (
-      <div className='input'>
+      <div className='input center-element'>
          <label htmlFor={id}>{label}</label>
          <input
             id={id}

@@ -1,6 +1,5 @@
 import useBoundStore from '../../store/store';
 import Input from '../controls/Input';
-import './GameSettings.css';
 
 export default function GameSettings() {
    const settingsActions = useBoundStore((state) => state.settingsActions);

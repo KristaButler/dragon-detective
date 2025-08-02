@@ -33,7 +33,7 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
          onClose={onClose}
          className='mark-clue-popup'
       >
-         <div className='mark-clue-content'>
+         <div className='flex-wrapped-container'>
             {players.map((player) => {
                const isPlayer = player.id === 'player';
                if (!includePlayer && isPlayer) {

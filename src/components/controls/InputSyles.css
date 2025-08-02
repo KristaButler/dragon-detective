@@ -1,15 +1,10 @@
-.input {
-   display: flex;
-   align-items: center;
-}
-
 .input > label {
    margin-right: 0.5rem;
 }
 
 .input > input {
-   color: var(--color-zinc-800);
-   background-color: var(--color-zinc-100);
+   color: var(--color-like-black);
+   background-color: var(--color-like-white);
    width: min-content;
    padding: 0.25rem;
    margin: 0.25rem;
@@ -17,6 +12,6 @@
 }
 
 .input > input:focus-visible {
-   outline: 0.125rem solid var(--color-emerald-300);
+   outline: 0.125rem solid var(--color-light-green);
    outline-offset: 1px;
 }

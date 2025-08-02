@@ -13,6 +13,6 @@
 }
 
 .player-controls-avatar.current-player {
-   border: 0.25rem solid var(--color-rose-600);
+   border: 0.25rem solid var(--color-rose);
    filter: var(--shadow-md);
 }

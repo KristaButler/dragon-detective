@@ -7,10 +7,6 @@
    width: 5rem;
 }
 
-.enabled {
-   background-color: var(--color-zinc-900);
-}
-
-.disabled {
-   background-color: var(--color-zinc-700);
+.card-enabled {
+   background-color: var(--color-like-black);
 }

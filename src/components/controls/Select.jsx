@@ -1,4 +1,4 @@
-import './Select.css';
+import './InputSyles.css';
 
 export default function Select({
    id,
@@ -9,7 +9,7 @@ export default function Select({
    ...props
 }) {
    return (
-      <div className='input-select'>
+      <div className='input center-element'>
          <label htmlFor={id}>{label}</label>
          <select
             id={id}

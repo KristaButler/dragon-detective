@@ -5,10 +5,10 @@ import {
    faArrowsRotate,
    faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import Button from '../controls/Button';
-import useBoundStore from '../../store/store';
+import Button from '../../controls/Button';
+import useBoundStore from '../../../store/store';
 import GuessButton from './GuessButton';
-import { ConfirmContext } from '../../store/confirm-context';
+import { ConfirmContext } from '../../../store/confirm-context';
 import './TurnControls.css';
 
 export default function TurnControls({ isCurrentPlayer, turnType }) {

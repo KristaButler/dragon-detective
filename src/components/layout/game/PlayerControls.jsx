@@ -2,7 +2,7 @@ import useBoundStore from '../../../store/store';
 import CardStack from '../../controls/cards/CardStack';
 import PlayerAvatar from '../../game/avatar/PlayerAvatar';
 import QueryCards from '../../game/query/QueryCards';
-import TurnControls from '../../game/TurnControls';
+import TurnControls from '../../game/turn-controls/TurnControls';
 import { getById } from '../../../utils/utils';
 import './PlayerControls.css';
 

@@ -1,40 +1,40 @@
 .button {
    margin: 0.25rem;
-   filter: drop-shadow(0 1px 1px var(--color-zinc-800));
+   filter: var(--shadow-sm);
    border-width: 0.125rem;
-   color: var(--color-zinc-100);
+   color: var(--color-like-white);
    cursor: pointer;
 }
 
 .button:not(.disabled):hover {
    text-decoration: underline;
-   border-color: var(--color-zinc-100);
+   border-color: var(--color-like-white);
 }
 
 /* Colors */
 .button-green {
-   background-color: var(--color-emerald-700);
-   border-color: var(--color-emerald-700);
+   background-color: var(--color-green);
+   border-color: var(--color-green);
 }
 
 .button-orange {
-   background-color: var(--color-orange-700);
-   border-color: var(--color-orange-700);
+   background-color: var(--color-orange);
+   border-color: var(--color-orange);
 }
 
 .button-yellow {
-   background-color: var(--color-yellow-700);
-   border-color: var(--color-yellow-700);
+   background-color: var(--color-dark-yellow);
+   border-color: var(--color-dark-yellow);
 }
 
 .button-red {
-   background-color: var(--color-red-900);
-   border-color: var(--color-red-900);
+   background-color: var(--color-dark-red);
+   border-color: var(--color-dark-red);
 }
 
 .button-disabled {
-   background-color: var(--color-zinc-700);
-   border-color: var(--color-zinc-700);
+   background-color: var(--color-gray);
+   border-color: var(--color-gray);
    cursor: not-allowed;
 }
 

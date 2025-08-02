@@ -1,5 +1,3 @@
-import './FreeChoiceOptions.css';
-
 export default function FreeChoiceOptions({
    list,
    type,
@@ -7,7 +5,7 @@ export default function FreeChoiceOptions({
    useIndex = false,
 }) {
    return (
-      <div className='options-container'>
+      <div className='flex-wrapped-container'>
          {list.map((item, index) => {
             if (!item) return;
             const value = useIndex ? index : item.id;

@@ -1,7 +1,6 @@
 import useBoundStore from '../../../store/store';
 import { SPECIES } from '../../../utils/utils';
 import Notes from '../../game/Notes';
-import './SheetHeader.css';
 
 export default function SheetHeader() {
    const autoNotes = useBoundStore((state) => state.autoNotes);

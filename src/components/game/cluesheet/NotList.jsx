@@ -1,6 +1,5 @@
 import OpponentAvatar from '../avatar/OpponentAvatar';
 import { getById } from '../../../utils/utils';
-import './NotList.css';
 
 export default function NotList({ list, players }) {
    return (

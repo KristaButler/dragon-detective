@@ -2,3 +2,34 @@
    display: flex;
    justify-content: center;
 }
+
+/* Options Styles */
+.options-img-container {
+   position: relative;
+}
+
+.options-img-container > img {
+   height: 3rem;
+}
+
+.option {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   flex-shrink: 0;
+   padding: 0.5rem;
+   border-radius: 0.25rem;
+   border: 0.16rem solid var(--color-light-gray);
+   color: var(--color-like-white);
+}
+
+.option:hover {
+   border-color: var(--color-like-black);
+   color: var(--color-like-white);
+}
+
+.background-solitaire,
+.background-pair,
+.background-cluster {
+   background-color: var(--color-gray);
+}

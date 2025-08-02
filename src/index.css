@@ -1,57 +1,42 @@
-@import './preflight.css';
-
 :root {
-   --color-zinc-100: oklch(96.7% 0.001 286.375);
-   --color-zinc-300: oklch(87.1% 0.006 286.286);
-   --color-zinc-400: oklch(70.5% 0.015 286.067);
-   --color-zinc-500: oklch(55.2% 0.016 285.938);
-   --color-zinc-600: oklch(44.2% 0.017 285.786);
-   --color-zinc-700: oklch(37% 0.013 285.805);
-   --color-zinc-800: oklch(27.4% 0.006 286.033);
-   --color-zinc-900: oklch(21% 0.006 285.885);
+   --color-like-white: oklch(96.7% 0.001 286.375);
+   --color-light-gray: oklch(70.5% 0.015 286.067);
+   --color-gray: oklch(37% 0.013 285.805);
+   --color-dark-gray: oklch(
+      27.4% 0.006 286.033
+   ); /* See Also confirm-context.css if this value changes */
+   --color-like-black: oklch(21% 0.006 285.885);
 
-   --color-green-300: oklch(87.1% 0.15 154.449);
-   --color-green-900: oklch(39.3% 0.095 152.535);
+   --color-light-green: oklch(84.5% 0.143 164.978);
+   --color-green: oklch(50.8% 0.118 165.612);
+   --color-dark-green: oklch(37.8% 0.077 168.94);
 
-   --color-emerald-300: oklch(84.5% 0.143 164.978);
-   --color-emerald-700: oklch(50.8% 0.118 165.612);
-   --color-emerald-900: oklch(37.8% 0.077 168.94);
+   --color-light-dragon: oklch(81.1% 0.111 293.571);
+   --color-dark-dragon: oklch(38% 0.189 293.745);
 
-   --color-violet-300: oklch(81.1% 0.111 293.571);
-   --color-violet-800: oklch(43.2% 0.232 292.759);
-   --color-violet-900: oklch(38% 0.189 293.745);
+   --color-light-wyvern: oklch(82.7% 0.119 306.383);
+   --color-dark-wyvern: oklch(38.1% 0.176 304.987);
 
-   --color-purple-300: oklch(82.7% 0.119 306.383);
-   --color-purple-900: oklch(38.1% 0.176 304.987);
+   --color-light-hydra: oklch(83.3% 0.145 321.434);
+   --color-dark-hydra: oklch(40.1% 0.17 325.612);
 
-   --color-fuchsia-300: oklch(83.3% 0.145 321.434);
-   --color-fuchsia-900: oklch(40.1% 0.17 325.612);
+   --color-light-blue: oklch(67.3% 0.182 276.935);
+   --color-dark-blue: oklch(35.9% 0.144 278.697);
 
-   --color-indigo-400: oklch(67.3% 0.182 276.935);
-   --color-indigo-900: oklch(35.9% 0.144 278.697);
+   --color-rose: oklch(58.6% 0.253 17.585);
 
-   --color-rose-600: oklch(58.6% 0.253 17.585);
+   --color-orange: oklch(55.3% 0.195 38.402);
+   --color-dark-orange: oklch(40.8% 0.123 38.172);
 
-   --color-orange-600: oklch(64.6% 0.222 41.116);
-   --color-orange-700: oklch(55.3% 0.195 38.402);
-   --color-ornage-900: oklch(40.8% 0.123 38.172);
+   --color-dark-yellow: oklch(55.4% 0.135 66.442);
 
-   --color-yellow-700: oklch(55.4% 0.135 66.442);
-   --color-yellow-900: oklch(42.1% 0.095 57.708);
+   --color-dark-red: oklch(39.6% 0.141 25.723);
 
-   --color-red-800: oklch(44.4% 0.177 26.899);
-   --color-red-900: oklch(39.6% 0.141 25.723);
-
-   --shadow: drop-shadow(0.25rem 0.25rem 0.25rem var(--color-zinc-800));
-   --shadow-md: drop-shadow(0 4px 3px var(--color-zinc-800))
-      drop-shadow(0 2px 2px var(--color-zinc-800));
-
-   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
-
-   background-color: var(--color-zinc-900);
-   color: var(--color-zinc-100);
+   --shadow-sm: drop-shadow(0 1px 1px var(--color-dark-gray));
+   --shadow: drop-shadow(0.25rem 0.25rem 0.25rem var(--color-dark-gray));
+   --shadow-left: drop-shadow(-0.25rem 0.25rem 0.25rem var(--color-dark-gray));
+   --shadow-md: drop-shadow(0 4px 3px var(--color-dark-gray))
+      drop-shadow(0 2px 2px var(--color-dark-gray));
 
    font-synthesis: none;
    text-rendering: optimizeLegibility;
@@ -59,17 +44,248 @@
    -moz-osx-font-smoothing: grayscale;
 }
 
+/* Derived from Tailwindcss Prefight */
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+   box-sizing: border-box; /* 1 */
+   border-width: 0; /* 2 */
+   border-style: solid; /* 2 */
+   border-color: theme('borderColor.DEFAULT', currentColor); /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+   height: 0; /* 1 */
+   color: inherit; /* 2 */
+   border-top-width: 1px; /* 3 */
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+   color: inherit;
+   text-decoration: inherit;
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+   font-family: inherit; /* 1 */
+   font-feature-settings: inherit; /* 1 */
+   font-variation-settings: inherit; /* 1 */
+   font-size: 100%; /* 1 */
+   font-weight: inherit; /* 1 */
+   line-height: inherit; /* 1 */
+   letter-spacing: inherit; /* 1 */
+   color: inherit; /* 1 */
+   margin: 0; /* 2 */
+   padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+   text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+   -webkit-appearance: button; /* 1 */
+   background-color: transparent; /* 2 */
+   background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+   outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+   box-shadow: none;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+   height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+   -webkit-appearance: textfield; /* 1 */
+   outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+   -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+   -webkit-appearance: button; /* 1 */
+   font: inherit; /* 2 */
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+hr,
+figure,
+p,
+pre {
+   margin: 0;
+}
+
+ol,
+ul,
+menu {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+dialog {
+   padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+   resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::placeholder,
+textarea::placeholder {
+   opacity: 1; /* 1 */
+   color: theme('colors.gray.400', #9ca3af); /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role='button'] {
+   cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+:disabled {
+   cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+   display: block; /* 1 */
+   vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+   max-width: 100%;
+   height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+[hidden]:where(:not([hidden='until-found'])) {
+   display: none;
+}
+
+/* Dragon Detective Classes */
+h1,
+h2 {
    font-family: 'Amarante', serif;
-   font-weight: 400;
-   font-style: normal;
-   line-height: 1.1;
-   color: #ffffff;
 }
 
 h1 {
@@ -77,80 +293,83 @@ h1 {
 }
 
 h2 {
-   font-size: 2.5em;
+   font-size: 2em;
 }
 
 body {
-   margin: 0;
-   display: flex;
-   flex-grow: 0;
+   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+   line-height: 1.5;
+   font-weight: 400;
+   background-color: var(--color-like-black);
+   color: var(--color-like-white);
    place-items: center;
-   justify-content: center;
 }
 
-*,
-::after,
-::before,
-::backdrop,
-::file-selector-button {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   border: 0 solid;
+/* Universal Component Classes */
+.flex-wrapped-container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+   padding: 0.5rem;
 }
 
-ol,
-ul,
-menu {
-   list-style: none;
+.flex-centered-columns {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 }
 
-.animate-pulse {
-   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.flex-spaced-container {
+   display: flex;
+   justify-content: space-between;
 }
 
-.pause-animation:hover {
-   animation-play-state: paused;
+.center-element {
+   place-items: center;
 }
 
 .background-red {
-   background-color: var(--color-red-900);
+   background-color: var(--color-dark-red);
 }
 
 .background-green {
-   background-color: var(--color-emerald-900);
+   background-color: var(--color-dark-green);
 }
 
 .background-blue {
-   background-color: var(--color-indigo-900);
+   background-color: var(--color-dark-blue);
 }
 
 .background-yellow {
-   background-color: var(--color-yellow-700);
+   background-color: var(--color-dark-yellow);
 }
 
 .background-dragon {
-   background-color: var(--color-violet-900);
+   background-color: var(--color-dark-dragon);
 }
 
 .background-wyvern {
-   background-color: var(--color-purple-900);
+   background-color: var(--color-dark-wyvern);
 }
 
 .background-hydra {
-   background-color: var(--color-fuchsia-900);
+   background-color: var(--color-dark-hydra);
 }
 
 .background-dragon-light {
-   background-color: var(--color-violet-300);
+   background-color: var(--color-light-dragon);
 }
 
 .background-wyvern-light {
-   background-color: var(--color-purple-300);
+   background-color: var(--color-light-wyvern);
 }
 
 .background-hydra-light {
-   background-color: var(--color-fuchsia-300);
+   background-color: var(--color-light-hydra);
+}
+
+.background-default {
+   background-color: var(--color-gray);
 }
 
 .padding-4 {
@@ -158,10 +377,83 @@ menu {
 }
 
 .divider {
-   color: var(--color-violet-800);
+   color: var(--color-light-blue);
+   margin-top: 1rem;
+   margin-bottom: 1rem;
+}
+
+/* Small Components Styles (didn't need thier own file) */
+.matches-list {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding-bottom: 0.5rem;
+}
+
+.opponents-list {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-around;
+   margin-bottom: 1rem;
+}
+
+.game-settings {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
    margin-top: 1rem;
 }
 
-/* .shadow {
-   filter: drop-shadow(0.25rem 0.25rem 0.25rem var(--color-zinc-800));
-} */
+/* Footer Styles */
+.attribution {
+   text-decoration: underline;
+}
+
+.attribution:hover {
+   color: var(--color-orange);
+}
+
+/* Header Styles */
+header > h1 {
+   text-align: center;
+   text-shadow: 0px 1px 2px var(--color-like-black),
+      0px 3px 2px var(--color-like-black), 0px 4px 8px var(--color-like-black);
+}
+
+/* Main Styles */
+main {
+   min-width: 42rem;
+   max-width: 42rem;
+   min-height: 90vh;
+   background-color: var(--color-dark-dragon);
+   border-radius: 0.5rem;
+   margin-top: -2.5rem;
+}
+
+/* Pulse Animation */
+.animate-pulse {
+   animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.pause-animation:hover {
+   animation-play-state: paused;
+}
+
+@keyframes pulse {
+   0% {
+      opacity: 100%;
+   }
+   25% {
+      opacity: 50%;
+   }
+   50% {
+      opacity: 100%;
+   }
+   75% {
+      opacity: 50%;
+   }
+   100% {
+      opacity: 100%;
+   }
+}

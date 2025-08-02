@@ -1,12 +1,5 @@
-.confirm {
-   display: flex;
-   align-items: center;
-}
-
 .confirm > .popup {
-   width: 75%;
    top: 25%;
-   left: 13%;
 }
 
 .confirm-message {

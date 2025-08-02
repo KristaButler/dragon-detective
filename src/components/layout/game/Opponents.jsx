@@ -1,6 +1,5 @@
 import useBoundStore from '../../../store/store';
 import Opponent from '../../game/Opponent';
-import './Opponents.css';
 
 export default function Opponents() {
    const players = useBoundStore((state) => state.players);

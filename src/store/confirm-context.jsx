@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useBoundStore from './store';
 import Confirm from '../components/controls/popup/Confirm';
+import './confirm-context.css';
 
 export const ConfirmContext = createContext({
    showAlert: (title, message) => {},
@@ -58,11 +59,11 @@ export default function ConfirmContextProvider({ children }) {
    return (
       <ConfirmContext.Provider value={context}>
          <div
-            className='relative w-full h-full'
+            className='confirm-context-container'
             onClick={close}
          >
             {isConfirming && (
-               <div className='absolute w-full h-full z-150 bg-zinc-900/50'>
+               <div className='confirm-context-backdrop'>
                   <Confirm
                      title={config.title}
                      message={config.message}

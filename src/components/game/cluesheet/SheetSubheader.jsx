@@ -1,5 +1,4 @@
 import { COUNTS, SPECIES } from '../../../utils/utils';
-import './SheetSubheader.css';
 
 export default function SheetSubheader() {
    return (
@@ -13,14 +12,14 @@ export default function SheetSubheader() {
                   return; //skip first index because it is placeholder
                }
 
-               let borderClasses = 'border-right';
+               let borderClasses = 'cell-border-right';
 
                if (index <= COUNTS.length) {
-                  borderClasses = 'border-right-thick';
+                  borderClasses = 'cell-border-right-thick';
                }
 
                if (index === 1) {
-                  borderClasses += ' border-left';
+                  borderClasses += ' cell-border-left';
                }
 
                return (
@@ -32,7 +31,7 @@ export default function SheetSubheader() {
                         src={`/images/symbols/${sp.id}-${ct.id}.png`}
                         alt={`${sp.title} ${ct.title}`}
                      />
-                     <div className='title'>{ct.title}</div>
+                     <div className='cell-title'>{ct.title}</div>
                   </div>
                );
             });

@@ -2,7 +2,6 @@ import useBoundStore from '../../../store/store';
 import OpponentAvatar from '../avatar/OpponentAvatar';
 import NotList from './NotList';
 import { getById } from '../../../utils/utils';
-import './CellButton.css';
 
 export default function CellButton({
    id,

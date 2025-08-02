@@ -13,7 +13,7 @@ export default function DiscardPile() {
          <Card
             key={`discard-${topCard.id}`}
             id={topCard.id}
-            backgroundColor='discard-background'
+            backgroundColor='background-default'
             card={topCard}
             textOnly
          />

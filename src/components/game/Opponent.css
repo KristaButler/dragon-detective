@@ -13,24 +13,26 @@
 }
 
 .opponent-avatar.current-player {
-   border: 0.25rem solid var(--color-rose-600);
+   border: 0.25rem solid var(--color-rose);
    filter: var(--shadow-md);
 }
 
 .opponent-avatar.highlight {
-   border: 0.25rem solid var(--color-emerald-300);
+   border: 0.25rem solid var(--color-light-green);
    filter: var(--shadow-md);
 }
 
-.opponent > .name {
-   color: var(--color-zinc-400);
+.opponent > .opponent-name {
+   color: var(--color-light-gray);
 }
 
-.opponent.current-player > .name {
+.opponent.current-player > .opponent-name {
    font-weight: bold;
+   color: var(--color-like-white);
+   padding: 0px;
 }
 
-.opponent > .note {
+.opponent > .opponent-note {
    font-size: 0.75rem;
-   line-height: 1rem;
+   line-height: 0.85rem;
 }

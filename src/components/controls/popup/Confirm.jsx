@@ -10,7 +10,7 @@ export default function Confirm({
    className,
 }) {
    return (
-      <div className={`confirm ${className ? className : ''}`}>
+      <div className={`confirm center-element ${className ? className : ''}`}>
          <Popup
             title={title}
             onClose={() => onConfirm(false)}

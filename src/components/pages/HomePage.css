@@ -2,12 +2,6 @@ section.homepage {
    padding: 1.25rem 1rem 1rem 1rem;
 }
 
-.setup {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-}
-
 .setup-section {
    display: flex;
    flex-direction: column;

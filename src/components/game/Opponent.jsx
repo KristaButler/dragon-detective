@@ -70,7 +70,7 @@ export default function Opponent({ id, name, avatar }) {
    return (
       <div
          id={id}
-         className='opponent'
+         className={`opponent ${isCurrentPlayer ? 'current-player' : ''}`}
          ref={setNodeRef}
       >
          <OpponentAvatar
@@ -78,8 +78,10 @@ export default function Opponent({ id, name, avatar }) {
             alt={`${name}'s avatar`}
             className={avatarClasses}
          />
-         <p className='name'>{name}</p>
-         {isCurrentPlayer && <p className='note'>(taking thier turn)</p>}
+         <div className='opponent-name'>{name}</div>
+         {isCurrentPlayer && (
+            <div className='opponent-note'>(taking thier turn)</div>
+         )}
       </div>
    );
 }

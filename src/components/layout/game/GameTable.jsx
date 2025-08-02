@@ -5,7 +5,6 @@ import Matches from '../../game/Matches';
 import DiscardPile from '../../game/query/DiscardPile';
 import { getById } from '../../../utils/utils';
 import MessageDisplay from '../../game/MessageDisplay';
-import './GameTable.css';
 
 export default function GameTable() {
    const globalEggs = useBoundStore((state) => state.globalEggs);
@@ -19,7 +18,7 @@ export default function GameTable() {
       turnParams.query.type === 'show';
 
    return (
-      <div className='game-table'>
+      <div className='flex-spaced-container'>
          <CardStack
             cards={globalEggs}
             title='Click to expand/collapse. Extra eggs, all players can see them.'

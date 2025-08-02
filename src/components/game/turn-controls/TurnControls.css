@@ -21,7 +21,7 @@
 }
 
 .turn-over {
-   border-color: var(--color-zinc-100);
+   border-color: var(--color-like-white);
 }
 
 .discard-hand-button {
@@ -39,4 +39,9 @@
    position: relative;
    left: -3.5rem;
    top: -1.25rem;
+}
+
+/* Guess Button Styles */
+.guessing {
+   border-color: var(--color-like-white);
 }

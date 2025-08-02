@@ -30,13 +30,13 @@
 
 /* Color Theme */
 .popup.light {
-   background-color: var(--color-zinc-100);
-   color: var(--color-zinc-900);
+   background-color: var(--color-like-white);
+   color: var(--color-like-black);
 }
 
 .popup.dark {
-   background-color: var(--color-zinc-900);
-   color: var(--color-zinc-100);
+   background-color: var(--color-like-black);
+   color: var(--color-like-white);
 }
 
 /* Close Icon Styles */
@@ -46,7 +46,7 @@
 }
 
 .close-icon-x {
-   color: var(--color-red-900);
+   color: var(--color-dark-red);
 }
 
 .close-icon-x:hover {
@@ -54,5 +54,5 @@
 }
 
 .close-icon-background {
-   color: var(--color-zinc-100);
+   color: var(--color-like-white);
 }

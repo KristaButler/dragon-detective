@@ -6,3 +6,145 @@
    margin-top: 0.25rem;
    position: relative;
 }
+
+.cell-title {
+   font-size: 0.75rem;
+   line-height: 1rem;
+}
+
+.cell-border-right {
+   border-right-width: 0.15rem;
+}
+
+.cell-border-right-thick {
+   border-right-width: 0.16rem;
+}
+
+.cell-border-left {
+   border-left-width: 0.16rem;
+}
+
+.cell-border-bottom {
+   border-bottom-width: 0.15rem;
+}
+
+.cell-border-bottom-thick {
+   border-bottom-width: 0.16rem;
+}
+
+.cell-border-top {
+   border-top-width: 0.15rem;
+}
+
+/* Header Styles */
+.cluesheet-header-cell {
+   grid-column: span 3 / span 3;
+   display: flex;
+   gap: 0.5rem;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   border-width: 0.16rem 0.16rem 0.15rem 0.16rem;
+   border-color: var(--color-light-blue);
+   padding: 0.25rem;
+   border-top-left-radius: 0.5rem;
+   border-top-right-radius: 0.5rem;
+}
+
+.cluesheet-header-cell > img {
+   height: 1rem;
+   width: auto;
+}
+
+.cluesheet-notes {
+   grid-row: span 2 / span 2;
+   align-self: flex-end;
+   margin-bottom: 1rem;
+}
+
+/* Sub-Header Styles */
+.cluesheet-sub-header {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-color: var(--color-light-blue);
+   border-bottom-width: 0.15rem;
+   padding: 0.5rem;
+}
+
+.cluesheet-sub-header > img {
+   height: 1rem;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+/* Sheet Rows Styles */
+.color-row-cell {
+   display: flex;
+   gap: 0.25rem;
+   place-items: center;
+   text-align: left;
+   padding: 0.25rem;
+   border-color: var(--color-light-blue);
+   border-left-width: 0.16rem;
+   height: 3rem;
+}
+
+.color-row-cell > img {
+   height: 1rem;
+}
+
+/* Cell Button Styles */
+.cell {
+   border-color: var(--color-light-blue);
+   border-bottom-width: 0.15rem;
+   color: var(--color-like-black);
+}
+
+.cell.owner {
+   background-color: var(--color-light-gray);
+   color: var(--color-like-white);
+}
+
+.cell.global {
+   background-color: var(--color-gray);
+   color: var(--color-like-white);
+}
+
+.cell.selected {
+   background-color: var(--color-emerald-300);
+}
+
+.cell > button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+   padding: 0.5rem;
+}
+
+.cell.selected > button {
+   border: 0.15rem solid var(--color-emerald-900);
+}
+
+.cell-avatar {
+   height: 2rem;
+   width: 2rem;
+}
+
+/* Not List Styles */
+.not-owner-list {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: flex-end;
+   justify-content: space-between;
+   width: 100%;
+   height: 100%;
+}
+
+.not-owner-list-avatar {
+   height: 1rem;
+   width: 1rem;
+}

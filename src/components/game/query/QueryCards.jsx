@@ -11,7 +11,7 @@ export default function QueryCards({ cards, enabled }) {
             <Card
                key={`query-${card.id}`}
                id={card.id}
-               backgroundColor={enabled ? 'enabled' : 'disabled'}
+               backgroundColor={enabled ? 'card-enabled' : 'background-default'}
                draggable={enabled}
                card={card}
                textOnly
