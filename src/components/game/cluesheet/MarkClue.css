@@ -1,0 +1,50 @@
+.mark-clue-popup {
+   margin-top: -3.5rem;
+}
+
+.mark-clue-content {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+   padding: 0.5rem;
+}
+
+.mark-owner {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   flex-shrink: 0;
+   padding: 0.5rem;
+   border-radius: 0.25rem;
+   border: 0.125rem solid var(--color-zinc-400);
+   background-color: var(--color-zinc-100);
+}
+
+.mark-owner:hover {
+   border-color: var(--color-zinc-900);
+}
+
+.is-owner {
+   background-color: var(--color-emerald-300);
+}
+
+.not-owner {
+   background-color: var(--color-zinc-400);
+}
+
+.mark-owner-avatar-container {
+   position: relative;
+}
+
+.mark-owner-avatar {
+   width: 4rem;
+   height: 4rem;
+}
+
+.mark-icon {
+   color: var(--color-zinc-100);
+}
+
+.mark-owner-buttons {
+   justify-self: end;
+}

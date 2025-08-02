@@ -1,0 +1,54 @@
+/* Container */
+.cardstack-container {
+   position: relative;
+   width: 8rem;
+   height: 7rem;
+}
+
+/* Cardstack List */
+.cardstack {
+   display: flex;
+}
+
+.cardstack.expanded {
+   position: absolute;
+   z-index: 100;
+}
+
+.cardstack.right {
+   flex-direction: row-reverse;
+}
+
+.cardstack.expanded.right {
+   right: 0px;
+}
+
+.cardstack.expanded.left {
+   left: 0px;
+}
+
+/* Cardstack Cards */
+.cardstack.right > .card {
+   position: relative;
+   filter: var(--shadow);
+}
+
+.cardstack.left > .card {
+   filter: drop-shadow(-0.25rem 0.25rem 0.25rem var(--color-zinc-800));
+}
+
+.cardstack.expanded.right > .card:not(:first-child) {
+   margin-right: -0.5rem;
+}
+
+.cardstack.expanded.left > .card:not(:first-child) {
+   margin-left: -0.5rem;
+}
+
+.cardstack.stacked.right > .card:not(:first-child) {
+   margin-right: -4.5rem;
+}
+
+.cardstack.stacked.left > .card:not(:first-child) {
+   margin-left: -4.5rem;
+}

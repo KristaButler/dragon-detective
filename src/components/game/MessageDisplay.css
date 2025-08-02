@@ -1,0 +1,19 @@
+.message-display {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   max-width: 66%;
+   padding-right: 1rem;
+}
+
+.message-display > p {
+   align-self: center;
+   background: var(--color-orange-900);
+   padding: 1rem;
+   border-radius: 0.25rem;
+   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+}
+
+.message-button {
+   align-self: flex-end;
+}

@@ -4,6 +4,7 @@ import SheetRows from './SheetRows';
 import SheetSubheader from './SheetSubheader';
 import MarkClue from './MarkClue';
 import { getById } from '../../../utils/utils';
+import './ClueSheet.css';
 
 export default function ClueSheet() {
    const cluesheet = useBoundStore((state) => state.cluesheet);
@@ -27,7 +28,7 @@ export default function ClueSheet() {
    }
 
    return (
-      <div className='grid grid-cols-[1.2fr_repeat(9,1fr)] text-center p-2 mt-1 relative'>
+      <div className='cluesheet'>
          <SheetHeader />
          <SheetSubheader />
          <SheetRows />

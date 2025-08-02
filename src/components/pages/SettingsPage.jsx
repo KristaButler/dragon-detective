@@ -3,6 +3,7 @@ import PlayerCustomization from '../settings/PlayerCustomization';
 import Divider from '../layout/Divider';
 import Button from '../controls/Button';
 import useBoundStore from '../../store/store';
+import './SettingsPage.css';
 
 export default function SettingsPage() {
    const resetSettings = useBoundStore(
@@ -14,14 +15,14 @@ export default function SettingsPage() {
    }
 
    return (
-      <section className='h-full p-4'>
+      <section className='settings-page'>
          <h2>Settings</h2>
          <Divider />
          <PlayerCustomization />
          <Divider />
          <GameSettings />
          <Divider />
-         <div className='flex gap-2 justify-center'>
+         <div className='settings-buttons'>
             <Button to='/'>Back</Button>
             <Button
                color='green'
@@ -30,9 +31,7 @@ export default function SettingsPage() {
                Reset
             </Button>
          </div>
-         <div className='italic place-self-center pt-1'>
-            Settings are auto saved.
-         </div>
+         <div className='settings-note'>Settings are auto saved.</div>
       </section>
    );
 }

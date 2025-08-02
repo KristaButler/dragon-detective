@@ -1,17 +1,17 @@
 import Card from '../../controls/cards/Card';
+import './QueryCards.css';
 
 export default function QueryCards({ cards, enabled }) {
-   const backgroundColor = enabled ? 'bg-zinc-900' : 'bg-zinc-700';
-   const spacer = <div className='w-20'>&nbsp;</div>;
+   const spacer = <div className='spacer'>&nbsp;</div>;
 
    return (
-      <div className='flex gap-2'>
+      <div className='query-cards'>
          {cards.length < 4 && spacer}
          {cards.map((card) => (
             <Card
                key={`query-${card.id}`}
                id={card.id}
-               backgroundColor={backgroundColor}
+               backgroundColor={enabled ? 'enabled' : 'disabled'}
                draggable={enabled}
                card={card}
                textOnly

@@ -1,0 +1,58 @@
+.popup {
+   display: flex;
+   flex-direction: column;
+   border-radius: 0.25rem;
+   position: absolute;
+   z-index: 100;
+}
+
+/* Header */
+.popup-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-top: 0.25rem;
+}
+
+.popup-title {
+   margin-left: 0.5rem;
+   margin-right: 0.5rem;
+   font-weight: bold;
+   font-size: 1.125rem;
+   line-height: 1.75rem;
+}
+
+/* Content */
+.popup-content {
+   border-bottom-right-radius: 0.25rem;
+   border-bottom-left-radius: 0.25rem;
+}
+
+/* Color Theme */
+.popup.light {
+   background-color: var(--color-zinc-100);
+   color: var(--color-zinc-900);
+}
+
+.popup.dark {
+   background-color: var(--color-zinc-900);
+   color: var(--color-zinc-100);
+}
+
+/* Close Icon Styles */
+.popup-close {
+   padding-right: 0.5rem;
+   padding-top: 0.5rem;
+}
+
+.close-icon-x {
+   color: var(--color-red-900);
+}
+
+.close-icon-x:hover {
+   cursor: pointer;
+}
+
+.close-icon-background {
+   color: var(--color-zinc-100);
+}

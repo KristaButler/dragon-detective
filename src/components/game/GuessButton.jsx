@@ -6,6 +6,7 @@ import { getById } from '../../utils/utils';
 import Button from '../controls/Button';
 import { EGG_POOL } from '../../data/egg-pool';
 import { ConfirmContext } from '../../store/confirm-context';
+import './GuessButton.css';
 
 export default function GuessButton({ className, isCurrentPlayer }) {
    const state = useBoundStore((state) => state);
@@ -16,7 +17,7 @@ export default function GuessButton({ className, isCurrentPlayer }) {
    const isGuessing = turnParams.guessing;
 
    const classes = `${
-      isGuessing ? 'border-white animate-pulse pause-animation' : ''
+      isGuessing ? 'guessing animate-pulse pause-animation' : ''
    } ${className}`;
 
    function handleClick() {

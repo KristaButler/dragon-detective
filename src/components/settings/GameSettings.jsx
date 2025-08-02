@@ -1,5 +1,6 @@
 import useBoundStore from '../../store/store';
 import Input from '../controls/Input';
+import './GameSettings.css';
 
 export default function GameSettings() {
    const settingsActions = useBoundStore((state) => state.settingsActions);
@@ -24,7 +25,7 @@ export default function GameSettings() {
    return (
       <>
          <div>Game Parameters:</div>
-         <div className='flex flex-col gap-4 mt-4'>
+         <div className='game-settings'>
             <div>
                <Input
                   id='players'
@@ -39,6 +40,7 @@ export default function GameSettings() {
             </div>
             <div>
                <Input
+                  id='auto-notes'
                   label='Enable Automatic Notes: '
                   type='checkbox'
                   defaultChecked={autoNotes}
@@ -48,6 +50,7 @@ export default function GameSettings() {
             </div>
             <div>
                <Input
+                  id='markEggs'
                   label='Mark your eggs on game start: '
                   type='checkbox'
                   defaultChecked={autoMarkPlayerEggs}

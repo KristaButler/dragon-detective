@@ -9,6 +9,7 @@ import Button from '../controls/Button';
 import useBoundStore from '../../store/store';
 import GuessButton from './GuessButton';
 import { ConfirmContext } from '../../store/confirm-context';
+import './TurnControls.css';
 
 export default function TurnControls({ isCurrentPlayer, turnType }) {
    const nextPlayer = useBoundStore((state) => state.gameActions.nextPlayer);
@@ -36,16 +37,16 @@ export default function TurnControls({ isCurrentPlayer, turnType }) {
       nextPlayer();
    }
 
+   const endTurnClasses = `end-turn-button ${
+      turnType ? 'turn-over animate-pulse pause-animation' : ''
+   }`;
+
    return (
-      <div className='relative mr-8 -top-3'>
-         <div className='absolute z-50'>
-            <div className='flex flex-col'>
+      <div className='turn-controls-outer'>
+         <div className='turn-controls-inner'>
+            <div className='turn-controls'>
                <Button
-                  className={`relative -left-5 ${
-                     turnType
-                        ? 'border-white animate-pulse pause-animation'
-                        : ''
-                  }`}
+                  className={endTurnClasses}
                   shape='round'
                   color='orange'
                   disabled={!isCurrentPlayer || !turnType}
@@ -55,7 +56,7 @@ export default function TurnControls({ isCurrentPlayer, turnType }) {
                   <FontAwesomeIcon icon={faPlay} />
                </Button>
                <Button
-                  className='relative -left-2'
+                  className='discard-hand-button'
                   shape='round'
                   color='yellow'
                   disabled={!isCurrentPlayer || turnType}
@@ -65,11 +66,11 @@ export default function TurnControls({ isCurrentPlayer, turnType }) {
                   <FontAwesomeIcon icon={faArrowsRotate} />
                </Button>
                <GuessButton
-                  className='relative -left-6 -top-1'
+                  className='guess-button'
                   isCurrentPlayer={isCurrentPlayer}
                />
                <Button
-                  className='relative -left-15 -top-5'
+                  className='leave-button'
                   shape='round'
                   color='red'
                   title='Leave the game.'

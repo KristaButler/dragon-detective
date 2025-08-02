@@ -1,0 +1,8 @@
+main {
+   min-width: 42rem;
+   max-width: 42rem;
+   min-height: 90vh;
+   background-color: var(--color-violet-900);
+   border-radius: 0.5rem;
+   margin-top: -1.5rem;
+}

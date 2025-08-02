@@ -1,3 +1,5 @@
+import './Select.css';
+
 export default function Select({
    id,
    type,
@@ -6,21 +8,13 @@ export default function Select({
    children,
    ...props
 }) {
-   const labelClasses = 'mr-2';
-   const inputClasses = 'text-black bg-white w-min p-1 m-1 rounded';
-
    return (
-      <div className={`flex items-center`}>
-         <label
-            htmlFor={id}
-            className={labelClasses}
-         >
-            {label}
-         </label>
+      <div className='input-select'>
+         <label htmlFor={id}>{label}</label>
          <select
             id={id}
             type={type}
-            className={`${inputClasses} ${className ? className : undefined}`}
+            className={className ? className : undefined}
             {...props}
          >
             {children}

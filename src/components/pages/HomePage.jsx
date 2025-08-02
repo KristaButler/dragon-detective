@@ -6,6 +6,7 @@ import Button from '../controls/Button';
 import Input from '../controls/Input';
 import PlayerAvatar from '../game/avatar/PlayerAvatar';
 import Divider from '../layout/Divider';
+import './HomePage.css';
 
 export default function HomePage() {
    const settingsActions = useBoundStore((state) => state.settingsActions);
@@ -31,15 +32,15 @@ export default function HomePage() {
    }
 
    return (
-      <section className='pt-5 pb-4 px-4'>
+      <section className='homepage'>
          <h2>Welcome!</h2>
          <p>
             The Dragon Hatchery is in a commotion. An egg has gone missing, the
             problem is, they don't know which one. They need your help!
          </p>
          <Divider />
-         <div className='flex flex-col items-center'>
-            <div className='flex flex-col items-center mt-4 gap-2'>
+         <div className='setup'>
+            <div className='setup-section'>
                <Input
                   id='player-name'
                   label='Player Name:'
@@ -47,7 +48,7 @@ export default function HomePage() {
                   value={playerName}
                   onChange={handlePlayerNameChange}
                />
-               <PlayerAvatar className='h-32 w-32' />
+               <PlayerAvatar className='setup-avatar' />
                <Button
                   to='/settings'
                   color='green'
@@ -55,7 +56,7 @@ export default function HomePage() {
                   Customize
                </Button>
             </div>
-            <div className='flex flex-col items-center mt-4 gap-2'>
+            <div className='setup-section'>
                <Input
                   id='players'
                   label='Number of Players:'
@@ -68,8 +69,8 @@ export default function HomePage() {
             </div>
          </div>
          <Divider />
-         <div className='mt-4 mb-4'>
-            <div className='flex justify-center items-center'>
+         <div className='buttons-outer'>
+            <div className='button-container'>
                <Button
                   onClick={handleStartNewGame}
                   shape='big'

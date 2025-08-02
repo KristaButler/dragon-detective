@@ -1,9 +1,10 @@
 import OpponentAvatar from '../avatar/OpponentAvatar';
 import { getById } from '../../../utils/utils';
+import './NotList.css';
 
 export default function NotList({ list, players }) {
    return (
-      <div className='flex flex-wrap items-end justify-between w-full h-full'>
+      <div className='not-owner-list'>
          {list.map((playerId) => {
             const notPlayer = getById(players, playerId);
 
@@ -13,7 +14,7 @@ export default function NotList({ list, players }) {
                   src={notPlayer.avatar}
                   alt={notPlayer.name}
                   not
-                  className='h-4 w-4'
+                  className='not-owner-list-avatar'
                />
             );
          })}

@@ -1,0 +1,16 @@
+section.settings-page {
+   height: 100%;
+   padding: 1rem;
+}
+
+.settings-buttons {
+   display: flex;
+   justify-content: center;
+   gap: 0.5rem;
+}
+
+.settings-note {
+   font-style: italic;
+   place-self: center;
+   padding-top: 0.25rem;
+}

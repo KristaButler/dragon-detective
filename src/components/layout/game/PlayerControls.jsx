@@ -4,6 +4,7 @@ import PlayerAvatar from '../../game/avatar/PlayerAvatar';
 import QueryCards from '../../game/query/QueryCards';
 import TurnControls from '../../game/TurnControls';
 import { getById } from '../../../utils/utils';
+import './PlayerControls.css';
 
 export default function PlayerControls() {
    const currentPlayer = useBoundStore((state) => state.currentPlayer);
@@ -12,14 +13,12 @@ export default function PlayerControls() {
    const player = getById(players, 'player');
 
    const isCurrentPlayer = currentPlayer === 'player';
-   const currentPlayerClasses =
-      'border-4 border-rose-600 shadow-md shadow-zinc-900';
 
    return (
-      <div className='flex justify-between mt-4 mb-8 w-auto relative'>
+      <div className='player-controls'>
          <PlayerAvatar
-            className={`h-24 w-24 ${
-               isCurrentPlayer ? currentPlayerClasses : undefined
+            className={`player-controls-avatar ${
+               isCurrentPlayer ? 'current-player' : ''
             }`}
          />
          <TurnControls

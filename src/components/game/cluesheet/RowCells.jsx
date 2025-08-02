@@ -1,6 +1,7 @@
 import useBoundStore from '../../../store/store';
 import { EGG_COLORS, COUNTS, SPECIES, getById } from '../../../utils/utils';
 import CellButton from './CellButton';
+import './RowCells.css';
 
 export default function RowCells({ color, colorIndex }) {
    const cluesheet = useBoundStore((state) => state.cluesheet);
@@ -14,18 +15,18 @@ export default function RowCells({ color, colorIndex }) {
          const clueId = `${color.id}-${sp.id}-${ctIndex}`;
          const clue = getById(cluesheet, clueId);
 
-         let borderClasses = 'border-r-1';
+         let borderClasses = 'cell-border-right';
 
          if (ctIndex === COUNTS.length - 1) {
-            borderClasses = 'border-r-2';
+            borderClasses = 'cell-border-right-thick';
          }
 
          if (ctIndex === 1) {
-            borderClasses += ' border-l-2';
+            borderClasses += ' cell-border-left';
          }
 
          if (colorIndex === EGG_COLORS.length - 1) {
-            borderClasses += ' border-b-2';
+            borderClasses += ' cell-border-bottom';
          }
 
          return (

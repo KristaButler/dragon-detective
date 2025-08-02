@@ -3,6 +3,7 @@ import PlayerAvatar from '../game/avatar/PlayerAvatar';
 import Input from '../controls/Input';
 import Select from '../controls/Select';
 import useBoundStore from '../../store/store';
+import './PlayerCustomization.css';
 
 //TODO: Move to backend eventually
 const AVATAR_COLORS = [
@@ -90,12 +91,12 @@ export default function PlayerCustomization() {
    }
 
    return (
-      <div className='flex gap-4 mt-4'>
+      <div className='player-settings'>
          <div>
-            <PlayerAvatar className='h-64 w-64' />
+            <PlayerAvatar className='customize-avatar' />
          </div>
-         <div className='flex flex-col'>
-            <div className='mb-4'>
+         <div className='player-settings-container'>
+            <div className='player-name-wrapper'>
                <Input
                   id='player-name'
                   label='Player Name:'
@@ -104,8 +105,8 @@ export default function PlayerCustomization() {
                   onChange={handleNameChange}
                />
             </div>
-            <div className='flex gap-8'>
-               <div className='flex flex-col gap-2 items-end'>
+            <div className='avatar-settings-controls'>
+               <div className='avatar-controls-column'>
                   <div>
                      <ColorPicker
                         label='Background: '
@@ -126,6 +127,7 @@ export default function PlayerCustomization() {
                   </div>
                   <div>
                      <Input
+                        id='avatar-shirt'
                         label='Shirt: '
                         type='number'
                         min={1}
@@ -138,6 +140,7 @@ export default function PlayerCustomization() {
                   </div>
                   <div>
                      <Input
+                        id='avatar-hair'
                         label='Hair: '
                         type='number'
                         min={1}
@@ -149,9 +152,10 @@ export default function PlayerCustomization() {
                      />
                   </div>
                </div>
-               <div className='flex flex-col gap-2 items-end'>
+               <div className='avatar-controls-column'>
                   <div>
                      <Select
+                        id='avatar-glasses'
                         label='Glasses: '
                         defaultValue={playerAvatar.glasses}
                         onChange={(event) =>
@@ -170,6 +174,7 @@ export default function PlayerCustomization() {
                   </div>
                   <div>
                      <Select
+                        id='avatar-earrings'
                         label='Earrings: '
                         defaultValue={playerAvatar.earrings}
                         onChange={(event) =>
@@ -188,6 +193,7 @@ export default function PlayerCustomization() {
                   </div>
                   <div>
                      <Select
+                        id='avatar-necklace'
                         label='Necklace: '
                         defaultValue={playerAvatar.necklace}
                         onChange={(event) =>
@@ -206,11 +212,12 @@ export default function PlayerCustomization() {
                   </div>
                   <div>
                      <Input
+                        id='beauty-mark'
                         label='Beauty Mark: '
                         type='checkbox'
                         defaultChecked={playerAvatar.beautymarked}
                         onChange={(event) =>
-                           handleChangeValue('beautymark', event.target.value)
+                           handleChangeValue('beautymark', event.target.checked)
                         }
                      />
                   </div>

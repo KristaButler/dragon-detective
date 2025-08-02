@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useBoundStore from '../../store/store';
 import Button from '../controls/Button';
 import Card from '../controls/cards/Card';
+import './Matches.css';
 
 export default function Matches({ list, owner }) {
    const [cluesMarked, setCluesMarked] = useState(false);
@@ -18,8 +19,8 @@ export default function Matches({ list, owner }) {
    }
 
    return (
-      <div className='flex flex-col items-center'>
-         <div className='flex items-center gap-2 pb-2'>
+      <div className='matches'>
+         <div className='matches-list'>
             {list.map((item) => (
                <Card
                   key={`match-${item.id}`}

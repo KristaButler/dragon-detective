@@ -1,0 +1,36 @@
+.options-container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+   padding: 0.5rem;
+}
+
+.options-img-container {
+   position: relative;
+}
+
+.options-img-container > img {
+   height: 3rem;
+}
+
+.option {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   flex-shrink: 0;
+   padding: 0.5rem;
+   border-radius: 0.25rem;
+   border: 0.16rem solid var(--color-zinc-400);
+   color: var(--color-zinc-100);
+}
+
+.option:hover {
+   border-color: var(--color-zinc-900);
+   color: var(--color-zinc-100);
+}
+
+.background-solitaire,
+.background-pair,
+.background-cluster {
+   background-color: var(--color-zinc-600);
+}

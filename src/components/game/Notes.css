@@ -1,0 +1,28 @@
+.notes {
+   overflow: auto;
+   height: 12rem;
+   width: 14rem;
+}
+
+.notes-popup {
+   top: -15rem;
+   text-align: left;
+}
+
+.note {
+   padding: 0.75rem;
+}
+
+.striped-list > *:nth-child(even) {
+   background-color: #d4d4d8;
+}
+
+.notes-button {
+   padding: 0.5rem;
+   border: 0.16rem solid transparent;
+}
+
+.notes-button:hover {
+   border-color: var(--color-zinc-100);
+   cursor: pointer;
+}

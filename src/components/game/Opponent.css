@@ -1,0 +1,36 @@
+.opponent {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 1rem;
+}
+
+.opponent-avatar {
+   width: 6rem;
+   height: 6rem;
+   border-radius: 100%;
+   margin-bottom: 0.5rem;
+}
+
+.opponent-avatar.current-player {
+   border: 0.25rem solid var(--color-rose-600);
+   filter: var(--shadow-md);
+}
+
+.opponent-avatar.highlight {
+   border: 0.25rem solid var(--color-emerald-300);
+   filter: var(--shadow-md);
+}
+
+.opponent > .name {
+   color: var(--color-zinc-400);
+}
+
+.opponent.current-player > .name {
+   font-weight: bold;
+}
+
+.opponent > .note {
+   font-size: 0.75rem;
+   line-height: 1rem;
+}

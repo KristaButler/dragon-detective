@@ -1,0 +1,16 @@
+.query-cards {
+   display: flex;
+   gap: 0.5rem;
+}
+
+.query-cards > .spacer {
+   width: 5rem;
+}
+
+.enabled {
+   background-color: var(--color-zinc-900);
+}
+
+.disabled {
+   background-color: var(--color-zinc-700);
+}

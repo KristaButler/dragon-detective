@@ -1,5 +1,6 @@
 import { useDraggable } from '@dnd-kit/core';
-import { COUNTS, EGG_COLORS, getById } from '../../../utils/utils';
+import { COUNTS } from '../../../utils/utils';
+import './Card.css';
 
 function getCardImage(card) {
    let cardImage = null;
@@ -25,9 +26,6 @@ export default function Card({
       id,
    });
 
-   const classes = `flex flex-col justify-center w-20 h-27 p-4 rounded-xl border-4 border-zinc-300 shadow-md shadow-zinc-900 ${
-      className ? className : ''
-   }`;
    const enabledListeners = draggable ? listeners : undefined;
    const style = transform
       ? {
@@ -37,32 +35,31 @@ export default function Card({
 
    const cardImage = getCardImage(card);
 
-   let cardBackground = backgroundColor ? backgroundColor : 'bg-zinc-900';
+   let cardBackground = backgroundColor
+      ? backgroundColor
+      : 'default-background';
 
    if (!backgroundColor && card.color) {
-      const colorSettings = getById(EGG_COLORS, card.color);
-
-      cardBackground = colorSettings.bg;
+      cardBackground = `background-${card.color}`;
    }
 
    return (
       <div
-         className={`${classes} ${cardBackground}`}
+         className={`card ${className ? className : ''} ${cardBackground}`}
          ref={setNodeRef}
          style={style}
          {...enabledListeners}
          {...attributes}
       >
          {cardImage && !textOnly && (
-            <div className='h-8 w-auto'>
+            <div className='card-img-container'>
                <img
                   src={cardImage}
                   alt={card.name}
-                  className='w-full h-full object-contain object-center pb-2'
                />
             </div>
          )}
-         <p className='text-zinc-300 text-center text-xs'>{card.name}</p>
+         <p className='card-name'>{card.name}</p>
       </div>
    );
 }

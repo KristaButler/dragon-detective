@@ -1,0 +1,42 @@
+.turn-controls-outer {
+   position: relative;
+   margin-right: 2rem;
+   top: -0.75rem;
+   height: 100%;
+}
+
+.turn-controls-inner {
+   position: absolute;
+   z-index: 50;
+}
+
+.turn-controls {
+   display: flex;
+   flex-direction: column;
+}
+
+.end-turn-button {
+   position: relative;
+   left: -1.25rem;
+}
+
+.turn-over {
+   border-color: var(--color-zinc-100);
+}
+
+.discard-hand-button {
+   position: relative;
+   left: -0.5rem;
+}
+
+.guess-button {
+   position: relative;
+   left: -1.5rem;
+   top: -0.25rem;
+}
+
+.leave-button {
+   position: relative;
+   left: -3.5rem;
+   top: -1.25rem;
+}

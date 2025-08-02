@@ -1,4 +1,22 @@
-import CloseIcon from './CloseIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquareXmark, faSquare } from '@fortawesome/free-solid-svg-icons';
+import './Popup.css';
+
+function CloseIcon() {
+   return (
+      <span className='fa-layers fa-lg'>
+         <FontAwesomeIcon
+            icon={faSquare}
+            className='close-icon-background'
+         />
+         <FontAwesomeIcon
+            icon={faSquareXmark}
+            size='lg'
+            className='close-icon-x'
+         />
+      </span>
+   );
+}
 
 export default function Popup({
    title,
@@ -7,27 +25,18 @@ export default function Popup({
    className,
    children,
 }) {
-   const modeVariants = {
-      light: 'bg-zinc-100 text-black',
-      dark: 'bg-zinc-900 text-white',
-   };
-
    return (
-      <div
-         className={`flex flex-col rounded absolute z-100 ${
-            modeVariants[mode]
-         } ${className ? className : ''}`}
-      >
-         <div className='flex justify-between items-center mt-1'>
-            <div className='mx-2 font-bold text-lg'>{title}</div>
+      <div className={`popup ${mode} ${className ? className : ''}`}>
+         <div className='popup-header'>
+            <div className='popup-title'>{title}</div>
             <div
-               className='pr-2 pt-2'
+               className='popup-close'
                onClick={() => onClose()}
             >
                <CloseIcon />
             </div>
          </div>
-         <div className='rounded-b'>{children}</div>
+         <div className='popup-content'>{children}</div>
       </div>
    );
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { COUNTS, EGG_COLORS } from '../../../utils/utils';
 import Card from './Card';
+import './CardStack.css';
 
 export default function CardStack({
    cards,
@@ -11,51 +11,30 @@ export default function CardStack({
    ...props
 }) {
    const [expanded, setExpanded] = useState(expand);
-   let classes = right ? '-mr-18' : '-ml-18';
-
-   if (expanded) {
-      classes = right ? '-mr-2' : '-ml-2';
-   }
 
    function toggleExpanded() {
       setExpanded((prevExpanded) => !prevExpanded);
    }
 
-   let listClasses = `flex ${className ? className : undefined}`;
+   const listClasses = `cardstack ${expanded ? 'expanded' : 'stacked'} ${
+      right ? 'right' : 'left'
+   } ${className ? className : ''}`;
 
-   if (expanded) {
-      listClasses = `${listClasses} absolute ${
-         right ? 'right-0' : 'left-0'
-      } z-100`;
-   }
-
-   if (right) {
-      listClasses = `${listClasses} flex-row-reverse`;
-   }
+   const cardClasses = '';
 
    return (
-      <div className='relative w-32'>
+      <div className='cardstack-container'>
          <div
             className={listClasses}
             onClick={toggleExpanded}
             {...props}
          >
+            {expanded && <div className='placeholder'>&nbsp;</div>}
             {cards &&
-               cards.map((card, index) => {
-                  let imgClasses = '';
-
-                  if (index > 0) {
-                     imgClasses = classes;
-                  }
-
-                  if (right) {
-                     imgClasses = `${imgClasses} relative z-${index}`;
-                  }
-
+               cards.map((card) => {
                   return (
                      <Card
                         key={card.id}
-                        className={imgClasses}
                         backgroundColor={backgroundColor}
                         card={card}
                      />

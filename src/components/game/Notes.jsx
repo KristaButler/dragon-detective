@@ -3,14 +3,11 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import useBoundStore from '../../store/store';
 import Popup from '../controls/popup/Popup';
+import './Notes.css';
 
 export default function Notes() {
    const notes = useBoundStore((state) => state.notes);
    const [isOpen, setIsOpen] = useState(false);
-
-   const notesClasses = '-top-60 text-left';
-   const buttonClasses =
-      'p-2 border-2 border-transparent hover:border-white hover:cursor-pointer';
 
    function handleCloseNotes() {
       setIsOpen(false);
@@ -25,14 +22,14 @@ export default function Notes() {
          {isOpen && (
             <Popup
                title='Notes: '
-               className={notesClasses}
+               className='notes-popup'
                onClose={handleCloseNotes}
             >
-               <div className='overflow-auto h-48 w-56 striped-list p-2'>
+               <div className='notes striped-list'>
                   {notes.map((note, index) => (
                      <div
                         key={`${index}-${note}`}
-                        className='p-2'
+                        className='note'
                      >
                         {note}
                      </div>
@@ -41,7 +38,7 @@ export default function Notes() {
             </Popup>
          )}
          <button
-            className={buttonClasses}
+            className='notes-button'
             title='Open Notes'
             onClick={handleToggleOpen}
          >

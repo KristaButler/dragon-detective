@@ -2,6 +2,7 @@ import useBoundStore from '../../../store/store';
 import OpponentAvatar from '../avatar/OpponentAvatar';
 import NotList from './NotList';
 import { getById } from '../../../utils/utils';
+import './CellButton.css';
 
 export default function CellButton({
    id,
@@ -26,23 +27,18 @@ export default function CellButton({
    const isSelectedClue = selectedClue === id;
 
    let disabled = false;
-   let classes = `border-b-1 border-indigo-400 text-black ${
-      className ? className : ''
-   }`;
-   let buttonClasses = 'flex items-center justify-center w-full h-full p-2';
-
    let content = '?';
-   let background = species.bgLight;
+   let cellState = `background-${species.id}-light`;
 
    if (clue.owner === 'player') {
-      background = 'bg-zinc-400 text-white';
+      cellState = 'owner';
       content = 'X';
 
       if (autoMarkPlayerEggs) {
          disabled = true;
       }
    } else if (clue.owner === 'global') {
-      background = 'bg-zinc-500 text-white';
+      cellState = 'global';
       content = '/';
       disabled = true;
    } else if (clue.owner) {
@@ -51,7 +47,7 @@ export default function CellButton({
             <OpponentAvatar
                src={ownerPlayer.avatar}
                alt={ownerPlayer.name}
-               className='h-8 w-8'
+               className='cell-avatar'
             />
          );
       } else {
@@ -67,8 +63,7 @@ export default function CellButton({
    }
 
    if (isSelectedClue || (turnParams.guessing && turnParams.guess === id)) {
-      background = 'bg-green-300';
-      buttonClasses += ' border-4 border-green-900';
+      cellState = 'selected';
    }
 
    function handleClick() {
@@ -80,11 +75,10 @@ export default function CellButton({
    }
 
    return (
-      <div className={`${classes} ${background}`}>
+      <div className={`cell ${cellState} ${className ? className : ''} `}>
          <button
             disabled={disabled}
             onClick={handleClick}
-            className={buttonClasses}
          >
             {content}
          </button>

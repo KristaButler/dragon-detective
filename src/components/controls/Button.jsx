@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import './Button.css';
 
 export default function Button({
    color = 'orange',
@@ -9,30 +10,17 @@ export default function Button({
    to = null,
    ...props
 }) {
-   const colorVariants = {
-      green: 'bg-emerald-700 border-emerald-700',
-      orange: 'bg-orange-700 border-orange-700',
-      yellow: 'bg-yellow-700 border-yellow-700',
-      red: 'bg-red-900 border-red-900',
-      disabled: 'bg-zinc-700 border-zinc-700',
-   };
-   const shapeVariants = {
-      big: 'text-xl pt-2 pb-3 px-3 rounded-md',
-      normal: 'py-1 px-2 rounded-md',
-      round: 'py-1 px-2 rounded-full',
-   };
-
-   let classes = `m-1 shadow-sm shadow-zinc-900 border-2  text-white ${shapeVariants[shape]}`;
-
    if (disabled) {
-      classes = `${classes} ${colorVariants['disabled']} cursor-not-allowed`;
-   } else {
-      classes = `${classes} ${colorVariants[color]} hover:underline hover:border-white hover:font-bold cursor-pointer`;
+      color = 'disabled';
    }
+
+   const classes = `button button-${color} button-${shape} ${
+      disabled ? 'disabled' : ''
+   } ${className ? className : ''}`;
 
    let content = (
       <button
-         className={`${classes} ${className ? className : ''}`}
+         className={classes}
          disabled={disabled}
          {...props}
       >
@@ -45,7 +33,7 @@ export default function Button({
       content = (
          <NavLink
             to={to}
-            className={`${classes} ${className ? className : ''}`}
+            className={classes}
             disabled={disabled}
             {...props}
          >

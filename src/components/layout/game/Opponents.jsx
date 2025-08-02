@@ -1,5 +1,6 @@
 import useBoundStore from '../../../store/store';
-import Opponent from '../../game/avatar/Opponent';
+import Opponent from '../../game/Opponent';
+import './Opponents.css';
 
 export default function Opponents() {
    const players = useBoundStore((state) => state.players);
@@ -7,7 +8,7 @@ export default function Opponents() {
    return (
       <ul
          id='opponents'
-         className='flex flex-row items-center justify-center md:justify-around sm:justify-center mb-4'
+         className='opponents-list'
       >
          {players.map((player) => {
             if (player.id === 'player') return null; // Skip the human player

@@ -1,0 +1,15 @@
+.cell-border-right {
+   border-right-width: 0.15rem;
+}
+
+.cell-border-right-thick {
+   border-right-width: 0.16rem;
+}
+
+.cell-border-left {
+   border-left-width: 0.16rem;
+}
+
+.cell-border-bottom {
+   border-bottom-width: 0.16rem;
+}

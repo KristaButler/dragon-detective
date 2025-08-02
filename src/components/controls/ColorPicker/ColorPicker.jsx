@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ColorSwatch from './ColorSwatch';
 import Popup from '../popup/Popup';
+import './ColorPicker.css';
 
 export default function ColorPicker({
    label,
@@ -32,10 +33,9 @@ export default function ColorPicker({
 
    return (
       <>
-         <div className='flex gap-4 items-center'>
+         <div className='color-picker'>
             <div>{label}</div>
             <button
-               className='w-12 h-8 rounded border-2 border-white hover:cursor-pointer'
                style={{ backgroundColor: colorSettings?.swatch }}
                onClick={openColorPicker}
                title={`Selected Color ${colorSettings?.name}`}
@@ -47,7 +47,7 @@ export default function ColorPicker({
                mode='dark'
                onClose={closeColorPicker}
             >
-               <ul className='flex p-2 gap-2 rounded items-center'>
+               <ul className='color-picker-list'>
                   {list.map((color) => {
                      return (
                         <ColorSwatch

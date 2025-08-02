@@ -1,0 +1,12 @@
+.matches {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.matches-list {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding-bottom: 0.5rem;
+}

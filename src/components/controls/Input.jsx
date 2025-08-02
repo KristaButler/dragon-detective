@@ -1,19 +1,13 @@
-export default function Input({ id, type, label, className, ...props }) {
-   const labelClasses = 'mr-2';
-   const inputClasses = 'text-black bg-white w-min p-1 m-1 rounded';
+import './Input.css';
 
+export default function Input({ id, type, label, className, ...props }) {
    return (
-      <div className={`flex items-center`}>
-         <label
-            htmlFor={id}
-            className={labelClasses}
-         >
-            {label}
-         </label>
+      <div className='input'>
+         <label htmlFor={id}>{label}</label>
          <input
             id={id}
             type={type}
-            className={`${inputClasses} ${className ? className : undefined}`}
+            className={className ? className : undefined}
             {...props}
          />
       </div>

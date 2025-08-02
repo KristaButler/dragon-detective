@@ -1,0 +1,18 @@
+.player-controls {
+   display: flex;
+   justify-content: space-between;
+   margin-top: 1rem;
+   margin-bottom: 2rem;
+   width: auto;
+   position: relative;
+}
+
+.player-controls-avatar {
+   height: 6rem;
+   width: 6rem;
+}
+
+.player-controls-avatar.current-player {
+   border: 0.25rem solid var(--color-rose-600);
+   filter: var(--shadow-md);
+}

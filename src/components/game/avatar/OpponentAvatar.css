@@ -1,0 +1,13 @@
+.opponent-avatar-container {
+   position: relative;
+}
+
+.opponent-avatar-container > .avatar-img {
+   border-radius: 100%;
+}
+
+.opponent-avatar-container > .not-img {
+   position: absolute;
+   z-index: 100;
+   top: 0px;
+}

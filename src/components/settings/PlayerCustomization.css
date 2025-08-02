@@ -1,0 +1,31 @@
+.player-settings {
+   display: flex;
+   gap: 1rem;
+   margin-top: 1rem;
+}
+
+.customize-avatar {
+   height: 16rem;
+   width: 16rem;
+}
+
+.player-settings-container {
+   display: flex;
+   flex-direction: column;
+}
+
+.player-name-wrapper {
+   margin-bottom: 4rem;
+}
+
+.avatar-settings-controls {
+   display: flex;
+   gap: 2rem;
+}
+
+.avatar-controls-column {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   align-items: flex-end;
+}

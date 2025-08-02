@@ -1,0 +1,11 @@
+.player-avatar {
+   display: flex;
+   align-items: center;
+   position: relative;
+   border-radius: 100%;
+}
+
+.player-avatar > img {
+   position: absolute;
+   border-radius: 100%;
+}

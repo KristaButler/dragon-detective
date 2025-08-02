@@ -1,9 +1,7 @@
 import { COUNTS, SPECIES } from '../../../utils/utils';
+import './SheetSubheader.css';
 
 export default function SheetSubheader() {
-   const classes =
-      'flex flex-col justify-center items-center border-indigo-400 p-2 border-b-1';
-
    return (
       <>
          {
@@ -15,27 +13,26 @@ export default function SheetSubheader() {
                   return; //skip first index because it is placeholder
                }
 
-               let borderClasses = 'border-r-1';
+               let borderClasses = 'border-right';
 
                if (index <= COUNTS.length) {
-                  borderClasses = 'border-r-2';
+                  borderClasses = 'border-right-thick';
                }
 
                if (index === 1) {
-                  borderClasses += ' border-l-2';
+                  borderClasses += ' border-left';
                }
 
                return (
                   <div
                      key={`subheader-${sp.id}-${index}`}
-                     className={`${classes} ${borderClasses} ${sp.bg}`}
+                     className={`cluesheet-sub-header ${borderClasses} background-${sp.id}`}
                   >
                      <img
-                        className='h-4 mx-auto'
                         src={`/images/symbols/${sp.id}-${ct.id}.png`}
                         alt={`${sp.title} ${ct.title}`}
                      />
-                     <div className='text-xs'>{ct.title}</div>
+                     <div className='title'>{ct.title}</div>
                   </div>
                );
             });

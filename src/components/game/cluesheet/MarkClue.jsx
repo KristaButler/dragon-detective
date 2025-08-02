@@ -1,21 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { EGG_POOL } from '../../../data/egg-pool';
-
 import useBoundStore from '../../../store/store';
-import { getById } from '../../../utils/utils';
 import Button from '../../controls/Button';
 import Popup from '../../controls/popup/Popup';
 import PlayerAvatar from '../avatar/PlayerAvatar';
 import OpponentAvatar from '../avatar/OpponentAvatar';
+import { getById } from '../../../utils/utils';
+import { EGG_POOL } from '../../../data/egg-pool';
+import './MarkClue.css';
 
 export default function MarkClue({ clue, includePlayer, onClose }) {
    const cluesheetActions = useBoundStore((state) => state.cluesheetActions);
    const players = useBoundStore((state) => state.players);
 
    const egg = getById(EGG_POOL, clue.id);
-   const classes =
-      'flex flex-col items-center shrink-0 p-2 rounded border-2 border-zinc-400 hover:border-zinc-900';
 
    function handleClickOwner(opponentId) {
       cluesheetActions.toggleClueOwner(opponentId, clue.id);
@@ -28,14 +26,14 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
    function handleClear() {
       cluesheetActions.clearClue(clue.id);
    }
-
+   //TODO: Really need to simplfy this, or split out the rendering. Too much logic in the map function
    return (
       <Popup
          title={egg ? egg.name : 'Mark Clue'}
          onClose={onClose}
-         className='-mt-14'
+         className='mark-clue-popup'
       >
-         <div className='flex flex-wrap gap-2 p-2'>
+         <div className='mark-clue-content'>
             {players.map((player) => {
                const isPlayer = player.id === 'player';
                if (!includePlayer && isPlayer) {
@@ -45,15 +43,12 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
                //These could both be false if the info is unknown
                const isOwner = clue.owner === player.id;
                const isNotOwner = clue.not.indexOf(player.id) > -1;
-               let background = 'bg-white';
 
                let title = player.name;
                if (isOwner) {
                   title += ', marked as owner.';
-                  background = 'bg-emerald-300';
                } else if (isNotOwner) {
                   title += ', does not have the egg.';
-                  background = 'bg-zinc-400';
                }
 
                //TODO: Maybe split the individual content into another component
@@ -62,27 +57,31 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
                   <OpponentAvatar
                      src={player.avatar}
                      alt={player.name}
-                     className='w-16 h-16'
+                     className='mark-owner-avatar'
                   />
                );
 
                if (isPlayer) {
-                  avatar = <PlayerAvatar className='w-16 h-16 rounded-full' />;
+                  avatar = <PlayerAvatar className='mark-owner-avatar' />;
                }
+
+               const classes = `mark-owner ${isOwner ? 'is-owner' : ''} ${
+                  isNotOwner ? 'not-owner' : ''
+               }`;
 
                return (
                   <div
                      key={`mark-clue-${player.id}`}
-                     className={`${classes} ${background}`}
+                     className={classes}
                   >
                      <div>{player.name}</div>
-                     <div className='relative'>
+                     <div className='mark-owner-avatar-container'>
                         {isNotOwner ? (
                            <OpponentAvatar
                               src={player.avatar}
                               alt={player.name}
                               not
-                              className='w-16 h-16'
+                              className='mark-owner-avatar'
                            />
                         ) : (
                            avatar
@@ -97,7 +96,7 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
                         >
                            <FontAwesomeIcon
                               icon={faCheck}
-                              className='text-white'
+                              className='mark-icon'
                            />
                         </Button>
                         {!isPlayer && (
@@ -108,7 +107,7 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
                            >
                               <FontAwesomeIcon
                                  icon={faXmark}
-                                 className='text-white'
+                                 className='mark-icon'
                               />
                            </Button>
                         )}
@@ -117,17 +116,11 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
                );
             })}
          </div>
-         <div className='justify-self-end'>
-            <Button
-               onClick={handleClear}
-               className='text-white'
-            >
-               Reset
-            </Button>
+         <div className='mark-owner-buttons'>
+            <Button onClick={handleClear}>Reset</Button>
             <Button
                color='green'
                onClick={onClose}
-               className='text-white'
             >
                Close
             </Button>

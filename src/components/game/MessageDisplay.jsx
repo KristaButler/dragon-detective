@@ -1,5 +1,6 @@
 import useBoundStore from '../../store/store';
 import Button from '../controls/Button';
+import './MessageDisplay.css';
 
 export default function MessageDisplay({ turnParams, message }) {
    const currentPlayer = useBoundStore((state) => state.currentPlayer);
@@ -23,8 +24,8 @@ export default function MessageDisplay({ turnParams, message }) {
    }
 
    return (
-      <div className='flex flex-col justify-center max-w-2/3 pr-4'>
-         <p className='self-center bg-orange-900 p-4 rounded shadow-sm'>
+      <div className='message-display'>
+         <p>
             {message}
             {showSeeNotes && ' (see notes)'}
          </p>
@@ -32,7 +33,7 @@ export default function MessageDisplay({ turnParams, message }) {
             <Button
                color='green'
                onClick={handleClickOk}
-               className='self-end'
+               className='message-button'
             >
                OK
             </Button>
@@ -41,7 +42,7 @@ export default function MessageDisplay({ turnParams, message }) {
             <Button
                color='green'
                onClick={handleCancelGuess}
-               className='self-end'
+               className='message-button'
             >
                Cancel
             </Button>

@@ -27,7 +27,7 @@ export default function GamePage() {
       startNewGame();
    }, [startNewGame]);
 
-   //TODO: This causes error because of render issues
+   //TODO: This causes error because of render
    if (winner) {
       navigate('/gameover');
    }
@@ -62,7 +62,7 @@ export default function GamePage() {
    return (
       <DndContext onDragEnd={handleDragEnd}>
          <ConfirmContextProvider>
-            <div className='p-4'>
+            <div className='padding-4'>
                <Opponents />
                {isPicking && (
                   <FreeChoicePopup

@@ -1,8 +1,10 @@
-import { useDroppable } from '@dnd-kit/core';
-import useBoundStore from '../../../store/store';
-import OpponentAvatar from './OpponentAvatar';
-import { getById } from '../../../utils/utils';
 import { useEffect } from 'react';
+import { useDroppable } from '@dnd-kit/core';
+import useBoundStore from '../../store/store';
+import { getById } from '../../utils/utils';
+
+import './Opponent.css';
+import OpponentAvatar from './avatar/OpponentAvatar';
 
 export default function Opponent({ id, name, avatar }) {
    const currentPlayer = useBoundStore((state) => state.currentPlayer);
@@ -61,21 +63,23 @@ export default function Opponent({ id, name, avatar }) {
       imgClasses += ' border-4 border-orange-600 shadow-md shadow-zinc-900';
    }
 
+   const avatarClasses = `opponent-avatar ${
+      isCurrentPlayer ? 'current-player' : ''
+   } ${isOver || isAsked ? 'highlight' : ''}`;
+
    return (
       <div
          id={id}
-         className='flex flex-col items-center p-4'
+         className='opponent'
          ref={setNodeRef}
       >
          <OpponentAvatar
             src={avatar}
             alt={`${name}'s avatar`}
-            className={imgClasses}
+            className={avatarClasses}
          />
-         <p className={isCurrentPlayer ? 'font-bold' : 'text-zinc-400'}>
-            {name}
-         </p>
-         {isCurrentPlayer && <p className='text-xs'>(taking thier turn)</p>}
+         <p className='name'>{name}</p>
+         {isCurrentPlayer && <p className='note'>(taking thier turn)</p>}
       </div>
    );
 }

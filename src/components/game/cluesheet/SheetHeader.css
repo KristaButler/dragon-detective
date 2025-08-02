@@ -1,0 +1,24 @@
+.cluesheet-header-cell {
+   grid-column: span 3 / span 3;
+   display: flex;
+   gap: 0.5rem;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   border-width: 0.16rem 0.16rem 0.15rem 0.16rem;
+   border-color: var(--color-indigo-400);
+   padding: 0.25rem;
+   border-top-left-radius: 0.5rem;
+   border-top-right-radius: 0.5rem;
+}
+
+.cluesheet-header-cell > img {
+   height: 1rem;
+   width: auto;
+}
+
+.cluesheet-notes {
+   grid-row: span 2 / span 2;
+   align-self: flex-end;
+   margin-bottom: 1rem;
+}

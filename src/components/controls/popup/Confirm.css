@@ -1,0 +1,20 @@
+.confirm {
+   display: flex;
+   align-items: center;
+}
+
+.confirm > .popup {
+   width: 75%;
+   top: 25%;
+   left: 13%;
+}
+
+.confirm-message {
+   padding: 0.5rem;
+}
+
+.confirm-buttons {
+   display: flex;
+   justify-content: flex-end;
+   padding: 0.5rem;
+}
