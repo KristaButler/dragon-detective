@@ -14,10 +14,15 @@ const useBoundStore = create((set, get, store) => ({
    ...createAISlice(set, store),
    startNewGame: () =>
       set((state) => {
-         const newGame = generateNewGame(
-            state.numberOfPlayers,
-            state.autoMarkPlayerEggs
-         );
+         let newGame = { ...state };
+
+         //If we don't have a solution or a winner, generate a new game
+         if (!state.solution && !state.winner) {
+            newGame = generateNewGame(
+               state.numberOfPlayers,
+               state.autoMarkPlayerEggs
+            );
+         }
 
          return {
             ...newGame,

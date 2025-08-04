@@ -113,7 +113,7 @@
 }
 
 .cell.selected {
-   background-color: var(--color-emerald-300);
+   background-color: var(--color-light-green);
 }
 
 .cell > button {
@@ -126,7 +126,7 @@
 }
 
 .cell.selected > button {
-   border: 0.15rem solid var(--color-emerald-900);
+   border: 0.15rem solid var(--color-dark-green);
 }
 
 .cell-avatar {

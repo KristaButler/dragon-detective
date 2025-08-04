@@ -11,9 +11,7 @@ import './HomePage.css';
 export default function HomePage() {
    const settingsActions = useBoundStore((state) => state.settingsActions);
    const playerName = useBoundStore((state) => state.playerName);
-   const playerAvatar = useBoundStore((state) => state.playerAvatar);
    const numberOfPlayers = useBoundStore((state) => state.numberOfPlayers);
-   const startNewGame = useBoundStore((state) => state.startNewGame);
 
    const navigate = useNavigate();
 
@@ -27,12 +25,12 @@ export default function HomePage() {
 
    function handleStartNewGame() {
       //TODO: if there is a game in progress warn, or let return to game.
-      //startNewGame(); //TODO: Temporary for easier testing
       navigate('/play');
+      return null;
    }
 
    return (
-      <section className='homepage'>
+      <section className='homepage page-padding'>
          <h2>Welcome!</h2>
          <p>
             The Dragon Hatchery is in a commotion. An egg has gone missing, the

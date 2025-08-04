@@ -7,7 +7,8 @@ export default function CardStack({
    right,
    backgroundColor,
    className,
-   expand,
+   expand = false,
+   disabled = false,
    ...props
 }) {
    const [expanded, setExpanded] = useState(expand);
@@ -26,7 +27,7 @@ export default function CardStack({
       <div className='cardstack-container'>
          <div
             className={listClasses}
-            onClick={toggleExpanded}
+            onClick={disabled ? undefined : toggleExpanded}
             {...props}
          >
             {expanded && <div className='placeholder'>&nbsp;</div>}

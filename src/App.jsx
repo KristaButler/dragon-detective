@@ -5,7 +5,7 @@ import Footer from './components/layout/Footer';
 import Main from './components/layout/Main';
 import SettingsPage from './components/pages/SettingsPage';
 import GamePage from './components/pages/GamePage';
-import GameOverPage from './components/pages/GameOverPage';
+import GameOverPage from './components/pages/gameover/GameOverPage';
 
 const router = createBrowserRouter([
    {

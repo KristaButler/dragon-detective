@@ -15,7 +15,7 @@ export default function SettingsPage() {
    }
 
    return (
-      <section className='settings-page'>
+      <section className='settings-page page-padding'>
          <h2>Settings</h2>
          <Divider />
          <PlayerCustomization />

@@ -1,0 +1,26 @@
+.game-over-summary {
+   padding-top: 1rem;
+   padding-bottom: 1rem;
+}
+
+.player-summary {
+   display: flex;
+   gap: 2rem;
+   align-items: center;
+   padding-top: 1rem;
+}
+
+.summary-avatar {
+   width: 5rem;
+   height: 5rem;
+   flex-grow: 1;
+}
+
+.game-over-cluesheet {
+   padding-top: 1rem;
+}
+
+.game-over-buttons {
+   display: flex;
+   justify-content: center;
+}

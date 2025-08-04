@@ -4,12 +4,16 @@ import Notes from '../../game/Notes';
 
 export default function SheetHeader() {
    const autoNotes = useBoundStore((state) => state.autoNotes);
+   const winner = useBoundStore((state) => state.winner);
+
+   const showNotes = autoNotes && !winner;
+
    return (
       <>
          {
             //Header - species and notes
          }
-         <div className='cluesheet-notes'>{autoNotes && <Notes />}</div>
+         <div className='cluesheet-notes'>{showNotes && <Notes />}</div>
          {SPECIES.map((sp) => {
             return (
                <div

@@ -9,6 +9,7 @@ export default function CellButton({
    clue = { id: id, owner: null },
    species,
 }) {
+   const winner = useBoundStore((state) => state.winner);
    const selectedClue = useBoundStore((state) => state.selectedClue);
    const setSelectedClue = useBoundStore(
       (state) => state.cluesheetActions.setSelectedClue
@@ -63,6 +64,11 @@ export default function CellButton({
 
    if (isSelectedClue || (turnParams.guessing && turnParams.guess === id)) {
       cellState = 'selected';
+   }
+
+   //If we have a winner, prevent changing the clue sheet
+   if (winner) {
+      disabled = true;
    }
 
    function handleClick() {

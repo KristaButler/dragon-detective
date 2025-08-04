@@ -130,7 +130,7 @@ export function generateNewGame(numberOfPlayers, autoMarkPlayerEggs) {
 
    const randomEgg = Math.floor(Math.random() * eggs.length);
    state.solution = eggs[randomEgg].id;
-
+   console.log(`Solution is ${state.solution}`); //TODO: For Testing
    //Deal the eggs out to players
    eggs = eggs.filter((egg) => egg.id !== state.solution); //Remove solution from available eggs
    distributeEggs(players, eggs);

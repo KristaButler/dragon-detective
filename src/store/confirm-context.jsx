@@ -34,6 +34,7 @@ export default function ConfirmContextProvider({ children }) {
          if (action === 'CONFIRM_GUESS') {
             turnActions.makeGuess(turnParams.guess);
             navigate('/gameover');
+            return null;
          }
 
          if (action === 'DISCARD_HAND') {
@@ -43,6 +44,7 @@ export default function ConfirmContextProvider({ children }) {
 
          if (action === 'LEAVE_GAME') {
             navigate('/');
+            return null;
          }
       }
 

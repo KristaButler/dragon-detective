@@ -20,17 +20,19 @@ export default function GamePage() {
    );
    const turnParams = useBoundStore((state) => state.turnParams);
    const winner = useBoundStore((state) => state.winner);
+   const solution = useBoundStore((state) => state.solution);
    const [isPicking, setIsPicking] = useState(false);
 
    //Temporary, for easier testing
    useEffect(() => {
-      startNewGame();
-   }, [startNewGame]);
-
-   //TODO: This causes error because of render
-   if (winner) {
-      navigate('/gameover');
-   }
+      if (winner) {
+         //If we have a winner the game is over.
+         navigate('/gameover');
+      } else if (!solution) {
+         //Only start a new game if there isn't one in progress.
+         startNewGame();
+      }
+   }, [solution, winner, startNewGame]);
 
    function handleDragEnd(event) {
       const opponentId = event.over?.id || null;
@@ -62,7 +64,7 @@ export default function GamePage() {
    return (
       <DndContext onDragEnd={handleDragEnd}>
          <ConfirmContextProvider>
-            <div className='padding-4'>
+            <section className='game-page page-padding'>
                <Opponents />
                {isPicking && (
                   <FreeChoicePopup
@@ -73,7 +75,7 @@ export default function GamePage() {
                <GameTable />
                <PlayerControls />
                <ClueSheet />
-            </div>
+            </section>
          </ConfirmContextProvider>
       </DndContext>
    );
