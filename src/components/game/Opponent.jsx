@@ -24,7 +24,7 @@ export default function Opponent({ id, name, avatar }) {
    useEffect(() => {
       let timer = 0;
 
-      if (isCurrentPlayer) {
+      if (isCurrentPlayer && !turnParams.firstTurn) {
          if (ai.out) {
             setMessage(`Skipping ${name}, because they are out.`);
             timer = 3000;
@@ -51,7 +51,7 @@ export default function Opponent({ id, name, avatar }) {
             }, timer);
          }
       }
-   }, [isCurrentPlayer, setMessage, aiActions, nextPlayer]);
+   }, [isCurrentPlayer, turnParams, setMessage, aiActions, nextPlayer]);
 
    let imgClasses = 'w-24 h-24 rounded-full mb-2';
 

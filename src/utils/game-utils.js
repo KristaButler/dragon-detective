@@ -6,6 +6,7 @@ import {
    getRandomNumber,
    shuffle,
    getById,
+   eggSorter,
 } from '../utils/utils';
 
 export const HAND_SIZE = 4;
@@ -47,6 +48,18 @@ function distributeEggs(players, eggs) {
          playerIndex = 0;
       }
    }
+
+   //After we distribute, sort hands for neater display
+   players.forEach((player) => {
+      player.eggs.sort(eggSorter);
+
+      if (player.id === 'player') {
+         player.eggs.reverse(); // Reverse player eggs for display purposes
+      }
+   });
+
+   //Also sort remaining eggs
+   eggs.sort(eggSorter);
 }
 
 function dealQueryCards(players) {
@@ -113,7 +126,7 @@ export function generateNewGame(numberOfPlayers, autoMarkPlayerEggs) {
       cluesheet: [],
       message: '',
       turnType: null,
-      turnParams: {},
+      turnParams: { firstTurn: true },
       ai: [],
    };
 
@@ -122,18 +135,24 @@ export function generateNewGame(numberOfPlayers, autoMarkPlayerEggs) {
 
    //Pick who goes first
    const randomPlayer = getRandomNumber(0, players.length - 1);
-   //game.currentPlayer = players[randomPlayer].id;
-   state.currentPlayer = 'player'; //TODO: For testing only
+   state.currentPlayer = players[randomPlayer].id;
+
+   if (state.currentPlayer === 'player') {
+      state.message = 'You go first!';
+   } else {
+      state.message = `${players[randomPlayer].name} goes first!`;
+   }
 
    //Select Solution
    let eggs = shuffle(EGG_POOL);
 
    const randomEgg = Math.floor(Math.random() * eggs.length);
    state.solution = eggs[randomEgg].id;
-   console.log(`Solution is ${state.solution}`); //TODO: For Testing
+
    //Deal the eggs out to players
    eggs = eggs.filter((egg) => egg.id !== state.solution); //Remove solution from available eggs
    distributeEggs(players, eggs);
+
    state.globalEggs = [...eggs];
 
    //Deal the query cards

@@ -5,11 +5,12 @@ import Opponents from '../layout/game/Opponents';
 import GameTable from '../layout/game/GameTable';
 import PlayerControls from '../layout/game/PlayerControls';
 import ClueSheet from '../game/cluesheet/ClueSheet';
-import { QUERY_POOL } from '../../data/query-pool';
 import FreeChoicePopup from '../game/query/FreeChoicePopup';
 import ConfirmContextProvider from '../../store/confirm-context';
 import { getById } from '../../utils/utils';
 import { useNavigate } from 'react-router-dom';
+import FirstTurn from '../controls/popup/FirstTurn';
+import { QUERY_POOL } from '../../data/query-pool';
 
 export default function GamePage() {
    const navigate = useNavigate();
@@ -23,7 +24,6 @@ export default function GamePage() {
    const solution = useBoundStore((state) => state.solution);
    const [isPicking, setIsPicking] = useState(false);
 
-   //Temporary, for easier testing
    useEffect(() => {
       if (winner) {
          //If we have a winner the game is over.
@@ -61,9 +61,16 @@ export default function GamePage() {
       setIsPicking(false);
    }
 
+   function handleCloseFirstTurn() {
+      setTurnParams({ firstTurn: false });
+   }
+
    return (
       <DndContext onDragEnd={handleDragEnd}>
          <ConfirmContextProvider>
+            {turnParams.firstTurn && (
+               <FirstTurn onClose={handleCloseFirstTurn} />
+            )}
             <section className='game-page page-padding'>
                <Opponents />
                {isPicking && (

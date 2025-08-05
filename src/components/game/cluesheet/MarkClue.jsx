@@ -26,7 +26,8 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
    function handleClear() {
       cluesheetActions.clearClue(clue.id);
    }
-   //TODO: Really need to simplfy this, or split out the rendering. Too much logic in the map function
+
+   //TODO: Split this out or simplify it so that there is less logic in the map
    return (
       <Popup
          title={egg ? egg.name : 'Mark Clue'}
@@ -50,8 +51,6 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
                } else if (isNotOwner) {
                   title += ', does not have the egg.';
                }
-
-               //TODO: Maybe split the individual content into another component
 
                let avatar = (
                   <OpponentAvatar

@@ -112,8 +112,15 @@
    color: var(--color-like-white);
 }
 
-.cell.selected {
+.cell.selected,
+.cell.solution {
    background-color: var(--color-light-green);
+   border: 0.15rem solid var(--color-dark-green);
+}
+
+.cell.guessing {
+   background-color: var(--color-light-orange);
+   border: 0.15rem solid var(--color-dark-orange);
 }
 
 .cell > button {
@@ -123,10 +130,6 @@
    width: 100%;
    height: 100%;
    padding: 0.5rem;
-}
-
-.cell.selected > button {
-   border: 0.15rem solid var(--color-dark-green);
 }
 
 .cell-avatar {

@@ -11,8 +11,6 @@ export default function MessageDisplay({ turnParams, message }) {
    const isCurrentPlayer = currentPlayer === 'player';
    const showCancel = turnParams.guessing;
    const showOk = !isCurrentPlayer && !autoNotes;
-   const showSeeNotes =
-      !isCurrentPlayer && autoNotes && message.indexOf('You') === -1;
 
    function handleCancelGuess() {
       turnActions.setTurnParams({});
@@ -25,10 +23,7 @@ export default function MessageDisplay({ turnParams, message }) {
 
    return (
       <div className='message-display'>
-         <p>
-            {message}
-            {showSeeNotes && ' (see notes)'}
-         </p>
+         <p>{message}</p>
          {showOk && (
             <Button
                color='green'

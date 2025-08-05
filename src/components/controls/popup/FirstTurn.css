@@ -1,0 +1,19 @@
+.first-turn-popup-container {
+   width: 80%;
+   margin-top: 5em;
+}
+
+.first-turn-popup {
+   display: flex;
+   flex-direction: column;
+   padding: 1rem;
+}
+
+.first-turn-popup > p {
+   margin-bottom: 1rem;
+}
+
+.first-turn-buttons {
+   align-self: end;
+   flex-grow: 0;
+}

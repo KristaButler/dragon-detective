@@ -57,18 +57,14 @@ const createAISlice = (set, store) => ({
          }),
       guess: (playerId) =>
          set((state) => {
-            console.log('AI Guessing ', state.turnCount);
             const clues = getById(state.ai, playerId).clues;
             const solutionClue = getById(clues, state.solution);
             //TODO: Handle end of game when AI wins.
-            //TODO: Handle if AI loses.
             if (!solutionClue || !solutionClue.owner) {
-               console.log('AI Winner.');
                //AI make correct guess
                return { winner: playerId };
             } else {
                //AI makes incorrect guess
-               console.log('AI Out.');
                const newAI = state.ai;
                const out = getById(newAI, playerId);
                out.out = true;

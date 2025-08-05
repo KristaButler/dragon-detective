@@ -25,6 +25,7 @@
 
    --color-rose: oklch(58.6% 0.253 17.585);
 
+   --color-light-orange: oklch(83.7% 0.128 66.29);
    --color-orange: oklch(55.3% 0.195 38.402);
    --color-dark-orange: oklch(40.8% 0.123 38.172);
 
@@ -284,7 +285,8 @@ video {
 
 /* Dragon Detective Classes */
 h1,
-h2 {
+h2,
+h3 {
    font-family: 'Amarante', serif;
 }
 
@@ -294,6 +296,10 @@ h1 {
 
 h2 {
    font-size: 2em;
+}
+
+h3 {
+   font-size: 1.25em;
 }
 
 body {

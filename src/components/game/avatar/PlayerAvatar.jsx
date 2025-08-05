@@ -1,7 +1,7 @@
 import useBoundStore from '../../../store/store';
 import './PlayerAvatar.css';
 
-//TODO: Move to backend eventually, or find better solution
+//TODO: Find a better solution for these, or move to a constants file.
 const HAIR_BACKS = [
    false, //0 - throw away
    false,

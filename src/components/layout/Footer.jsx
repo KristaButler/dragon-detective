@@ -3,13 +3,13 @@ export default function Footer() {
       <footer className='flex-spaced-container'>
          <div>&copy; Krista Butler {new Date().getFullYear()}</div>
          <div>
-            <a
+            {/* TODO: Add this back in once I have the page setup <a
                href='http://www.kristathecoder.com/dragon-detective-attribution'
                target='_blank'
                className='attribution'
             >
                Attribution
-            </a>
+            </a> */}
          </div>
       </footer>
    );

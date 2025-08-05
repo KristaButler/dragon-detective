@@ -12,6 +12,33 @@ const useBoundStore = create((set, get, store) => ({
    ...createCluesheetSlice(set, store),
    ...createTurnSlice(set, store),
    ...createAISlice(set, store),
+   resetGame: () =>
+      set((state) => {
+         return {
+            players: [
+               {
+                  id: 'player',
+                  name: 'You',
+                  avatar: null,
+                  eggs: [],
+                  hand: [],
+               },
+            ],
+            currentPlayer: '',
+            winner: '',
+            solution: '',
+            globalEggs: [],
+            drawPile: [],
+            discardPile: [],
+            notes: [],
+            selectedClue: null,
+            cluesheet: [],
+            message: '',
+            turnType: null,
+            turnParams: {},
+            ai: [],
+         };
+      }),
    startNewGame: () =>
       set((state) => {
          let newGame = { ...state };

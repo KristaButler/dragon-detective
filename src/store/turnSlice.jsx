@@ -55,7 +55,10 @@ const createTurnSlice = (set, store) => ({
          }),
       makeGuess: (eggId) =>
          set((state) => {
-            return { winner: state.solution === eggId ? 'player' : 'opponent' };
+            return {
+               winner: state.solution === eggId ? 'player' : 'opponent',
+               turnParams: { guess: eggId },
+            };
          }),
       discardHand: () =>
          set((state) => {

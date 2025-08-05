@@ -5,7 +5,7 @@ import Select from '../controls/Select';
 import useBoundStore from '../../store/store';
 import './PlayerCustomization.css';
 
-//TODO: Move to backend eventually
+//TODO: Find a better solution for these, or move to a constants file.
 const AVATAR_COLORS = [
    {
       name: 'Teal',
@@ -54,7 +54,7 @@ const AVATAR_COLORS = [
    },
 ];
 
-//TODO: Move to backend eventually
+//TODO: Find a better solution for these, or move to a constants file.
 const SKINTONES = [
    {
       name: 'Light',
@@ -64,13 +64,13 @@ const SKINTONES = [
    { name: 'Brown', value: 'brown', swatch: '#8c5e3c' },
 ];
 
-//TODO: Move to backend eventually
+//TODO: Find a better solution for these, or move to a constants file.
 const GLASSES = ['None', 'Wings', 'Circle', 'Classic', 'Retro', 'Pink'];
 
-//TODO: Move to backend eventually
+//TODO: Find a better solution for these, or move to a constants file.
 const EARRINGS = ['None', 'Circle', 'Flower', 'Twist'];
 
-//TODO: Move to backend eventually
+//TODO: Find a better solution for these, or move to a constants file.
 const NECKLACES = ['None', 'Onyx', 'Rainbow'];
 
 export default function PlayerCustomization() {

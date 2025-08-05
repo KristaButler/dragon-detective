@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import useBoundStore from '../../../store/store';
 import OpponentAvatar from '../avatar/OpponentAvatar';
 import NotList from './NotList';
@@ -10,6 +12,7 @@ export default function CellButton({
    species,
 }) {
    const winner = useBoundStore((state) => state.winner);
+   const solution = useBoundStore((state) => state.solution);
    const selectedClue = useBoundStore((state) => state.selectedClue);
    const setSelectedClue = useBoundStore(
       (state) => state.cluesheetActions.setSelectedClue
@@ -66,9 +69,17 @@ export default function CellButton({
       cellState = 'selected';
    }
 
-   //If we have a winner, prevent changing the clue sheet
+   //If we have a winner, prevent changing the clue sheet, and style the guess and solution
    if (winner) {
       disabled = true;
+
+      if (solution === id) {
+         content = <FontAwesomeIcon icon={faStar} />;
+         cellState = 'solution';
+      } else if (turnParams.guess === id) {
+         content = 'Guess';
+         cellState = 'guessing';
+      }
    }
 
    function handleClick() {

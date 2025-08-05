@@ -55,11 +55,7 @@ export function buildMessage(
          } the ${match.name}${last ? '.' : ''}`;
       }, '');
    } else if (!isPlayer && opponent.id === 'player') {
-      const showTold = query.type === 'show' ? 'showed' : 'told';
-      const yourHowMany = query.type === 'quantity' ? 'how many' : 'your';
-      const postfix = query.type === 'quantity' ? ' you have' : '';
-
-      message = `You ${showTold} ${playerName} ${yourHowMany} ${queryMessage}${postfix}.`;
+      message = `${playerName} asked about your ${queryMessage}.`;
    } else if (matches.length > 0) {
       //Query is quantity, or the message is for an opponents turn, and we have matches
       //[Player Name] has [#] [color/species/count][s].
