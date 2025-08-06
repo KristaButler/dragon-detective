@@ -1,8 +1,8 @@
+import useBoundStore from '../../store/store';
 import GameSettings from '../settings/GameSettings';
 import PlayerCustomization from '../settings/PlayerCustomization';
 import Divider from '../layout/Divider';
 import Button from '../controls/Button';
-import useBoundStore from '../../store/store';
 import './SettingsPage.css';
 
 export default function SettingsPage() {

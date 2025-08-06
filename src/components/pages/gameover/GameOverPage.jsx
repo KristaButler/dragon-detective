@@ -5,10 +5,10 @@ import Card from '../../controls/cards/Card';
 import PlayerSummary from './PlayerSummary';
 import ClueSheet from '../../game/cluesheet/ClueSheet';
 import Button from '../../controls/Button';
+import Collapsible from '../../controls/Collapsible';
 import { getById } from '../../../utils/utils';
 import { EGG_POOL } from '../../../data/egg-pool';
 import './GameOverPage.css';
-import Collapsible from '../../controls/Collapsible';
 
 export default function GameOverPage() {
    const navigate = useNavigate();

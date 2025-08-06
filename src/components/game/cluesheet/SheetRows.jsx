@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
-import { EGG_COLORS } from '../../../utils/utils';
 import RowCells from './RowCells';
+import { EGG_COLORS } from '../../../utils/utils';
 
 export default function SheetRows() {
    return EGG_COLORS.map((color, colorIndex) => {

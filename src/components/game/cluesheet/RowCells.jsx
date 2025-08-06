@@ -1,6 +1,6 @@
 import useBoundStore from '../../../store/store';
-import { EGG_COLORS, COUNTS, SPECIES, getById } from '../../../utils/utils';
 import CellButton from './CellButton';
+import { EGG_COLORS, COUNTS, SPECIES, getById } from '../../../utils/utils';
 
 export default function RowCells({ color, colorIndex }) {
    const cluesheet = useBoundStore((state) => state.cluesheet);

@@ -1,8 +1,8 @@
+import useBoundStore from '../../store/store';
 import ColorPicker from '../controls/colorpicker/ColorPicker';
 import PlayerAvatar from '../game/avatar/PlayerAvatar';
 import Input from '../controls/Input';
 import Select from '../controls/Select';
-import useBoundStore from '../../store/store';
 import './PlayerCustomization.css';
 
 //TODO: Find a better solution for these, or move to a constants file.

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DndContext } from '@dnd-kit/core';
 import useBoundStore from '../../store/store';
 import Opponents from '../layout/game/Opponents';
@@ -7,9 +8,8 @@ import PlayerControls from '../layout/game/PlayerControls';
 import ClueSheet from '../game/cluesheet/ClueSheet';
 import FreeChoicePopup from '../game/query/FreeChoicePopup';
 import ConfirmContextProvider from '../../store/confirm-context';
-import { getById } from '../../utils/utils';
-import { useNavigate } from 'react-router-dom';
 import FirstTurn from '../controls/popup/FirstTurn';
+import { getById } from '../../utils/utils';
 import { QUERY_POOL } from '../../data/query-pool';
 
 export default function GamePage() {

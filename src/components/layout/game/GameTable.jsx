@@ -1,10 +1,10 @@
-import { OPPONENTS } from '../../../data/player-pool';
 import useBoundStore from '../../../store/store';
 import CardStack from '../../controls/cards/CardStack';
 import Matches from '../../game/Matches';
 import DiscardPile from '../../game/query/DiscardPile';
-import { getById } from '../../../utils/utils';
 import MessageDisplay from '../../game/MessageDisplay';
+import { getById } from '../../../utils/utils';
+import { OPPONENTS } from '../../../data/player-pool';
 
 export default function GameTable() {
    const globalEggs = useBoundStore((state) => state.globalEggs);

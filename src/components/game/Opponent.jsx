@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import useBoundStore from '../../store/store';
-import { getById } from '../../utils/utils';
-
-import './Opponent.css';
 import OpponentAvatar from './avatar/OpponentAvatar';
+import { getById } from '../../utils/utils';
+import './Opponent.css';
 
 export default function Opponent({ id, name, avatar }) {
    const currentPlayer = useBoundStore((state) => state.currentPlayer);

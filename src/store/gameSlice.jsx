@@ -1,4 +1,3 @@
-import { QUERY_POOL } from '../data/query-pool';
 import { getById, shuffle } from '../utils/utils';
 
 const createGameSlice = (set) => ({
