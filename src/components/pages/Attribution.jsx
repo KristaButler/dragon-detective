@@ -18,7 +18,7 @@ export default function Attribution() {
                >
                   React
                </a>{' '}
-               - A JavaScript library for building user interfaces.
+               - User Interface and Functionality
             </li>
             <li>
                <a
@@ -28,7 +28,13 @@ export default function Attribution() {
                >
                   React Router
                </a>{' '}
-               - Declarative routing for React.js.
+               - Declarative Routing
+            </li>
+            <li>
+               <a href='https://zustand.docs.pmnd.rs/getting-started/introduction'>
+                  Zustand
+               </a>{' '}
+               - State Managment
             </li>
             <li>
                <a

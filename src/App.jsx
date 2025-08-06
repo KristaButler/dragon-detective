@@ -13,7 +13,6 @@ import GameOverPage from './components/pages/gameover/GameOverPage';
 // - Document
 // - Responsive
 // - Accessibility
-// - Optomize Updates
 
 //UI:
 // - Better Tutorial
