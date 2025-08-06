@@ -1,8 +1,8 @@
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import Opponent from '../../game/Opponent';
 
 export default function Opponents() {
-   const players = useBoundStore((state) => state.players);
+   const players = useStore.use.players();
 
    return (
       <ul

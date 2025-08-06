@@ -5,8 +5,9 @@ import createTurnSlice from './turnSlice';
 import createCluesheetSlice from './cluesheetSlice';
 import createAISlice from './aiSlice';
 import { generateNewGame } from '../utils/game-utils';
+import createSelectors from './selectors';
 
-const useBoundStore = create((set) => ({
+const useStoreBase = create((set) => ({
    ...createSettingsSlice(set),
    ...createGameSlice(set),
    ...createCluesheetSlice(set),
@@ -57,4 +58,4 @@ const useBoundStore = create((set) => ({
       }),
 }));
 
-export default useBoundStore;
+export default createSelectors(useStoreBase);

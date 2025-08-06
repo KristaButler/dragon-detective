@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import useBoundStore from '../../store/store';
+import useStore from '../../store/store';
 import Popup from '../controls/popup/Popup';
 import './Notes.css';
 
 export default function Notes() {
-   const notes = useBoundStore((state) => state.notes);
+   const notes = useStore.use.notes();
    const [isOpen, setIsOpen] = useState(false);
 
    function handleCloseNotes() {

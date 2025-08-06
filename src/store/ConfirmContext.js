@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-export const ConfirmContext = createContext({
+const ConfirmContext = createContext({
    showAlert: (title, message) => {
       let _ = title;
       let __ = message;
@@ -11,3 +11,5 @@ export const ConfirmContext = createContext({
       let ___ = action;
    },
 });
+
+export default ConfirmContext;

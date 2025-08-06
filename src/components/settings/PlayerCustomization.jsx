@@ -1,4 +1,4 @@
-import useBoundStore from '../../store/store';
+import useStore from '../../store/store';
 import ColorPicker from '../controls/colorpicker/ColorPicker';
 import PlayerAvatar from '../game/avatar/PlayerAvatar';
 import Input from '../controls/Input';
@@ -74,9 +74,9 @@ const EARRINGS = ['None', 'Circle', 'Flower', 'Twist'];
 const NECKLACES = ['None', 'Onyx', 'Rainbow'];
 
 export default function PlayerCustomization() {
-   const settingsActions = useBoundStore((state) => state.settingsActions);
-   const playerAvatar = useBoundStore((state) => state.playerAvatar);
-   const playerName = useBoundStore((state) => state.playerName);
+   const settingsActions = useStore.use.settingsActions();
+   const playerAvatar = useStore.use.playerAvatar();
+   const playerName = useStore.use.playerName();
 
    function handleBackgroundPicked(color) {
       settingsActions.setAvatarSetting('background', color);

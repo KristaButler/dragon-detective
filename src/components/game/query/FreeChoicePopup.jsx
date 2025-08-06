@@ -1,11 +1,11 @@
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import Popup from '../../controls/popup/Popup';
 import FreeChoiceOptions from './FreeChoiceOptions';
 import { EGG_COLORS, SPECIES, COUNTS } from '../../../utils/utils';
 import './FreeChoicePopup.css';
 
 export default function FreeChoicePopup({ onClose, onSelect }) {
-   const turnParams = useBoundStore((state) => state.turnParams);
+   const turnParams = useStore.use.turnParams();
    const card = turnParams.card;
 
    return (

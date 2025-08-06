@@ -1,9 +1,9 @@
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import Card from '../../controls/cards/Card';
 import './DiscardPile.css';
 
 export default function DiscardPile() {
-   const discardPile = useBoundStore((state) => state.discardPile);
+   const discardPile = useStore.use.discardPile();
    const topCard = discardPile[discardPile.length - 1];
 
    let content = <div className='discard-pile-placeholder'>Discard Pile</div>;

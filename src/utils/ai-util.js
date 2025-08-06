@@ -1,3 +1,4 @@
+import useStore from '../store/store';
 import { QUERY_POOL } from '../data/query-pool';
 import { getById, shuffle } from '../utils/utils';
 import { findMatches } from './turn-utils';
@@ -151,5 +152,50 @@ export function discardAndDraw(state, playerId, cardId) {
       players: newPlayers,
       discardPile: newDiscardPile,
       drawPile: newDrawPile,
+   };
+}
+
+export function setupAISimulation(id, name) {
+   const state = useStore.getState();
+   const ai = getById(state.ai, id);
+   const setMessage = state.turnActions.setMessage;
+   const nextPlayer = state.gameActions.nextPlayer;
+
+   //AI is out of the game
+   if (ai.out) {
+      return () => {
+         setMessage(`Skipping ${name}, because they are out.`);
+
+         setTimeout(() => {
+            nextPlayer();
+         }, 3000);
+      };
+   }
+
+   //AI is ready to make a guess
+   if (ai.clues.length >= 35) {
+      return () => {
+         setMessage(`${name} is making a guess.`);
+         setTimeout(() => {
+            state.aiActions.guess(ai.id);
+
+            setTimeout(() => {
+               nextPlayer();
+            }, 1500);
+         }, 3000);
+      };
+   }
+
+   //Otherwise, play a query card
+   return () => {
+      setTimeout(() => {
+         state.aiActions.takeTurn(ai.id);
+
+         if (state.autoNotes) {
+            setTimeout(() => {
+               nextPlayer();
+            }, 6000);
+         }
+      }, 1500);
    };
 }

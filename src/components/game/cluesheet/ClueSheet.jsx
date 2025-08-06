@@ -1,4 +1,4 @@
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import SheetHeader from './SheetHeader';
 import SheetRows from './SheetRows';
 import SheetSubheader from './SheetSubheader';
@@ -7,14 +7,10 @@ import { getById } from '../../../utils/utils';
 import './ClueSheet.css';
 
 export default function ClueSheet() {
-   const cluesheet = useBoundStore((state) => state.cluesheet);
-   const selectedClue = useBoundStore((state) => state.selectedClue);
-   const setSelectedClue = useBoundStore(
-      (state) => state.cluesheetActions.setSelectedClue
-   );
-   const autoMarkPlayerEggs = useBoundStore(
-      (state) => state.autoMarkPlayerEggs
-   );
+   const cluesheet = useStore.use.cluesheet();
+   const selectedClue = useStore.use.selectedClue();
+   const setSelectedClue = useStore.use.cluesheetActions().setSelectedClue;
+   const autoMarkPlayerEggs = useStore.use.autoMarkPlayerEggs();
 
    let clue = getById(cluesheet, selectedClue);
 

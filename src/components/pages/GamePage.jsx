@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DndContext } from '@dnd-kit/core';
-import useBoundStore from '../../store/store';
+import useStore from '../../store/store';
 import Opponents from '../layout/game/Opponents';
 import GameTable from '../layout/game/GameTable';
 import PlayerControls from '../layout/game/PlayerControls';
@@ -14,14 +14,12 @@ import { QUERY_POOL } from '../../data/query-pool';
 
 export default function GamePage() {
    const navigate = useNavigate();
-   const startNewGame = useBoundStore((state) => state.startNewGame);
-   const playCard = useBoundStore((state) => state.turnActions.playCard);
-   const setTurnParams = useBoundStore(
-      (state) => state.turnActions.setTurnParams
-   );
-   const turnParams = useBoundStore((state) => state.turnParams);
-   const winner = useBoundStore((state) => state.winner);
-   const solution = useBoundStore((state) => state.solution);
+   const startNewGame = useStore.use.startNewGame();
+   const playCard = useStore.use.turnActions().playCard;
+   const setTurnParams = useStore.use.turnActions().setTurnParams;
+   const turnParams = useStore.use.turnParams();
+   const winner = useStore.use.winner();
+   const solution = useStore.use.solution();
    const [isPicking, setIsPicking] = useState(false);
 
    useEffect(() => {

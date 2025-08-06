@@ -1,9 +1,9 @@
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import CellButton from './CellButton';
 import { EGG_COLORS, COUNTS, SPECIES, getById } from '../../../utils/utils';
 
 export default function RowCells({ color, colorIndex }) {
-   const cluesheet = useBoundStore((state) => state.cluesheet);
+   const cluesheet = useStore.use.cluesheet();
 
    return SPECIES.map((sp) => {
       return COUNTS.map((ct, ctIndex) => {

@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlassArrowRight } from '@fortawesome/free-solid-svg-icons';
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import Button from '../../controls/Button';
-import { ConfirmContext } from '../../../store/confirm-context';
+import ConfirmContext from '../../../store/ConfirmContext';
 import { getById } from '../../../utils/utils';
 import { EGG_POOL } from '../../../data/egg-pool';
 
 export default function GuessButton({ className, isCurrentPlayer }) {
-   const turnParams = useBoundStore((state) => state.turnParams);
-   const turnActions = useBoundStore((state) => state.turnActions);
+   const turnParams = useStore.use.turnParams();
+   const turnActions = useStore.use.turnActions();
    const { showConfirm, showAlert } = useContext(ConfirmContext);
 
    const isGuessing = turnParams.guessing;

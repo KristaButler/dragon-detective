@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faCheck } from '@fortawesome/free-solid-svg-icons';
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import Button from '../../controls/Button';
 import Popup from '../../controls/popup/Popup';
 import PlayerAvatar from '../avatar/PlayerAvatar';
@@ -10,8 +10,8 @@ import { EGG_POOL } from '../../../data/egg-pool';
 import './MarkClue.css';
 
 export default function MarkClue({ clue, includePlayer, onClose }) {
-   const cluesheetActions = useBoundStore((state) => state.cluesheetActions);
-   const players = useBoundStore((state) => state.players);
+   const cluesheetActions = useStore.use.cluesheetActions();
+   const players = useStore.use.players();
 
    const egg = getById(EGG_POOL, clue.id);
 

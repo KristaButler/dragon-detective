@@ -1,12 +1,12 @@
-import useBoundStore from '../../store/store';
+import useStore from '../../store/store';
 import Button from '../controls/Button';
 import './MessageDisplay.css';
 
 export default function MessageDisplay({ turnParams, message }) {
-   const currentPlayer = useBoundStore((state) => state.currentPlayer);
-   const autoNotes = useBoundStore((state) => state.autoNotes);
-   const turnActions = useBoundStore((state) => state.turnActions);
-   const nextPlayer = useBoundStore((state) => state.gameActions.nextPlayer);
+   const currentPlayer = useStore.use.currentPlayer();
+   const autoNotes = useStore.use.autoNotes();
+   const turnActions = useStore.use.turnActions();
+   const nextPlayer = useStore.use.gameActions().nextPlayer;
 
    const isCurrentPlayer = currentPlayer === 'player';
    const showCancel = turnParams.guessing;

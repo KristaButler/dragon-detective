@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import Card from '../../controls/cards/Card';
 import PlayerSummary from './PlayerSummary';
 import ClueSheet from '../../game/cluesheet/ClueSheet';
@@ -13,10 +13,10 @@ import './GameOverPage.css';
 export default function GameOverPage() {
    const navigate = useNavigate();
    const [isReset, setIsReset] = useState(false);
-   const winner = useBoundStore((state) => state.winner);
-   const players = useBoundStore((state) => state.players);
-   const solution = useBoundStore((state) => state.solution);
-   const resetGame = useBoundStore((state) => state.resetGame);
+   const winner = useStore.use.winner();
+   const players = useStore.use.players();
+   const solution = useStore.use.solution();
+   const resetGame = useStore.use.resetGame();
 
    useEffect(() => {
       if (isReset) {

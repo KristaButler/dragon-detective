@@ -9,9 +9,7 @@ import GameOverPage from './components/pages/gameover/GameOverPage';
 
 //TODO LIST
 //Code Improvements:
-// - Zustand Auto Create Selectors
 // - Document
-// - Sort Imports
 // - Responsive
 // - Accessibility
 // - Optomize Updates

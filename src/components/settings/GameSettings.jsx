@@ -1,13 +1,11 @@
-import useBoundStore from '../../store/store';
+import useStore from '../../store/store';
 import Input from '../controls/Input';
 
 export default function GameSettings() {
-   const settingsActions = useBoundStore((state) => state.settingsActions);
-   const numberOfPlayers = useBoundStore((state) => state.numberOfPlayers);
-   const autoNotes = useBoundStore((state) => state.autoNotes);
-   const autoMarkPlayerEggs = useBoundStore(
-      (state) => state.autoMarkPlayerEggs
-   );
+   const settingsActions = useStore.use.settingsActions();
+   const numberOfPlayers = useStore.use.numberOfPlayers();
+   const autoNotes = useStore.use.autoNotes();
+   const autoMarkPlayerEggs = useStore.use.autoMarkPlayerEggs();
 
    function handleChangeNumberOfPlayers(event) {
       settingsActions.setNumberOfPlayers(event.target.value);

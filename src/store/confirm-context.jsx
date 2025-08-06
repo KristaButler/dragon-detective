@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useBoundStore from './store';
+import useStore from './store';
+import ConfirmContext from './ConfirmContext';
 import Confirm from '../components/controls/popup/Confirm';
 import './confirm-context.css';
 
 export default function ConfirmContextProvider({ children }) {
    const [isConfirming, setIsConfirming] = useState(false);
    const [config, setConfig] = useState(null);
-   const turnParams = useBoundStore((state) => state.turnParams);
-   const turnActions = useBoundStore((state) => state.turnActions);
-   const gameActions = useBoundStore((state) => state.gameActions);
+   const turnParams = useStore.use.turnParams();
+   const turnActions = useStore.use.turnActions();
+   const gameActions = useStore.use.gameActions();
    const navigate = useNavigate();
 
    function showConfirm(title, message, action) {

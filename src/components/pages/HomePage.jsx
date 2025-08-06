@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
-import useBoundStore from '../../store/store';
+import useStore from '../../store/store';
 import Button from '../controls/Button';
 import Input from '../controls/Input';
 import PlayerAvatar from '../game/avatar/PlayerAvatar';
@@ -9,9 +9,9 @@ import Divider from '../layout/Divider';
 import './HomePage.css';
 
 export default function HomePage() {
-   const settingsActions = useBoundStore((state) => state.settingsActions);
-   const playerName = useBoundStore((state) => state.playerName);
-   const numberOfPlayers = useBoundStore((state) => state.numberOfPlayers);
+   const settingsActions = useStore.use.settingsActions();
+   const playerName = useStore.use.playerName();
+   const numberOfPlayers = useStore.use.numberOfPlayers();
 
    const navigate = useNavigate();
 

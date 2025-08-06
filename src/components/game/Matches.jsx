@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import useBoundStore from '../../store/store';
+import useStore from '../../store/store';
 import Button from '../controls/Button';
 import Card from '../controls/cards/Card';
 
 export default function Matches({ list, owner }) {
    const [cluesMarked, setCluesMarked] = useState(false);
-   const markClues = useBoundStore((state) => state.cluesheetActions.markClues);
+   const markClues = useStore.use.cluesheetActions().markClues;
 
    function handleMarkClues() {
       markClues(list, owner.id);

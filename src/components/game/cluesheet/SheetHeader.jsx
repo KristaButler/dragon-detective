@@ -1,10 +1,10 @@
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import Notes from '../../game/Notes';
 import { SPECIES } from '../../../utils/utils';
 
 export default function SheetHeader() {
-   const autoNotes = useBoundStore((state) => state.autoNotes);
-   const winner = useBoundStore((state) => state.winner);
+   const autoNotes = useStore.use.autoNotes();
+   const winner = useStore.use.winner();
 
    const showNotes = autoNotes && !winner;
 

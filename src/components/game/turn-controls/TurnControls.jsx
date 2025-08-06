@@ -6,14 +6,14 @@ import {
    faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../controls/Button';
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import GuessButton from './GuessButton';
-import { ConfirmContext } from '../../../store/confirm-context';
+import ConfirmContext from '../../../store/ConfirmContext';
 import './TurnControls.css';
 
 export default function TurnControls({ isCurrentPlayer, turnType }) {
-   const nextPlayer = useBoundStore((state) => state.gameActions.nextPlayer);
-   const draw = useBoundStore((state) => state.gameActions.draw);
+   const nextPlayer = useStore.use.gameActions().nextPlayer;
+   const draw = useStore.use.gameActions().draw;
    const { showConfirm } = useContext(ConfirmContext);
 
    function handleDiscard() {

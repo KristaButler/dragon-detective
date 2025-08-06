@@ -1,4 +1,4 @@
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import './PlayerAvatar.css';
 
 //TODO: Find a better solution for these, or move to a constants file.
@@ -23,7 +23,7 @@ const HAIR_BACKS = [
 ];
 
 export default function PlayerAvatar({ className }) {
-   const avatar = useBoundStore((state) => state.playerAvatar);
+   const avatar = useStore.use.playerAvatar();
 
    return (
       <div

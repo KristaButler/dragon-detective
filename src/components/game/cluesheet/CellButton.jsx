@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import useBoundStore from '../../../store/store';
+import useStore from '../../../store/store';
 import OpponentAvatar from '../avatar/OpponentAvatar';
 import NotList from './NotList';
 import { getById } from '../../../utils/utils';
@@ -11,20 +11,14 @@ export default function CellButton({
    clue = { id: id, owner: null },
    species,
 }) {
-   const winner = useBoundStore((state) => state.winner);
-   const solution = useBoundStore((state) => state.solution);
-   const selectedClue = useBoundStore((state) => state.selectedClue);
-   const setSelectedClue = useBoundStore(
-      (state) => state.cluesheetActions.setSelectedClue
-   );
-   const players = useBoundStore((state) => state.players);
-   const autoMarkPlayerEggs = useBoundStore(
-      (state) => state.autoMarkPlayerEggs
-   );
-   const turnParams = useBoundStore((state) => state.turnParams);
-   const setTurnParams = useBoundStore(
-      (state) => state.turnActions.setTurnParams
-   );
+   const winner = useStore.use.winner();
+   const solution = useStore.use.solution();
+   const selectedClue = useStore.use.selectedClue();
+   const setSelectedClue = useStore.use.cluesheetActions().setSelectedClue;
+   const players = useStore.use.players();
+   const autoMarkPlayerEggs = useStore.use.autoMarkPlayerEggs();
+   const turnParams = useStore.use.turnParams();
+   const setTurnParams = useStore.use.turnActions().setTurnParams;
 
    const ownerPlayer = getById(players, clue.owner);
    const isSelectedClue = selectedClue === id;
