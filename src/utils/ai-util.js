@@ -1,5 +1,5 @@
 import { QUERY_POOL } from '../data/query-pool';
-import { getById, getRandomNumber, shuffle } from '../utils/utils';
+import { getById, shuffle } from '../utils/utils';
 import { findMatches } from './turn-utils';
 
 const FREE_CHOICE_OPTIONS = [

@@ -92,7 +92,7 @@ function markClues(playerId, eggs, globalEggs, markPlayerEggs = true) {
    return clues;
 }
 
-function initializeAI(players, globalEggs, solution) {
+function initializeAI(players, globalEggs) {
    const ai = [];
    players.forEach((player) => {
       if (player.id !== 'player') {

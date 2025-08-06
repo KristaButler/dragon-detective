@@ -3,13 +3,13 @@ import { HAND_SIZE } from '../utils/game-utils';
 import { findMatches, buildMessage } from '../utils/turn-utils';
 import { getById, shuffle } from '../utils/utils';
 
-const createTurnSlice = (set, store) => ({
+const createTurnSlice = (set) => ({
    message: '',
    turnType: null,
    turnParams: {},
    turnActions: {
       setMessage: (newMessage) =>
-         set((state) => {
+         set(() => {
             return { message: newMessage };
          }),
       setTurnParams: (params) =>

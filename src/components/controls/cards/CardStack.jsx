@@ -21,8 +21,6 @@ export default function CardStack({
       right ? 'right' : 'left'
    } ${className ? className : ''}`;
 
-   const cardClasses = '';
-
    return (
       <div className='cardstack-container'>
          <div

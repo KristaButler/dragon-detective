@@ -6,14 +6,14 @@ import createCluesheetSlice from './cluesheetSlice';
 import createAISlice from './aiSlice';
 import { generateNewGame } from '../utils/game-utils';
 
-const useBoundStore = create((set, get, store) => ({
-   ...createSettingsSlice(set, store),
-   ...createGameSlice(set, store),
-   ...createCluesheetSlice(set, store),
-   ...createTurnSlice(set, store),
-   ...createAISlice(set, store),
+const useBoundStore = create((set) => ({
+   ...createSettingsSlice(set),
+   ...createGameSlice(set),
+   ...createCluesheetSlice(set),
+   ...createTurnSlice(set),
+   ...createAISlice(set),
    resetGame: () =>
-      set((state) => {
+      set(() => {
          return {
             players: [
                {

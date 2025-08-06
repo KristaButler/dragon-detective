@@ -6,11 +6,6 @@ import Card from '../controls/cards/Card';
 export default function Matches({ list, owner }) {
    const [cluesMarked, setCluesMarked] = useState(false);
    const markClues = useBoundStore((state) => state.cluesheetActions.markClues);
-   let title = 'Matching Eggs:';
-
-   if (owner && owner.name) {
-      title = `${owner.name}'s ${title}`;
-   }
 
    function handleMarkClues() {
       markClues(list, owner.id);

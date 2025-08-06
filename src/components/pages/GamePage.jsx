@@ -32,7 +32,7 @@ export default function GamePage() {
          //Only start a new game if there isn't one in progress.
          startNewGame();
       }
-   }, [solution, winner, startNewGame]);
+   }, [solution, winner, startNewGame, navigate]);
 
    function handleDragEnd(event) {
       const opponentId = event.over?.id || null;

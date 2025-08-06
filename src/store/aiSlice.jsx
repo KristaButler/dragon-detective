@@ -3,7 +3,7 @@ import { discardAndDraw, getBestPlay, getPlayerToAsk } from '../utils/ai-util';
 import { buildMessage, findMatches } from '../utils/turn-utils';
 import { getById } from '../utils/utils';
 
-const createAISlice = (set, store) => ({
+const createAISlice = (set) => ({
    ai: [],
    aiActions: {
       takeTurn: (playerId) =>

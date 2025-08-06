@@ -51,17 +51,18 @@ export default function Opponent({ id, name, avatar }) {
             }, timer);
          }
       }
-   }, [isCurrentPlayer, turnParams, setMessage, aiActions, nextPlayer]);
-
-   let imgClasses = 'w-24 h-24 rounded-full mb-2';
-
-   if (isCurrentPlayer) {
-      imgClasses += ' border-4 border-rose-600 shadow-md shadow-zinc-900';
-   }
-
-   if (isOver || isAsked) {
-      imgClasses += ' border-4 border-orange-600 shadow-md shadow-zinc-900';
-   }
+   }, [
+      isCurrentPlayer,
+      turnParams,
+      setMessage,
+      aiActions,
+      nextPlayer,
+      ai.clues.length,
+      ai.out,
+      autoNotes,
+      name,
+      id,
+   ]);
 
    const avatarClasses = `opponent-avatar ${
       isCurrentPlayer ? 'current-player' : ''

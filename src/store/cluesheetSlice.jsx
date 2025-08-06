@@ -18,7 +18,7 @@ function removeNotOwner(clue, opponentId) {
    }
 }
 
-const createCluesheetSlice = (set, store) => ({
+const createCluesheetSlice = (set) => ({
    selectedClue: null,
    cluesheet: [],
    cluesheetActions: {
@@ -79,7 +79,7 @@ const createCluesheetSlice = (set, store) => ({
             };
          }),
       setSelectedClue: (clueId) =>
-         set((state) => {
+         set(() => {
             return { selectedClue: clueId };
          }),
       markClues: (clues, ownerId) =>

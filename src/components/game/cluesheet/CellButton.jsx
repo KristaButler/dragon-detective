@@ -54,7 +54,7 @@ export default function CellButton({
             />
          );
       } else {
-         content = <div>{owner.id}</div>;
+         content = <div>{clue.owner.id}</div>;
       }
    } else if (clue.not?.length > 0) {
       content = (

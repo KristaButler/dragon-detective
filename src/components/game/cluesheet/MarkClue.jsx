@@ -45,13 +45,6 @@ export default function MarkClue({ clue, includePlayer, onClose }) {
                const isOwner = clue.owner === player.id;
                const isNotOwner = clue.not.indexOf(player.id) > -1;
 
-               let title = player.name;
-               if (isOwner) {
-                  title += ', marked as owner.';
-               } else if (isNotOwner) {
-                  title += ', does not have the egg.';
-               }
-
                let avatar = (
                   <OpponentAvatar
                      src={player.avatar}

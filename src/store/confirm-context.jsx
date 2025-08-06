@@ -1,13 +1,8 @@
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useBoundStore from './store';
 import Confirm from '../components/controls/popup/Confirm';
 import './confirm-context.css';
-
-export const ConfirmContext = createContext({
-   showAlert: (title, message) => {},
-   showConfirm: (title, message, action) => {},
-});
 
 export default function ConfirmContextProvider({ children }) {
    const [isConfirming, setIsConfirming] = useState(false);

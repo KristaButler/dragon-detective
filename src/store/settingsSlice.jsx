@@ -17,11 +17,11 @@ const INITIAL_STATE = {
    autoMarkPlayerEggs: true,
 };
 
-const createSettingsSlice = (set, store) => ({
+const createSettingsSlice = (set) => ({
    ...INITIAL_STATE,
    settingsActions: {
       setPlayerName: (newPlayerName) =>
-         set((state) => {
+         set(() => {
             return { playerName: newPlayerName };
          }),
       setAvatarSetting: (key, value) =>
@@ -31,7 +31,7 @@ const createSettingsSlice = (set, store) => ({
             return { playerAvatar: newAvatar };
          }),
       setNumberOfPlayers: (newNumberOfPlayers) =>
-         set((state) => {
+         set(() => {
             //Ensure number of players stays between 3 and 7
             if (newNumberOfPlayers < 3) {
                newNumberOfPlayers = 3;
@@ -43,11 +43,11 @@ const createSettingsSlice = (set, store) => ({
             return { numberOfPlayers: newNumberOfPlayers };
          }),
       setAutoNotes: (newAutoNotes) =>
-         set((state) => {
+         set(() => {
             return { autoNotes: newAutoNotes };
          }),
       setAutoMarkPlayerEggs: (newAutoMarkPlayerEggs) =>
-         set((state) => {
+         set(() => {
             return { autoMarkPlayerEggs: newAutoMarkPlayerEggs };
          }),
       resetSettings: () =>
