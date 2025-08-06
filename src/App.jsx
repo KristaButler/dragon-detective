@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer';
 import Main from './components/layout/Main';
 import SettingsPage from './components/pages/SettingsPage';
 import GamePage from './components/pages/GamePage';
+import Attribution from './components/pages/Attribution';
 import GameOverPage from './components/pages/gameover/GameOverPage';
 
 //TODO LIST
@@ -18,10 +19,6 @@ import GameOverPage from './components/pages/gameover/GameOverPage';
 // - Better Tutorial
 // - Animations
 // - Hover Effects
-
-//Other:
-// - Update README
-// - Attribution Page
 const router = createBrowserRouter([
    {
       path: '/',
@@ -38,6 +35,10 @@ const router = createBrowserRouter([
    {
       path: '/gameover',
       element: <GameOverPage />,
+   },
+   {
+      path: '/attribution',
+      element: <Attribution />,
    },
 ]);
 

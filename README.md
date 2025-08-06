@@ -10,11 +10,14 @@ New Features:
 Home page
 Game Settings including Avatar customization
 New game play layout and controls
-Notes and Auto Notes feature.
+Auto Notes feature.
+More options for marking clue sheet.
+New game over display page.
+Introduction with a quick tutorial.
 
-You can play the game here: You can play the game here: https://dragon-detective.kristathecoder.com/
+You can play the game here: https://dragon-detective.kristathecoder.com/
 
-# Image Attribution
+# Image and Icon Attribution
 
 Avatars: Sky-Designs (https://depositphotos.com/portfolio-2703645.html)
 Creature Icons: naripuru (https://depositphotos.com/portfolio-5248371.html)

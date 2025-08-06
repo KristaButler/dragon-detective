@@ -1,0 +1,29 @@
+.attribution-page {
+   padding: 1rem;
+}
+
+.attribution-page > h2 {
+   margin-top: 1rem;
+}
+
+.attribution-page > p {
+   margin-bottom: 1rem;
+}
+
+.attribution-page > ul > li {
+   margin-bottom: 0.5rem;
+}
+
+.attribution-page > ul > li > a {
+   font-weight: bold;
+   text-decoration: underline;
+}
+
+.attribution-page > ul > li > a:hover {
+   color: var(--color-orange);
+}
+
+.attribution-footer {
+   margin-top: 2rem;
+   text-align: center;
+}
