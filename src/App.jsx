@@ -7,6 +7,23 @@ import SettingsPage from './components/pages/SettingsPage';
 import GamePage from './components/pages/GamePage';
 import GameOverPage from './components/pages/gameover/GameOverPage';
 
+//TODO LIST
+//Code Improvements:
+// - Zustand Auto Create Selectors
+// - Document
+// - Sort Imports
+// - Responsive
+// - Accessibility
+// - Optomize Updates
+
+//UI:
+// - Better Tutorial
+// - Animations
+// - Hover Effects
+
+//Other:
+// - Update README
+// - Attribution Page
 const router = createBrowserRouter([
    {
       path: '/',
